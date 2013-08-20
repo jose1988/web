@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditprocesoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditprocesoLabel_codigo}" for="codigo" />
+                    <h:inputText id="codigo" value="#{procesoController.selected.codigo}" title="#{bundle.EditprocesoTitle_codigo}" required="true" requiredMessage="#{bundle.EditprocesoRequiredMessage_codigo}"/>
+                    <h:outputLabel value="#{bundle.EditprocesoLabel_version}" for="version" />
+                    <h:inputText id="version" value="#{procesoController.selected.version}" title="#{bundle.EditprocesoTitle_version}" required="true" requiredMessage="#{bundle.EditprocesoRequiredMessage_version}"/>
+                    <h:outputLabel value="#{bundle.EditprocesoLabel_nombre}" for="nombre" />
+                    <h:inputText id="nombre" value="#{procesoController.selected.nombre}" title="#{bundle.EditprocesoTitle_nombre}" required="true" requiredMessage="#{bundle.EditprocesoRequiredMessage_nombre}"/>
+                    <h:outputLabel value="#{bundle.EditprocesoLabel_descripcion}" for="descripcion" />
+                    <h:inputText id="descripcion" value="#{procesoController.selected.descripcion}" title="#{bundle.EditprocesoTitle_descripcion}" required="true" requiredMessage="#{bundle.EditprocesoRequiredMessage_descripcion}"/>
+                    <h:outputLabel value="#{bundle.EditprocesoLabel_autor}" for="autor" />
+                    <h:inputText id="autor" value="#{procesoController.selected.autor}" title="#{bundle.EditprocesoTitle_autor}" required="true" requiredMessage="#{bundle.EditprocesoRequiredMessage_autor}"/>
+                    <h:outputLabel value="#{bundle.EditprocesoLabel_duracion}" for="duracion" />
+                    <h:inputText id="duracion" value="#{procesoController.selected.duracion}" title="#{bundle.EditprocesoTitle_duracion}" required="true" requiredMessage="#{bundle.EditprocesoRequiredMessage_duracion}"/>
+                    <h:outputLabel value="#{bundle.EditprocesoLabel_costo}" for="costo" />
+                    <h:inputText id="costo" value="#{procesoController.selected.costo}" title="#{bundle.EditprocesoTitle_costo}" required="true" requiredMessage="#{bundle.EditprocesoRequiredMessage_costo}"/>
+                    <h:outputLabel value="#{bundle.EditprocesoLabel_fechaCreacion}" for="fechaCreacion" />
+                    <h:inputText id="fechaCreacion" value="#{procesoController.selected.fechaCreacion}" title="#{bundle.EditprocesoTitle_fechaCreacion}" required="true" requiredMessage="#{bundle.EditprocesoRequiredMessage_fechaCreacion}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditprocesoLabel_documentacion}" for="documentacion" />
+                    <h:inputText id="documentacion" value="#{procesoController.selected.documentacion}" title="#{bundle.EditprocesoTitle_documentacion}" />
+                    <h:outputLabel value="#{bundle.EditprocesoLabel_estado}" for="estado" />
+                    <h:inputText id="estado" value="#{procesoController.selected.estado}" title="#{bundle.EditprocesoTitle_estado}" required="true" requiredMessage="#{bundle.EditprocesoRequiredMessage_estado}"/>
+                    <h:outputLabel value="#{bundle.EditprocesoLabel_descripcionVersion}" for="descripcionVersion" />
+                    <h:inputText id="descripcionVersion" value="#{procesoController.selected.descripcionVersion}" title="#{bundle.EditprocesoTitle_descripcionVersion}" required="true" requiredMessage="#{bundle.EditprocesoRequiredMessage_descripcionVersion}"/>
+                    <h:outputLabel value="#{bundle.EditprocesoLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{procesoController.selected.id}" title="#{bundle.EditprocesoTitle_id}" required="true" requiredMessage="#{bundle.EditprocesoRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.EditprocesoLabel_borrado}" for="borrado" />
+                    <h:inputText id="borrado" value="#{procesoController.selected.borrado}" title="#{bundle.EditprocesoTitle_borrado}" required="true" requiredMessage="#{bundle.EditprocesoRequiredMessage_borrado}"/>
+                    <h:outputLabel value="#{bundle.EditprocesoLabel_idPrioridad}" for="idPrioridad" />
+                    <h:selectOneMenu id="idPrioridad" value="#{procesoController.selected.idPrioridad}" title="#{bundle.EditprocesoTitle_idPrioridad}" required="true" requiredMessage="#{bundle.EditprocesoRequiredMessage_idPrioridad}">
+                        <f:selectItems value="#{prioridadController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditprocesoLabel_idEquivalenciasTiempo}" for="idEquivalenciasTiempo" />
+                    <h:selectOneMenu id="idEquivalenciasTiempo" value="#{procesoController.selected.idEquivalenciasTiempo}" title="#{bundle.EditprocesoTitle_idEquivalenciasTiempo}" required="true" requiredMessage="#{bundle.EditprocesoRequiredMessage_idEquivalenciasTiempo}">
+                        <f:selectItems value="#{equivalencia_tiempoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditprocesoLabel_idClasificacionProceso}" for="idClasificacionProceso" />
+                    <h:selectOneMenu id="idClasificacionProceso" value="#{procesoController.selected.idClasificacionProceso}" title="#{bundle.EditprocesoTitle_idClasificacionProceso}" required="true" requiredMessage="#{bundle.EditprocesoRequiredMessage_idClasificacionProceso}">
+                        <f:selectItems value="#{clasificacion_procesoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{procesoController.update}" value="#{bundle.EditprocesoSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditprocesoViewLink}"/>
+                <br />
+                <h:commandLink action="#{procesoController.prepareList}" value="#{bundle.EditprocesoShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditprocesoIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.Viewcola_de_tareaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.Viewcola_de_tareaLabel_id}"/>
+                    <h:outputText value="#{cola_de_tareaController.selected.id}" title="#{bundle.Viewcola_de_tareaTitle_id}"/>
+                    <h:outputText value="#{bundle.Viewcola_de_tareaLabel_borrado}"/>
+                    <h:outputText value="#{cola_de_tareaController.selected.borrado}" title="#{bundle.Viewcola_de_tareaTitle_borrado}"/>
+                    <h:outputText value="#{bundle.Viewcola_de_tareaLabel_idTarea}"/>
+                    <h:outputText value="#{cola_de_tareaController.selected.idTarea}" title="#{bundle.Viewcola_de_tareaTitle_idTarea}"/>
+                    <h:outputText value="#{bundle.Viewcola_de_tareaLabel_idGrupo}"/>
+                    <h:outputText value="#{cola_de_tareaController.selected.idGrupo}" title="#{bundle.Viewcola_de_tareaTitle_idGrupo}"/>
+                    <h:outputText value="#{bundle.Viewcola_de_tareaLabel_idActividad}"/>
+                    <h:outputText value="#{cola_de_tareaController.selected.idActividad}" title="#{bundle.Viewcola_de_tareaTitle_idActividad}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{cola_de_tareaController.destroyAndView}" value="#{bundle.Viewcola_de_tareaDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.Viewcola_de_tareaEditLink}"/>
+                <br />
+                <h:commandLink action="#{cola_de_tareaController.prepareCreate}" value="#{bundle.Viewcola_de_tareaCreateLink}" />
+                <br />
+                <h:commandLink action="#{cola_de_tareaController.prepareList}" value="#{bundle.Viewcola_de_tareaShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.Viewcola_de_tareaIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

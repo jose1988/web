@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.Createclasificacion_tareaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.Createclasificacion_tareaLabel_nombre}" for="nombre" />
+                    <h:inputText id="nombre" value="#{clasificacion_tareaController.selected.nombre}" title="#{bundle.Createclasificacion_tareaTitle_nombre}" required="true" requiredMessage="#{bundle.Createclasificacion_tareaRequiredMessage_nombre}"/>
+                    <h:outputLabel value="#{bundle.Createclasificacion_tareaLabel_descripcion}" for="descripcion" />
+                    <h:inputText id="descripcion" value="#{clasificacion_tareaController.selected.descripcion}" title="#{bundle.Createclasificacion_tareaTitle_descripcion}" />
+                    <h:outputLabel value="#{bundle.Createclasificacion_tareaLabel_fechaCreacion}" for="fechaCreacion" />
+                    <h:inputText id="fechaCreacion" value="#{clasificacion_tareaController.selected.fechaCreacion}" title="#{bundle.Createclasificacion_tareaTitle_fechaCreacion}" required="true" requiredMessage="#{bundle.Createclasificacion_tareaRequiredMessage_fechaCreacion}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.Createclasificacion_tareaLabel_fechaModificacion}" for="fechaModificacion" />
+                    <h:inputText id="fechaModificacion" value="#{clasificacion_tareaController.selected.fechaModificacion}" title="#{bundle.Createclasificacion_tareaTitle_fechaModificacion}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.Createclasificacion_tareaLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{clasificacion_tareaController.selected.id}" title="#{bundle.Createclasificacion_tareaTitle_id}" required="true" requiredMessage="#{bundle.Createclasificacion_tareaRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.Createclasificacion_tareaLabel_borrado}" for="borrado" />
+                    <h:inputText id="borrado" value="#{clasificacion_tareaController.selected.borrado}" title="#{bundle.Createclasificacion_tareaTitle_borrado}" required="true" requiredMessage="#{bundle.Createclasificacion_tareaRequiredMessage_borrado}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{clasificacion_tareaController.create}" value="#{bundle.Createclasificacion_tareaSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{clasificacion_tareaController.prepareList}" value="#{bundle.Createclasificacion_tareaShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.Createclasificacion_tareaIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

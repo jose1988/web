@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateusuarioTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateusuarioLabel_clave}" for="clave" />
+                    <h:inputText id="clave" value="#{usuarioController.selected.clave}" title="#{bundle.CreateusuarioTitle_clave}" required="true" requiredMessage="#{bundle.CreateusuarioRequiredMessage_clave}"/>
+                    <h:outputLabel value="#{bundle.CreateusuarioLabel_primerNombre}" for="primerNombre" />
+                    <h:inputText id="primerNombre" value="#{usuarioController.selected.primerNombre}" title="#{bundle.CreateusuarioTitle_primerNombre}" required="true" requiredMessage="#{bundle.CreateusuarioRequiredMessage_primerNombre}"/>
+                    <h:outputLabel value="#{bundle.CreateusuarioLabel_segundoNombre}" for="segundoNombre" />
+                    <h:inputText id="segundoNombre" value="#{usuarioController.selected.segundoNombre}" title="#{bundle.CreateusuarioTitle_segundoNombre}" />
+                    <h:outputLabel value="#{bundle.CreateusuarioLabel_primerApellido}" for="primerApellido" />
+                    <h:inputText id="primerApellido" value="#{usuarioController.selected.primerApellido}" title="#{bundle.CreateusuarioTitle_primerApellido}" required="true" requiredMessage="#{bundle.CreateusuarioRequiredMessage_primerApellido}"/>
+                    <h:outputLabel value="#{bundle.CreateusuarioLabel_segundoApellido}" for="segundoApellido" />
+                    <h:inputText id="segundoApellido" value="#{usuarioController.selected.segundoApellido}" title="#{bundle.CreateusuarioTitle_segundoApellido}" />
+                    <h:outputLabel value="#{bundle.CreateusuarioLabel_cedula}" for="cedula" />
+                    <h:inputText id="cedula" value="#{usuarioController.selected.cedula}" title="#{bundle.CreateusuarioTitle_cedula}" required="true" requiredMessage="#{bundle.CreateusuarioRequiredMessage_cedula}"/>
+                    <h:outputLabel value="#{bundle.CreateusuarioLabel_rif}" for="rif" />
+                    <h:inputText id="rif" value="#{usuarioController.selected.rif}" title="#{bundle.CreateusuarioTitle_rif}" />
+                    <h:outputLabel value="#{bundle.CreateusuarioLabel_telefonosPersonal}" for="telefonosPersonal" />
+                    <h:inputText id="telefonosPersonal" value="#{usuarioController.selected.telefonosPersonal}" title="#{bundle.CreateusuarioTitle_telefonosPersonal}" />
+                    <h:outputLabel value="#{bundle.CreateusuarioLabel_telefonosOficina}" for="telefonosOficina" />
+                    <h:inputText id="telefonosOficina" value="#{usuarioController.selected.telefonosOficina}" title="#{bundle.CreateusuarioTitle_telefonosOficina}" />
+                    <h:outputLabel value="#{bundle.CreateusuarioLabel_mail}" for="mail" />
+                    <h:inputText id="mail" value="#{usuarioController.selected.mail}" title="#{bundle.CreateusuarioTitle_mail}" />
+                    <h:outputLabel value="#{bundle.CreateusuarioLabel_fax}" for="fax" />
+                    <h:inputText id="fax" value="#{usuarioController.selected.fax}" title="#{bundle.CreateusuarioTitle_fax}" />
+                    <h:outputLabel value="#{bundle.CreateusuarioLabel_direccionPersonal}" for="direccionPersonal" />
+                    <h:inputText id="direccionPersonal" value="#{usuarioController.selected.direccionPersonal}" title="#{bundle.CreateusuarioTitle_direccionPersonal}" required="true" requiredMessage="#{bundle.CreateusuarioRequiredMessage_direccionPersonal}"/>
+                    <h:outputLabel value="#{bundle.CreateusuarioLabel_direccionOficina}" for="direccionOficina" />
+                    <h:inputText id="direccionOficina" value="#{usuarioController.selected.direccionOficina}" title="#{bundle.CreateusuarioTitle_direccionOficina}" required="true" requiredMessage="#{bundle.CreateusuarioRequiredMessage_direccionOficina}"/>
+                    <h:outputLabel value="#{bundle.CreateusuarioLabel_descripcion}" for="descripcion" />
+                    <h:inputText id="descripcion" value="#{usuarioController.selected.descripcion}" title="#{bundle.CreateusuarioTitle_descripcion}" />
+                    <h:outputLabel value="#{bundle.CreateusuarioLabel_estado}" for="estado" />
+                    <h:inputText id="estado" value="#{usuarioController.selected.estado}" title="#{bundle.CreateusuarioTitle_estado}" required="true" requiredMessage="#{bundle.CreateusuarioRequiredMessage_estado}"/>
+                    <h:outputLabel value="#{bundle.CreateusuarioLabel_fechaCreacion}" for="fechaCreacion" />
+                    <h:inputText id="fechaCreacion" value="#{usuarioController.selected.fechaCreacion}" title="#{bundle.CreateusuarioTitle_fechaCreacion}" required="true" requiredMessage="#{bundle.CreateusuarioRequiredMessage_fechaCreacion}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateusuarioLabel_fechaActualizacionClave}" for="fechaActualizacionClave" />
+                    <h:inputText id="fechaActualizacionClave" value="#{usuarioController.selected.fechaActualizacionClave}" title="#{bundle.CreateusuarioTitle_fechaActualizacionClave}" required="true" requiredMessage="#{bundle.CreateusuarioRequiredMessage_fechaActualizacionClave}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateusuarioLabel_diasValidezClave}" for="diasValidezClave" />
+                    <h:inputText id="diasValidezClave" value="#{usuarioController.selected.diasValidezClave}" title="#{bundle.CreateusuarioTitle_diasValidezClave}" required="true" requiredMessage="#{bundle.CreateusuarioRequiredMessage_diasValidezClave}"/>
+                    <h:outputLabel value="#{bundle.CreateusuarioLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{usuarioController.selected.id}" title="#{bundle.CreateusuarioTitle_id}" required="true" requiredMessage="#{bundle.CreateusuarioRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.CreateusuarioLabel_borrado}" for="borrado" />
+                    <h:inputText id="borrado" value="#{usuarioController.selected.borrado}" title="#{bundle.CreateusuarioTitle_borrado}" required="true" requiredMessage="#{bundle.CreateusuarioRequiredMessage_borrado}"/>
+                    <h:outputLabel value="#{bundle.CreateusuarioLabel_idSkin}" for="idSkin" />
+                    <h:selectOneMenu id="idSkin" value="#{usuarioController.selected.idSkin}" title="#{bundle.CreateusuarioTitle_idSkin}" required="true" requiredMessage="#{bundle.CreateusuarioRequiredMessage_idSkin}">
+                        <f:selectItems value="#{skinController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateusuarioLabel_idOrganizacion}" for="idOrganizacion" />
+                    <h:selectOneMenu id="idOrganizacion" value="#{usuarioController.selected.idOrganizacion}" title="#{bundle.CreateusuarioTitle_idOrganizacion}" required="true" requiredMessage="#{bundle.CreateusuarioRequiredMessage_idOrganizacion}">
+                        <f:selectItems value="#{organizacionController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateusuarioLabel_idClasificacionUsuario}" for="idClasificacionUsuario" />
+                    <h:selectOneMenu id="idClasificacionUsuario" value="#{usuarioController.selected.idClasificacionUsuario}" title="#{bundle.CreateusuarioTitle_idClasificacionUsuario}" required="true" requiredMessage="#{bundle.CreateusuarioRequiredMessage_idClasificacionUsuario}">
+                        <f:selectItems value="#{clasificacion_usuarioController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{usuarioController.create}" value="#{bundle.CreateusuarioSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{usuarioController.prepareList}" value="#{bundle.CreateusuarioShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateusuarioIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

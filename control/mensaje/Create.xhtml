@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreatemensajeTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreatemensajeLabel_texto}" for="texto" />
+                    <h:inputText id="texto" value="#{mensajeController.selected.texto}" title="#{bundle.CreatemensajeTitle_texto}" required="true" requiredMessage="#{bundle.CreatemensajeRequiredMessage_texto}"/>
+                    <h:outputLabel value="#{bundle.CreatemensajeLabel_estado}" for="estado" />
+                    <h:inputText id="estado" value="#{mensajeController.selected.estado}" title="#{bundle.CreatemensajeTitle_estado}" required="true" requiredMessage="#{bundle.CreatemensajeRequiredMessage_estado}"/>
+                    <h:outputLabel value="#{bundle.CreatemensajeLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{mensajeController.selected.id}" title="#{bundle.CreatemensajeTitle_id}" required="true" requiredMessage="#{bundle.CreatemensajeRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.CreatemensajeLabel_borrado}" for="borrado" />
+                    <h:inputText id="borrado" value="#{mensajeController.selected.borrado}" title="#{bundle.CreatemensajeTitle_borrado}" required="true" requiredMessage="#{bundle.CreatemensajeRequiredMessage_borrado}"/>
+                    <h:outputLabel value="#{bundle.CreatemensajeLabel_idUsuario}" for="idUsuario" />
+                    <h:selectOneMenu id="idUsuario" value="#{mensajeController.selected.idUsuario}" title="#{bundle.CreatemensajeTitle_idUsuario}" required="true" requiredMessage="#{bundle.CreatemensajeRequiredMessage_idUsuario}">
+                        <f:selectItems value="#{usuarioController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{mensajeController.create}" value="#{bundle.CreatemensajeSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{mensajeController.prepareList}" value="#{bundle.CreatemensajeShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreatemensajeIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

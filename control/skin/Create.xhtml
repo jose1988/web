@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateskinTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateskinLabel_nombre}" for="nombre" />
+                    <h:inputText id="nombre" value="#{skinController.selected.nombre}" title="#{bundle.CreateskinTitle_nombre}" required="true" requiredMessage="#{bundle.CreateskinRequiredMessage_nombre}"/>
+                    <h:outputLabel value="#{bundle.CreateskinLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{skinController.selected.id}" title="#{bundle.CreateskinTitle_id}" required="true" requiredMessage="#{bundle.CreateskinRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.CreateskinLabel_borrado}" for="borrado" />
+                    <h:inputText id="borrado" value="#{skinController.selected.borrado}" title="#{bundle.CreateskinTitle_borrado}" required="true" requiredMessage="#{bundle.CreateskinRequiredMessage_borrado}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{skinController.create}" value="#{bundle.CreateskinSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{skinController.prepareList}" value="#{bundle.CreateskinShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateskinIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

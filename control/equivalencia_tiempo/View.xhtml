@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.Viewequivalencia_tiempoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.Viewequivalencia_tiempoLabel_nombre}"/>
+                    <h:outputText value="#{equivalencia_tiempoController.selected.nombre}" title="#{bundle.Viewequivalencia_tiempoTitle_nombre}"/>
+                    <h:outputText value="#{bundle.Viewequivalencia_tiempoLabel_descripcion}"/>
+                    <h:outputText value="#{equivalencia_tiempoController.selected.descripcion}" title="#{bundle.Viewequivalencia_tiempoTitle_descripcion}"/>
+                    <h:outputText value="#{bundle.Viewequivalencia_tiempoLabel_minutos}"/>
+                    <h:outputText value="#{equivalencia_tiempoController.selected.minutos}" title="#{bundle.Viewequivalencia_tiempoTitle_minutos}"/>
+                    <h:outputText value="#{bundle.Viewequivalencia_tiempoLabel_id}"/>
+                    <h:outputText value="#{equivalencia_tiempoController.selected.id}" title="#{bundle.Viewequivalencia_tiempoTitle_id}"/>
+                    <h:outputText value="#{bundle.Viewequivalencia_tiempoLabel_borrado}"/>
+                    <h:outputText value="#{equivalencia_tiempoController.selected.borrado}" title="#{bundle.Viewequivalencia_tiempoTitle_borrado}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{equivalencia_tiempoController.destroyAndView}" value="#{bundle.Viewequivalencia_tiempoDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.Viewequivalencia_tiempoEditLink}"/>
+                <br />
+                <h:commandLink action="#{equivalencia_tiempoController.prepareCreate}" value="#{bundle.Viewequivalencia_tiempoCreateLink}" />
+                <br />
+                <h:commandLink action="#{equivalencia_tiempoController.prepareList}" value="#{bundle.Viewequivalencia_tiempoShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.Viewequivalencia_tiempoIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

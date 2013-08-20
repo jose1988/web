@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewrolTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewrolLabel_nombre}"/>
+                    <h:outputText value="#{rolController.selected.nombre}" title="#{bundle.ViewrolTitle_nombre}"/>
+                    <h:outputText value="#{bundle.ViewrolLabel_descripcion}"/>
+                    <h:outputText value="#{rolController.selected.descripcion}" title="#{bundle.ViewrolTitle_descripcion}"/>
+                    <h:outputText value="#{bundle.ViewrolLabel_documentacion}"/>
+                    <h:outputText value="#{rolController.selected.documentacion}" title="#{bundle.ViewrolTitle_documentacion}"/>
+                    <h:outputText value="#{bundle.ViewrolLabel_estado}"/>
+                    <h:outputText value="#{rolController.selected.estado}" title="#{bundle.ViewrolTitle_estado}"/>
+                    <h:outputText value="#{bundle.ViewrolLabel_id}"/>
+                    <h:outputText value="#{rolController.selected.id}" title="#{bundle.ViewrolTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewrolLabel_borrado}"/>
+                    <h:outputText value="#{rolController.selected.borrado}" title="#{bundle.ViewrolTitle_borrado}"/>
+                    <h:outputText value="#{bundle.ViewrolLabel_idClasificacionRol}"/>
+                    <h:outputText value="#{rolController.selected.idClasificacionRol}" title="#{bundle.ViewrolTitle_idClasificacionRol}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{rolController.destroyAndView}" value="#{bundle.ViewrolDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewrolEditLink}"/>
+                <br />
+                <h:commandLink action="#{rolController.prepareCreate}" value="#{bundle.ViewrolCreateLink}" />
+                <br />
+                <h:commandLink action="#{rolController.prepareList}" value="#{bundle.ViewrolShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewrolIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

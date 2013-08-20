@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewtareaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewtareaLabel_nombre}"/>
+                    <h:outputText value="#{tareaController.selected.nombre}" title="#{bundle.ViewtareaTitle_nombre}"/>
+                    <h:outputText value="#{bundle.ViewtareaLabel_implementacion}"/>
+                    <h:outputText value="#{tareaController.selected.implementacion}" title="#{bundle.ViewtareaTitle_implementacion}"/>
+                    <h:outputText value="#{bundle.ViewtareaLabel_descripcion}"/>
+                    <h:outputText value="#{tareaController.selected.descripcion}" title="#{bundle.ViewtareaTitle_descripcion}"/>
+                    <h:outputText value="#{bundle.ViewtareaLabel_autor}"/>
+                    <h:outputText value="#{tareaController.selected.autor}" title="#{bundle.ViewtareaTitle_autor}"/>
+                    <h:outputText value="#{bundle.ViewtareaLabel_duracion}"/>
+                    <h:outputText value="#{tareaController.selected.duracion}" title="#{bundle.ViewtareaTitle_duracion}"/>
+                    <h:outputText value="#{bundle.ViewtareaLabel_costo}"/>
+                    <h:outputText value="#{tareaController.selected.costo}" title="#{bundle.ViewtareaTitle_costo}"/>
+                    <h:outputText value="#{bundle.ViewtareaLabel_documentacion}"/>
+                    <h:outputText value="#{tareaController.selected.documentacion}" title="#{bundle.ViewtareaTitle_documentacion}"/>
+                    <h:outputText value="#{bundle.ViewtareaLabel_estado}"/>
+                    <h:outputText value="#{tareaController.selected.estado}" title="#{bundle.ViewtareaTitle_estado}"/>
+                    <h:outputText value="#{bundle.ViewtareaLabel_id}"/>
+                    <h:outputText value="#{tareaController.selected.id}" title="#{bundle.ViewtareaTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewtareaLabel_borrado}"/>
+                    <h:outputText value="#{tareaController.selected.borrado}" title="#{bundle.ViewtareaTitle_borrado}"/>
+                    <h:outputText value="#{bundle.ViewtareaLabel_tareaInicial}"/>
+                    <h:outputText value="#{tareaController.selected.tareaInicial}" title="#{bundle.ViewtareaTitle_tareaInicial}"/>
+                    <h:outputText value="#{bundle.ViewtareaLabel_idProceso}"/>
+                    <h:outputText value="#{tareaController.selected.idProceso}" title="#{bundle.ViewtareaTitle_idProceso}"/>
+                    <h:outputText value="#{bundle.ViewtareaLabel_idPrioridad}"/>
+                    <h:outputText value="#{tareaController.selected.idPrioridad}" title="#{bundle.ViewtareaTitle_idPrioridad}"/>
+                    <h:outputText value="#{bundle.ViewtareaLabel_idPolitica}"/>
+                    <h:outputText value="#{tareaController.selected.idPolitica}" title="#{bundle.ViewtareaTitle_idPolitica}"/>
+                    <h:outputText value="#{bundle.ViewtareaLabel_idEquivalenciaTiempo}"/>
+                    <h:outputText value="#{tareaController.selected.idEquivalenciaTiempo}" title="#{bundle.ViewtareaTitle_idEquivalenciaTiempo}"/>
+                    <h:outputText value="#{bundle.ViewtareaLabel_idClasificacionTarea}"/>
+                    <h:outputText value="#{tareaController.selected.idClasificacionTarea}" title="#{bundle.ViewtareaTitle_idClasificacionTarea}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{tareaController.destroyAndView}" value="#{bundle.ViewtareaDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewtareaEditLink}"/>
+                <br />
+                <h:commandLink action="#{tareaController.prepareCreate}" value="#{bundle.ViewtareaCreateLink}" />
+                <br />
+                <h:commandLink action="#{tareaController.prepareList}" value="#{bundle.ViewtareaShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewtareaIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

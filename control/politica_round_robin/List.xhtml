@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.Listpolitica_round_robinTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.Listpolitica_round_robinEmpty}" rendered="#{politica_round_robinController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{politica_round_robinController.items.rowCount > 0}">
+                    <h:outputText value="#{politica_round_robinController.pagination.pageFirstItem + 1}..#{politica_round_robinController.pagination.pageLastItem + 1}/#{politica_round_robinController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{politica_round_robinController.previous}" value="#{bundle.Previous} #{politica_round_robinController.pagination.pageSize}" rendered="#{politica_round_robinController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{politica_round_robinController.next}" value="#{bundle.Next} #{politica_round_robinController.pagination.pageSize}" rendered="#{politica_round_robinController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{politica_round_robinController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.Listpolitica_round_robinTitle_secuencia}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.secuencia}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.Listpolitica_round_robinTitle_id}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.Listpolitica_round_robinTitle_borrado}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.borrado}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.Listpolitica_round_robinTitle_idUsuario}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idUsuario}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.Listpolitica_round_robinTitle_idContadorRoundRobin}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idContadorRoundRobin}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{politica_round_robinController.prepareView}" value="#{bundle.Listpolitica_round_robinViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{politica_round_robinController.prepareEdit}" value="#{bundle.Listpolitica_round_robinEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{politica_round_robinController.destroy}" value="#{bundle.Listpolitica_round_robinDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{politica_round_robinController.prepareCreate}" value="#{bundle.Listpolitica_round_robinCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.Listpolitica_round_robinIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

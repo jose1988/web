@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.Listclasificacion_rolTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.Listclasificacion_rolEmpty}" rendered="#{clasificacion_rolController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{clasificacion_rolController.items.rowCount > 0}">
+                    <h:outputText value="#{clasificacion_rolController.pagination.pageFirstItem + 1}..#{clasificacion_rolController.pagination.pageLastItem + 1}/#{clasificacion_rolController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{clasificacion_rolController.previous}" value="#{bundle.Previous} #{clasificacion_rolController.pagination.pageSize}" rendered="#{clasificacion_rolController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{clasificacion_rolController.next}" value="#{bundle.Next} #{clasificacion_rolController.pagination.pageSize}" rendered="#{clasificacion_rolController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{clasificacion_rolController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.Listclasificacion_rolTitle_nombre}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nombre}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.Listclasificacion_rolTitle_descripcion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.descripcion}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.Listclasificacion_rolTitle_fechaCreacion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fechaCreacion}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.Listclasificacion_rolTitle_fechaModificacion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fechaModificacion}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.Listclasificacion_rolTitle_id}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.Listclasificacion_rolTitle_borrado}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.borrado}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{clasificacion_rolController.prepareView}" value="#{bundle.Listclasificacion_rolViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{clasificacion_rolController.prepareEdit}" value="#{bundle.Listclasificacion_rolEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{clasificacion_rolController.destroy}" value="#{bundle.Listclasificacion_rolDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{clasificacion_rolController.prepareCreate}" value="#{bundle.Listclasificacion_rolCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.Listclasificacion_rolIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

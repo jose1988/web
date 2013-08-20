@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreaterolTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreaterolLabel_nombre}" for="nombre" />
+                    <h:inputText id="nombre" value="#{rolController.selected.nombre}" title="#{bundle.CreaterolTitle_nombre}" required="true" requiredMessage="#{bundle.CreaterolRequiredMessage_nombre}"/>
+                    <h:outputLabel value="#{bundle.CreaterolLabel_descripcion}" for="descripcion" />
+                    <h:inputText id="descripcion" value="#{rolController.selected.descripcion}" title="#{bundle.CreaterolTitle_descripcion}" required="true" requiredMessage="#{bundle.CreaterolRequiredMessage_descripcion}"/>
+                    <h:outputLabel value="#{bundle.CreaterolLabel_documentacion}" for="documentacion" />
+                    <h:inputText id="documentacion" value="#{rolController.selected.documentacion}" title="#{bundle.CreaterolTitle_documentacion}" />
+                    <h:outputLabel value="#{bundle.CreaterolLabel_estado}" for="estado" />
+                    <h:inputText id="estado" value="#{rolController.selected.estado}" title="#{bundle.CreaterolTitle_estado}" required="true" requiredMessage="#{bundle.CreaterolRequiredMessage_estado}"/>
+                    <h:outputLabel value="#{bundle.CreaterolLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{rolController.selected.id}" title="#{bundle.CreaterolTitle_id}" required="true" requiredMessage="#{bundle.CreaterolRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.CreaterolLabel_borrado}" for="borrado" />
+                    <h:inputText id="borrado" value="#{rolController.selected.borrado}" title="#{bundle.CreaterolTitle_borrado}" required="true" requiredMessage="#{bundle.CreaterolRequiredMessage_borrado}"/>
+                    <h:outputLabel value="#{bundle.CreaterolLabel_idClasificacionRol}" for="idClasificacionRol" />
+                    <h:selectOneMenu id="idClasificacionRol" value="#{rolController.selected.idClasificacionRol}" title="#{bundle.CreaterolTitle_idClasificacionRol}" required="true" requiredMessage="#{bundle.CreaterolRequiredMessage_idClasificacionRol}">
+                        <f:selectItems value="#{clasificacion_rolController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{rolController.create}" value="#{bundle.CreaterolSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{rolController.prepareList}" value="#{bundle.CreaterolShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreaterolIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

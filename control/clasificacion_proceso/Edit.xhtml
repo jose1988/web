@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.Editclasificacion_procesoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.Editclasificacion_procesoLabel_nombre}" for="nombre" />
+                    <h:inputText id="nombre" value="#{clasificacion_procesoController.selected.nombre}" title="#{bundle.Editclasificacion_procesoTitle_nombre}" required="true" requiredMessage="#{bundle.Editclasificacion_procesoRequiredMessage_nombre}"/>
+                    <h:outputLabel value="#{bundle.Editclasificacion_procesoLabel_descripcion}" for="descripcion" />
+                    <h:inputText id="descripcion" value="#{clasificacion_procesoController.selected.descripcion}" title="#{bundle.Editclasificacion_procesoTitle_descripcion}" />
+                    <h:outputLabel value="#{bundle.Editclasificacion_procesoLabel_fechaCreacion}" for="fechaCreacion" />
+                    <h:inputText id="fechaCreacion" value="#{clasificacion_procesoController.selected.fechaCreacion}" title="#{bundle.Editclasificacion_procesoTitle_fechaCreacion}" required="true" requiredMessage="#{bundle.Editclasificacion_procesoRequiredMessage_fechaCreacion}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.Editclasificacion_procesoLabel_fechaModificacion}" for="fechaModificacion" />
+                    <h:inputText id="fechaModificacion" value="#{clasificacion_procesoController.selected.fechaModificacion}" title="#{bundle.Editclasificacion_procesoTitle_fechaModificacion}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.Editclasificacion_procesoLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{clasificacion_procesoController.selected.id}" title="#{bundle.Editclasificacion_procesoTitle_id}" required="true" requiredMessage="#{bundle.Editclasificacion_procesoRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.Editclasificacion_procesoLabel_borrado}" for="borrado" />
+                    <h:inputText id="borrado" value="#{clasificacion_procesoController.selected.borrado}" title="#{bundle.Editclasificacion_procesoTitle_borrado}" required="true" requiredMessage="#{bundle.Editclasificacion_procesoRequiredMessage_borrado}"/>
+                </h:panelGrid>
+                <h:commandLink action="#{clasificacion_procesoController.update}" value="#{bundle.Editclasificacion_procesoSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.Editclasificacion_procesoViewLink}"/>
+                <br />
+                <h:commandLink action="#{clasificacion_procesoController.prepareList}" value="#{bundle.Editclasificacion_procesoShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.Editclasificacion_procesoIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

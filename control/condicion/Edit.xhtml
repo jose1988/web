@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditcondicionTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditcondicionLabel_nombre}" for="nombre" />
+                    <h:inputText id="nombre" value="#{condicionController.selected.nombre}" title="#{bundle.EditcondicionTitle_nombre}" required="true" requiredMessage="#{bundle.EditcondicionRequiredMessage_nombre}"/>
+                    <h:outputLabel value="#{bundle.EditcondicionLabel_descripcion}" for="descripcion" />
+                    <h:inputText id="descripcion" value="#{condicionController.selected.descripcion}" title="#{bundle.EditcondicionTitle_descripcion}" required="true" requiredMessage="#{bundle.EditcondicionRequiredMessage_descripcion}"/>
+                    <h:outputLabel value="#{bundle.EditcondicionLabel_documentacion}" for="documentacion" />
+                    <h:inputText id="documentacion" value="#{condicionController.selected.documentacion}" title="#{bundle.EditcondicionTitle_documentacion}" />
+                    <h:outputLabel value="#{bundle.EditcondicionLabel_estado}" for="estado" />
+                    <h:inputText id="estado" value="#{condicionController.selected.estado}" title="#{bundle.EditcondicionTitle_estado}" required="true" requiredMessage="#{bundle.EditcondicionRequiredMessage_estado}"/>
+                    <h:outputLabel value="#{bundle.EditcondicionLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{condicionController.selected.id}" title="#{bundle.EditcondicionTitle_id}" required="true" requiredMessage="#{bundle.EditcondicionRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.EditcondicionLabel_borrado}" for="borrado" />
+                    <h:inputText id="borrado" value="#{condicionController.selected.borrado}" title="#{bundle.EditcondicionTitle_borrado}" required="true" requiredMessage="#{bundle.EditcondicionRequiredMessage_borrado}"/>
+                </h:panelGrid>
+                <h:commandLink action="#{condicionController.update}" value="#{bundle.EditcondicionSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditcondicionViewLink}"/>
+                <br />
+                <h:commandLink action="#{condicionController.prepareList}" value="#{bundle.EditcondicionShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditcondicionIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

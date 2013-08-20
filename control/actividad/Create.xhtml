@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateactividadTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateactividadLabel_estado}" for="estado" />
+                    <h:inputText id="estado" value="#{actividadController.selected.estado}" title="#{bundle.CreateactividadTitle_estado}" required="true" requiredMessage="#{bundle.CreateactividadRequiredMessage_estado}"/>
+                    <h:outputLabel value="#{bundle.CreateactividadLabel_fechaAsignacion}" for="fechaAsignacion" />
+                    <h:inputText id="fechaAsignacion" value="#{actividadController.selected.fechaAsignacion}" title="#{bundle.CreateactividadTitle_fechaAsignacion}" required="true" requiredMessage="#{bundle.CreateactividadRequiredMessage_fechaAsignacion}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateactividadLabel_fechaApertura}" for="fechaApertura" />
+                    <h:inputText id="fechaApertura" value="#{actividadController.selected.fechaApertura}" title="#{bundle.CreateactividadTitle_fechaApertura}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateactividadLabel_fechaCierre}" for="fechaCierre" />
+                    <h:inputText id="fechaCierre" value="#{actividadController.selected.fechaCierre}" title="#{bundle.CreateactividadTitle_fechaCierre}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateactividadLabel_fechaAlerta}" for="fechaAlerta" />
+                    <h:inputText id="fechaAlerta" value="#{actividadController.selected.fechaAlerta}" title="#{bundle.CreateactividadTitle_fechaAlerta}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateactividadLabel_duracion}" for="duracion" />
+                    <h:inputText id="duracion" value="#{actividadController.selected.duracion}" title="#{bundle.CreateactividadTitle_duracion}" required="true" requiredMessage="#{bundle.CreateactividadRequiredMessage_duracion}"/>
+                    <h:outputLabel value="#{bundle.CreateactividadLabel_parametrosEntrada}" for="parametrosEntrada" />
+                    <h:inputText id="parametrosEntrada" value="#{actividadController.selected.parametrosEntrada}" title="#{bundle.CreateactividadTitle_parametrosEntrada}" />
+                    <h:outputLabel value="#{bundle.CreateactividadLabel_parametrosSalida}" for="parametrosSalida" />
+                    <h:inputText id="parametrosSalida" value="#{actividadController.selected.parametrosSalida}" title="#{bundle.CreateactividadTitle_parametrosSalida}" />
+                    <h:outputLabel value="#{bundle.CreateactividadLabel_maquina}" for="maquina" />
+                    <h:inputText id="maquina" value="#{actividadController.selected.maquina}" title="#{bundle.CreateactividadTitle_maquina}" />
+                    <h:outputLabel value="#{bundle.CreateactividadLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{actividadController.selected.id}" title="#{bundle.CreateactividadTitle_id}" required="true" requiredMessage="#{bundle.CreateactividadRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.CreateactividadLabel_borrado}" for="borrado" />
+                    <h:inputText id="borrado" value="#{actividadController.selected.borrado}" title="#{bundle.CreateactividadTitle_borrado}" required="true" requiredMessage="#{bundle.CreateactividadRequiredMessage_borrado}"/>
+                    <h:outputLabel value="#{bundle.CreateactividadLabel_idUsuarioOrigen}" for="idUsuarioOrigen" />
+                    <h:selectOneMenu id="idUsuarioOrigen" value="#{actividadController.selected.idUsuarioOrigen}" title="#{bundle.CreateactividadTitle_idUsuarioOrigen}" required="true" requiredMessage="#{bundle.CreateactividadRequiredMessage_idUsuarioOrigen}">
+                        <f:selectItems value="#{usuarioController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateactividadLabel_idUsuario}" for="idUsuario" />
+                    <h:selectOneMenu id="idUsuario" value="#{actividadController.selected.idUsuario}" title="#{bundle.CreateactividadTitle_idUsuario}" >
+                        <f:selectItems value="#{usuarioController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateactividadLabel_idTarea}" for="idTarea" />
+                    <h:selectOneMenu id="idTarea" value="#{actividadController.selected.idTarea}" title="#{bundle.CreateactividadTitle_idTarea}" required="true" requiredMessage="#{bundle.CreateactividadRequiredMessage_idTarea}">
+                        <f:selectItems value="#{tareaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateactividadLabel_idPrioridad}" for="idPrioridad" />
+                    <h:selectOneMenu id="idPrioridad" value="#{actividadController.selected.idPrioridad}" title="#{bundle.CreateactividadTitle_idPrioridad}" required="true" requiredMessage="#{bundle.CreateactividadRequiredMessage_idPrioridad}">
+                        <f:selectItems value="#{prioridadController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateactividadLabel_idInstancia}" for="idInstancia" />
+                    <h:selectOneMenu id="idInstancia" value="#{actividadController.selected.idInstancia}" title="#{bundle.CreateactividadTitle_idInstancia}" required="true" requiredMessage="#{bundle.CreateactividadRequiredMessage_idInstancia}">
+                        <f:selectItems value="#{instanciaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateactividadLabel_idEquivalenciasTiempo}" for="idEquivalenciasTiempo" />
+                    <h:selectOneMenu id="idEquivalenciasTiempo" value="#{actividadController.selected.idEquivalenciasTiempo}" title="#{bundle.CreateactividadTitle_idEquivalenciasTiempo}" required="true" requiredMessage="#{bundle.CreateactividadRequiredMessage_idEquivalenciasTiempo}">
+                        <f:selectItems value="#{equivalencia_tiempoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{actividadController.create}" value="#{bundle.CreateactividadSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{actividadController.prepareList}" value="#{bundle.CreateactividadShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateactividadIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

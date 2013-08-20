@@ -1,0 +1,133 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+       xmlns:p="http://primefaces.org/ui">
+    <h:head>
+       <title>Pangea Flow</title>
+         <script type="text/javascript" src="recursos/js/jquery.js" ></script>
+        <h:outputStylesheet name="../recursos/css/bootstrap.css"/>
+        <h:outputStylesheet name="../recursos/css/bootstrap-theme.css"/>
+        
+         <script type="text/javascript" src="recursos/js/bootstrap.js"></script>
+    </h:head>
+    <h:body>  
+      <div class="row-fluid">
+         <div class="span12"> 
+             <div class="span4">
+             <h:graphicImage value="/recursos/images/pangea.jpg"  width="400" height="90"></h:graphicImage> 
+             </div>
+           <div class="span8">  
+         
+               <nav class="navbar navbar-default" role="navigation">
+  <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+
+          <a class="navbar-brand" href="#">PangeaFlow</a>
+        </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+              <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Archivo</a></li>
+                <li><a href="#">Atrás</a></li>
+                <li>
+                  <a href="#" >Opciones</a>
+
+                </li>
+              </ul>
+
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="#">Cerrar Sesión</a></li>
+
+              </ul>
+            </div><!-- /.navbar-collapse -->
+          </nav>      
+                   </div>
+                </div>
+                </div>
+
+         
+       <div class="row">
+         <div class="span12"> 
+             <div class="span4"> 
+                 
+                 <h:form>
+                         
+                        <p:tree value="#{loginController.mailboxes}" var="box" selectionMode="single" selection="#{loginController.mailbox}" style="width:170px">
+                            <p:treeNode icon="ui-icon-mail-closed">
+                                <h:outputText value="#{box}"/>
+                            </p:treeNode>
+
+                            <p:treeNode type="i" icon="ui-icon-mail-closed">
+                                <h:outputText value="#{box}"/>
+                            </p:treeNode>
+
+                            <p:treeNode type="s" icon="ui-icon-transfer-e-w">
+                                <h:outputText value="#{box}"/>
+                            </p:treeNode>
+
+                            <p:treeNode type="t" icon="ui-icon-trash">
+                                <h:outputText value="#{box}"/>
+                            </p:treeNode>
+
+                            <p:treeNode type="j" icon="ui-icon-alert">
+                                <h:outputText value="#{box}"/>
+                            </p:treeNode>
+                        </p:tree>
+                    </h:form>  
+                 
+             </div> 
+             
+             <div class="span6"> 
+                 
+                 <p:tabView>
+
+                                <p:tab title="Gmail">
+
+                                    <h:form>
+
+                                        <p:dataTable var="mail" value="#{loginController.mails}">
+
+                                            <p:column headerText="From" sortBy="from">
+                                                #{mail.para}
+                                            </p:column>
+
+                                            <p:column headerText="Subject" sortBy="subject">
+                                                #{mail.asunto}
+                                            </p:column>
+
+                                            <p:column headerText="Date">
+                                                #{mail.fecha}
+                                            </p:column>
+
+                                            <p:column>
+                                                <p:commandButton update=":mailViewer" icon="ui-icon-search" title="View">
+                                                    <f:setPropertyActionListener value="#{mail}" target="#{loginController.mail}" />
+                                                </p:commandButton>
+                                            </p:column>
+
+                                        </p:dataTable>
+
+                                    </h:form>
+
+                                </p:tab>
+
+                            </p:tabView>
+
+                 
+             </div> 
+         </div> 
+           
+           <div class="offset4 span8">
+                <p:outputPanel id="mailViewer">
+                                <h:outputText value="#{loginController.mail.id}" rendered="#{not empty loginController.mail}" />
+                                <h:outputText value="#{loginController.mail.asunto}" rendered="#{not empty loginController.mail}" />
+                                <h:outputText value="#{loginController.mail.texto}" rendered="#{not empty loginController.mail}" />
+                            </p:outputPanel>
+           </div>
+       </div> 
+    </h:body>
+</html>
+

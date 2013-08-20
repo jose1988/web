@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewactividadTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewactividadLabel_estado}"/>
+                    <h:outputText value="#{actividadController.selected.estado}" title="#{bundle.ViewactividadTitle_estado}"/>
+                    <h:outputText value="#{bundle.ViewactividadLabel_fechaAsignacion}"/>
+                    <h:outputText value="#{actividadController.selected.fechaAsignacion}" title="#{bundle.ViewactividadTitle_fechaAsignacion}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewactividadLabel_fechaApertura}"/>
+                    <h:outputText value="#{actividadController.selected.fechaApertura}" title="#{bundle.ViewactividadTitle_fechaApertura}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewactividadLabel_fechaCierre}"/>
+                    <h:outputText value="#{actividadController.selected.fechaCierre}" title="#{bundle.ViewactividadTitle_fechaCierre}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewactividadLabel_fechaAlerta}"/>
+                    <h:outputText value="#{actividadController.selected.fechaAlerta}" title="#{bundle.ViewactividadTitle_fechaAlerta}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewactividadLabel_duracion}"/>
+                    <h:outputText value="#{actividadController.selected.duracion}" title="#{bundle.ViewactividadTitle_duracion}"/>
+                    <h:outputText value="#{bundle.ViewactividadLabel_parametrosEntrada}"/>
+                    <h:outputText value="#{actividadController.selected.parametrosEntrada}" title="#{bundle.ViewactividadTitle_parametrosEntrada}"/>
+                    <h:outputText value="#{bundle.ViewactividadLabel_parametrosSalida}"/>
+                    <h:outputText value="#{actividadController.selected.parametrosSalida}" title="#{bundle.ViewactividadTitle_parametrosSalida}"/>
+                    <h:outputText value="#{bundle.ViewactividadLabel_maquina}"/>
+                    <h:outputText value="#{actividadController.selected.maquina}" title="#{bundle.ViewactividadTitle_maquina}"/>
+                    <h:outputText value="#{bundle.ViewactividadLabel_id}"/>
+                    <h:outputText value="#{actividadController.selected.id}" title="#{bundle.ViewactividadTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewactividadLabel_borrado}"/>
+                    <h:outputText value="#{actividadController.selected.borrado}" title="#{bundle.ViewactividadTitle_borrado}"/>
+                    <h:outputText value="#{bundle.ViewactividadLabel_idUsuarioOrigen}"/>
+                    <h:outputText value="#{actividadController.selected.idUsuarioOrigen}" title="#{bundle.ViewactividadTitle_idUsuarioOrigen}"/>
+                    <h:outputText value="#{bundle.ViewactividadLabel_idUsuario}"/>
+                    <h:outputText value="#{actividadController.selected.idUsuario}" title="#{bundle.ViewactividadTitle_idUsuario}"/>
+                    <h:outputText value="#{bundle.ViewactividadLabel_idTarea}"/>
+                    <h:outputText value="#{actividadController.selected.idTarea}" title="#{bundle.ViewactividadTitle_idTarea}"/>
+                    <h:outputText value="#{bundle.ViewactividadLabel_idPrioridad}"/>
+                    <h:outputText value="#{actividadController.selected.idPrioridad}" title="#{bundle.ViewactividadTitle_idPrioridad}"/>
+                    <h:outputText value="#{bundle.ViewactividadLabel_idInstancia}"/>
+                    <h:outputText value="#{actividadController.selected.idInstancia}" title="#{bundle.ViewactividadTitle_idInstancia}"/>
+                    <h:outputText value="#{bundle.ViewactividadLabel_idEquivalenciasTiempo}"/>
+                    <h:outputText value="#{actividadController.selected.idEquivalenciasTiempo}" title="#{bundle.ViewactividadTitle_idEquivalenciasTiempo}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{actividadController.destroyAndView}" value="#{bundle.ViewactividadDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewactividadEditLink}"/>
+                <br />
+                <h:commandLink action="#{actividadController.prepareCreate}" value="#{bundle.ViewactividadCreateLink}" />
+                <br />
+                <h:commandLink action="#{actividadController.prepareList}" value="#{bundle.ViewactividadShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewactividadIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

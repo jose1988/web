@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="http://localhost:15362/CapaDeServicios/GestionDeUsuarios?wsdl" uri="wsdl/localhost_15362/CapaDeServicios/GestionDeUsuarios.wsdl"/>
+    <system systemId="http://localhost:15362/CapaDeServicios/GestionDeUsuarios?xsd=1" uri="wsdl/localhost_15362/CapaDeServicios/GestionDeUsuarios.xsd_1.xsd"/>
+    <system systemId="http://localhost:15362/CapaDeServicios/GestionDeRol?wsdl" uri="wsdl/localhost_15362/CapaDeServicios/GestionDeRol.wsdl"/>
+    <system systemId="http://localhost:15362/CapaDeServicios/GestionDeRol?xsd=1" uri="wsdl/localhost_15362/CapaDeServicios/GestionDeRol.xsd_1.xsd"/>
+    <system systemId="http://localhost:15362/CapaDeServicios/GestionDepolitica?wsdl" uri="wsdl/localhost_15362/CapaDeServicios/GestionDepolitica.wsdl"/>
+    <system systemId="http://localhost:15362/CapaDeServicios/GestionDepolitica?xsd=1" uri="wsdl/localhost_15362/CapaDeServicios/GestionDepolitica.xsd_1.xsd"/>
+    <system systemId="http://localhost:15362/CapaDeServicios/GestionarReporte?wsdl" uri="wsdl/localhost_15362/CapaDeServicios/GestionarReporte.wsdl"/>
+    <system systemId="http://localhost:15362/CapaDeServicios/GestionarReporte?xsd=1" uri="wsdl/localhost_15362/CapaDeServicios/GestionarReporte.xsd_1.xsd"/>
+    <system systemId="http://localhost:15362/CapaDeServicios/GestionDeOrganizacion?wsdl" uri="wsdl/localhost_15362/CapaDeServicios/GestionDeOrganizacion.wsdl"/>
+    <system systemId="http://localhost:15362/CapaDeServicios/GestionDeOrganizacion?xsd=1" uri="wsdl/localhost_15362/CapaDeServicios/GestionDeOrganizacion.xsd_1.xsd"/>
+    <system systemId="http://localhost:15362/CapaDeServicios/GestionDeClasificacion_usuario?wsdl" uri="wsdl/localhost_15362/CapaDeServicios/GestionDeClasificacion_usuario.wsdl"/>
+    <system systemId="http://localhost:15362/CapaDeServicios/GestionDeClasificacion_usuario?xsd=1" uri="wsdl/localhost_15362/CapaDeServicios/GestionDeClasificacion_usuario.xsd_1.xsd"/>
+    <system systemId="http://localhost:15362/CapaDeServicios/GestionDeClasificacion_rol?wsdl" uri="wsdl/localhost_15362/CapaDeServicios/GestionDeClasificacion_rol.wsdl"/>
+    <system systemId="http://localhost:15362/CapaDeServicios/GestionDeClasificacion_rol?xsd=1" uri="wsdl/localhost_15362/CapaDeServicios/GestionDeClasificacion_rol.xsd_1.xsd"/>
+    <system systemId="http://localhost:15362/CapaDeServicios/GestionarSkin?wsdl" uri="wsdl/localhost_15362/CapaDeServicios/GestionarSkin.wsdl"/>
+    <system systemId="http://localhost:15362/CapaDeServicios/GestionarSkin?xsd=1" uri="wsdl/localhost_15362/CapaDeServicios/GestionarSkin.xsd_1.xsd"/>
+    <system systemId="http://localhost:15362/CapaDeServicios/GestionDeGrupo?wsdl" uri="wsdl/localhost_15362/CapaDeServicios/GestionDeGrupo.wsdl"/>
+    <system systemId="http://localhost:15362/CapaDeServicios/GestionDeGrupo?xsd=1" uri="wsdl/localhost_15362/CapaDeServicios/GestionDeGrupo.xsd_1.xsd"/>
+    <system systemId="http://localhost:15362/CapaDeServicios/Mensajeria?wsdl" uri="wsdl/localhost_15362/CapaDeServicios/Mensajeria.wsdl"/>
+    <system systemId="http://localhost:15362/CapaDeServicios/Mensajeria?xsd=1" uri="wsdl/localhost_15362/CapaDeServicios/Mensajeria.xsd_1.xsd"/>
+</catalog>

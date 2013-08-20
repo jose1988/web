@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.Editperiodo_grupo_procesoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.Editperiodo_grupo_procesoLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{periodo_grupo_procesoController.selected.id}" title="#{bundle.Editperiodo_grupo_procesoTitle_id}" required="true" requiredMessage="#{bundle.Editperiodo_grupo_procesoRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.Editperiodo_grupo_procesoLabel_borrado}" for="borrado" />
+                    <h:inputText id="borrado" value="#{periodo_grupo_procesoController.selected.borrado}" title="#{bundle.Editperiodo_grupo_procesoTitle_borrado}" required="true" requiredMessage="#{bundle.Editperiodo_grupo_procesoRequiredMessage_borrado}"/>
+                    <h:outputLabel value="#{bundle.Editperiodo_grupo_procesoLabel_idProceso}" for="idProceso" />
+                    <h:selectOneMenu id="idProceso" value="#{periodo_grupo_procesoController.selected.idProceso}" title="#{bundle.Editperiodo_grupo_procesoTitle_idProceso}" required="true" requiredMessage="#{bundle.Editperiodo_grupo_procesoRequiredMessage_idProceso}">
+                        <f:selectItems value="#{procesoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.Editperiodo_grupo_procesoLabel_idPeriodo}" for="idPeriodo" />
+                    <h:selectOneMenu id="idPeriodo" value="#{periodo_grupo_procesoController.selected.idPeriodo}" title="#{bundle.Editperiodo_grupo_procesoTitle_idPeriodo}" required="true" requiredMessage="#{bundle.Editperiodo_grupo_procesoRequiredMessage_idPeriodo}">
+                        <f:selectItems value="#{periodoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.Editperiodo_grupo_procesoLabel_idGrupo}" for="idGrupo" />
+                    <h:selectOneMenu id="idGrupo" value="#{periodo_grupo_procesoController.selected.idGrupo}" title="#{bundle.Editperiodo_grupo_procesoTitle_idGrupo}" required="true" requiredMessage="#{bundle.Editperiodo_grupo_procesoRequiredMessage_idGrupo}">
+                        <f:selectItems value="#{grupoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{periodo_grupo_procesoController.update}" value="#{bundle.Editperiodo_grupo_procesoSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.Editperiodo_grupo_procesoViewLink}"/>
+                <br />
+                <h:commandLink action="#{periodo_grupo_procesoController.prepareList}" value="#{bundle.Editperiodo_grupo_procesoShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.Editperiodo_grupo_procesoIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

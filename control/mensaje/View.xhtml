@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewmensajeTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewmensajeLabel_texto}"/>
+                    <h:outputText value="#{mensajeController.selected.texto}" title="#{bundle.ViewmensajeTitle_texto}"/>
+                    <h:outputText value="#{bundle.ViewmensajeLabel_estado}"/>
+                    <h:outputText value="#{mensajeController.selected.estado}" title="#{bundle.ViewmensajeTitle_estado}"/>
+                    <h:outputText value="#{bundle.ViewmensajeLabel_id}"/>
+                    <h:outputText value="#{mensajeController.selected.id}" title="#{bundle.ViewmensajeTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewmensajeLabel_borrado}"/>
+                    <h:outputText value="#{mensajeController.selected.borrado}" title="#{bundle.ViewmensajeTitle_borrado}"/>
+                    <h:outputText value="#{bundle.ViewmensajeLabel_idUsuario}"/>
+                    <h:outputText value="#{mensajeController.selected.idUsuario}" title="#{bundle.ViewmensajeTitle_idUsuario}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{mensajeController.destroyAndView}" value="#{bundle.ViewmensajeDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewmensajeEditLink}"/>
+                <br />
+                <h:commandLink action="#{mensajeController.prepareCreate}" value="#{bundle.ViewmensajeCreateLink}" />
+                <br />
+                <h:commandLink action="#{mensajeController.prepareList}" value="#{bundle.ViewmensajeShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewmensajeIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

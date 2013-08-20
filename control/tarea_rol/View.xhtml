@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.Viewtarea_rolTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.Viewtarea_rolLabel_id}"/>
+                    <h:outputText value="#{tarea_rolController.selected.id}" title="#{bundle.Viewtarea_rolTitle_id}"/>
+                    <h:outputText value="#{bundle.Viewtarea_rolLabel_borrado}"/>
+                    <h:outputText value="#{tarea_rolController.selected.borrado}" title="#{bundle.Viewtarea_rolTitle_borrado}"/>
+                    <h:outputText value="#{bundle.Viewtarea_rolLabel_idTarea}"/>
+                    <h:outputText value="#{tarea_rolController.selected.idTarea}" title="#{bundle.Viewtarea_rolTitle_idTarea}"/>
+                    <h:outputText value="#{bundle.Viewtarea_rolLabel_idRol}"/>
+                    <h:outputText value="#{tarea_rolController.selected.idRol}" title="#{bundle.Viewtarea_rolTitle_idRol}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{tarea_rolController.destroyAndView}" value="#{bundle.Viewtarea_rolDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.Viewtarea_rolEditLink}"/>
+                <br />
+                <h:commandLink action="#{tarea_rolController.prepareCreate}" value="#{bundle.Viewtarea_rolCreateLink}" />
+                <br />
+                <h:commandLink action="#{tarea_rolController.prepareList}" value="#{bundle.Viewtarea_rolShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.Viewtarea_rolIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

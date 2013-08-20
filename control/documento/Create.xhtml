@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreatedocumentoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreatedocumentoLabel_nombre}" for="nombre" />
+                    <h:inputText id="nombre" value="#{documentoController.selected.nombre}" title="#{bundle.CreatedocumentoTitle_nombre}" required="true" requiredMessage="#{bundle.CreatedocumentoRequiredMessage_nombre}"/>
+                    <h:outputLabel value="#{bundle.CreatedocumentoLabel_proposito}" for="proposito" />
+                    <h:inputText id="proposito" value="#{documentoController.selected.proposito}" title="#{bundle.CreatedocumentoTitle_proposito}" required="true" requiredMessage="#{bundle.CreatedocumentoRequiredMessage_proposito}"/>
+                    <h:outputLabel value="#{bundle.CreatedocumentoLabel_observacion}" for="observacion" />
+                    <h:inputText id="observacion" value="#{documentoController.selected.observacion}" title="#{bundle.CreatedocumentoTitle_observacion}" />
+                    <h:outputLabel value="#{bundle.CreatedocumentoLabel_ruta}" for="ruta" />
+                    <h:inputText id="ruta" value="#{documentoController.selected.ruta}" title="#{bundle.CreatedocumentoTitle_ruta}" required="true" requiredMessage="#{bundle.CreatedocumentoRequiredMessage_ruta}"/>
+                    <h:outputLabel value="#{bundle.CreatedocumentoLabel_fechaCreacion}" for="fechaCreacion" />
+                    <h:inputText id="fechaCreacion" value="#{documentoController.selected.fechaCreacion}" title="#{bundle.CreatedocumentoTitle_fechaCreacion}" required="true" requiredMessage="#{bundle.CreatedocumentoRequiredMessage_fechaCreacion}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreatedocumentoLabel_fechaDocumento}" for="fechaDocumento" />
+                    <h:inputText id="fechaDocumento" value="#{documentoController.selected.fechaDocumento}" title="#{bundle.CreatedocumentoTitle_fechaDocumento}" required="true" requiredMessage="#{bundle.CreatedocumentoRequiredMessage_fechaDocumento}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreatedocumentoLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{documentoController.selected.id}" title="#{bundle.CreatedocumentoTitle_id}" required="true" requiredMessage="#{bundle.CreatedocumentoRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.CreatedocumentoLabel_borrado}" for="borrado" />
+                    <h:inputText id="borrado" value="#{documentoController.selected.borrado}" title="#{bundle.CreatedocumentoTitle_borrado}" required="true" requiredMessage="#{bundle.CreatedocumentoRequiredMessage_borrado}"/>
+                    <h:outputLabel value="#{bundle.CreatedocumentoLabel_idActividad}" for="idActividad" />
+                    <h:selectOneMenu id="idActividad" value="#{documentoController.selected.idActividad}" title="#{bundle.CreatedocumentoTitle_idActividad}" required="true" requiredMessage="#{bundle.CreatedocumentoRequiredMessage_idActividad}">
+                        <f:selectItems value="#{actividadController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{documentoController.create}" value="#{bundle.CreatedocumentoSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{documentoController.prepareList}" value="#{bundle.CreatedocumentoShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreatedocumentoIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

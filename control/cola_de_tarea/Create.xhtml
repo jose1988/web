@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.Createcola_de_tareaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.Createcola_de_tareaLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{cola_de_tareaController.selected.id}" title="#{bundle.Createcola_de_tareaTitle_id}" required="true" requiredMessage="#{bundle.Createcola_de_tareaRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.Createcola_de_tareaLabel_borrado}" for="borrado" />
+                    <h:inputText id="borrado" value="#{cola_de_tareaController.selected.borrado}" title="#{bundle.Createcola_de_tareaTitle_borrado}" required="true" requiredMessage="#{bundle.Createcola_de_tareaRequiredMessage_borrado}"/>
+                    <h:outputLabel value="#{bundle.Createcola_de_tareaLabel_idTarea}" for="idTarea" />
+                    <h:selectOneMenu id="idTarea" value="#{cola_de_tareaController.selected.idTarea}" title="#{bundle.Createcola_de_tareaTitle_idTarea}" required="true" requiredMessage="#{bundle.Createcola_de_tareaRequiredMessage_idTarea}">
+                        <f:selectItems value="#{tareaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.Createcola_de_tareaLabel_idGrupo}" for="idGrupo" />
+                    <h:selectOneMenu id="idGrupo" value="#{cola_de_tareaController.selected.idGrupo}" title="#{bundle.Createcola_de_tareaTitle_idGrupo}" required="true" requiredMessage="#{bundle.Createcola_de_tareaRequiredMessage_idGrupo}">
+                        <f:selectItems value="#{grupoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.Createcola_de_tareaLabel_idActividad}" for="idActividad" />
+                    <h:selectOneMenu id="idActividad" value="#{cola_de_tareaController.selected.idActividad}" title="#{bundle.Createcola_de_tareaTitle_idActividad}" required="true" requiredMessage="#{bundle.Createcola_de_tareaRequiredMessage_idActividad}">
+                        <f:selectItems value="#{actividadController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{cola_de_tareaController.create}" value="#{bundle.Createcola_de_tareaSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{cola_de_tareaController.prepareList}" value="#{bundle.Createcola_de_tareaShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.Createcola_de_tareaIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

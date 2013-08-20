@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateperiodoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateperiodoLabel_descripcion}" for="descripcion" />
+                    <h:inputText id="descripcion" value="#{periodoController.selected.descripcion}" title="#{bundle.CreateperiodoTitle_descripcion}" required="true" requiredMessage="#{bundle.CreateperiodoRequiredMessage_descripcion}"/>
+                    <h:outputLabel value="#{bundle.CreateperiodoLabel_fechaDesde}" for="fechaDesde" />
+                    <h:inputText id="fechaDesde" value="#{periodoController.selected.fechaDesde}" title="#{bundle.CreateperiodoTitle_fechaDesde}" required="true" requiredMessage="#{bundle.CreateperiodoRequiredMessage_fechaDesde}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateperiodoLabel_fechaHasta}" for="fechaHasta" />
+                    <h:inputText id="fechaHasta" value="#{periodoController.selected.fechaHasta}" title="#{bundle.CreateperiodoTitle_fechaHasta}" required="true" requiredMessage="#{bundle.CreateperiodoRequiredMessage_fechaHasta}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateperiodoLabel_estado}" for="estado" />
+                    <h:inputText id="estado" value="#{periodoController.selected.estado}" title="#{bundle.CreateperiodoTitle_estado}" required="true" requiredMessage="#{bundle.CreateperiodoRequiredMessage_estado}"/>
+                    <h:outputLabel value="#{bundle.CreateperiodoLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{periodoController.selected.id}" title="#{bundle.CreateperiodoTitle_id}" required="true" requiredMessage="#{bundle.CreateperiodoRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.CreateperiodoLabel_borrado}" for="borrado" />
+                    <h:inputText id="borrado" value="#{periodoController.selected.borrado}" title="#{bundle.CreateperiodoTitle_borrado}" required="true" requiredMessage="#{bundle.CreateperiodoRequiredMessage_borrado}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{periodoController.create}" value="#{bundle.CreateperiodoSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{periodoController.prepareList}" value="#{bundle.CreateperiodoShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateperiodoIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

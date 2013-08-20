@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.Viewpost_en_bandejaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.Viewpost_en_bandejaLabel_leido}"/>
+                    <h:outputText value="#{post_en_bandejaController.selected.leido}" title="#{bundle.Viewpost_en_bandejaTitle_leido}"/>
+                    <h:outputText value="#{bundle.Viewpost_en_bandejaLabel_id}"/>
+                    <h:outputText value="#{post_en_bandejaController.selected.id}" title="#{bundle.Viewpost_en_bandejaTitle_id}"/>
+                    <h:outputText value="#{bundle.Viewpost_en_bandejaLabel_idUsuario}"/>
+                    <h:outputText value="#{post_en_bandejaController.selected.idUsuario}" title="#{bundle.Viewpost_en_bandejaTitle_idUsuario}"/>
+                    <h:outputText value="#{bundle.Viewpost_en_bandejaLabel_idPost}"/>
+                    <h:outputText value="#{post_en_bandejaController.selected.idPost}" title="#{bundle.Viewpost_en_bandejaTitle_idPost}"/>
+                    <h:outputText value="#{bundle.Viewpost_en_bandejaLabel_idBandeja}"/>
+                    <h:outputText value="#{post_en_bandejaController.selected.idBandeja}" title="#{bundle.Viewpost_en_bandejaTitle_idBandeja}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{post_en_bandejaController.destroyAndView}" value="#{bundle.Viewpost_en_bandejaDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.Viewpost_en_bandejaEditLink}"/>
+                <br />
+                <h:commandLink action="#{post_en_bandejaController.prepareCreate}" value="#{bundle.Viewpost_en_bandejaCreateLink}" />
+                <br />
+                <h:commandLink action="#{post_en_bandejaController.prepareList}" value="#{bundle.Viewpost_en_bandejaShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.Viewpost_en_bandejaIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.Listprioridad_mensaje_en_lineaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.Listprioridad_mensaje_en_lineaEmpty}" rendered="#{prioridad_mensaje_en_lineaController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{prioridad_mensaje_en_lineaController.items.rowCount > 0}">
+                    <h:outputText value="#{prioridad_mensaje_en_lineaController.pagination.pageFirstItem + 1}..#{prioridad_mensaje_en_lineaController.pagination.pageLastItem + 1}/#{prioridad_mensaje_en_lineaController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{prioridad_mensaje_en_lineaController.previous}" value="#{bundle.Previous} #{prioridad_mensaje_en_lineaController.pagination.pageSize}" rendered="#{prioridad_mensaje_en_lineaController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{prioridad_mensaje_en_lineaController.next}" value="#{bundle.Next} #{prioridad_mensaje_en_lineaController.pagination.pageSize}" rendered="#{prioridad_mensaje_en_lineaController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{prioridad_mensaje_en_lineaController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.Listprioridad_mensaje_en_lineaTitle_nombre}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nombre}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.Listprioridad_mensaje_en_lineaTitle_colorTexto}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.colorTexto}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.Listprioridad_mensaje_en_lineaTitle_colorFondo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.colorFondo}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.Listprioridad_mensaje_en_lineaTitle_id}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.Listprioridad_mensaje_en_lineaTitle_borrado}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.borrado}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{prioridad_mensaje_en_lineaController.prepareView}" value="#{bundle.Listprioridad_mensaje_en_lineaViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{prioridad_mensaje_en_lineaController.prepareEdit}" value="#{bundle.Listprioridad_mensaje_en_lineaEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{prioridad_mensaje_en_lineaController.destroy}" value="#{bundle.Listprioridad_mensaje_en_lineaDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{prioridad_mensaje_en_lineaController.prepareCreate}" value="#{bundle.Listprioridad_mensaje_en_lineaCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.Listprioridad_mensaje_en_lineaIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

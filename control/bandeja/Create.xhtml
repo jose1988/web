@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreatebandejaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreatebandejaLabel_nombre}" for="nombre" />
+                    <h:inputText id="nombre" value="#{bandejaController.selected.nombre}" title="#{bundle.CreatebandejaTitle_nombre}" required="true" requiredMessage="#{bundle.CreatebandejaRequiredMessage_nombre}"/>
+                    <h:outputLabel value="#{bundle.CreatebandejaLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{bandejaController.selected.id}" title="#{bundle.CreatebandejaTitle_id}" required="true" requiredMessage="#{bundle.CreatebandejaRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.CreatebandejaLabel_idUsuario}" for="idUsuario" />
+                    <h:selectOneMenu id="idUsuario" value="#{bandejaController.selected.idUsuario}" title="#{bundle.CreatebandejaTitle_idUsuario}" >
+                        <f:selectItems value="#{usuarioController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{bandejaController.create}" value="#{bundle.CreatebandejaSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{bandejaController.prepareList}" value="#{bundle.CreatebandejaShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreatebandejaIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

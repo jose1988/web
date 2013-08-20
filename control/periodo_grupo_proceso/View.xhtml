@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.Viewperiodo_grupo_procesoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.Viewperiodo_grupo_procesoLabel_id}"/>
+                    <h:outputText value="#{periodo_grupo_procesoController.selected.id}" title="#{bundle.Viewperiodo_grupo_procesoTitle_id}"/>
+                    <h:outputText value="#{bundle.Viewperiodo_grupo_procesoLabel_borrado}"/>
+                    <h:outputText value="#{periodo_grupo_procesoController.selected.borrado}" title="#{bundle.Viewperiodo_grupo_procesoTitle_borrado}"/>
+                    <h:outputText value="#{bundle.Viewperiodo_grupo_procesoLabel_idProceso}"/>
+                    <h:outputText value="#{periodo_grupo_procesoController.selected.idProceso}" title="#{bundle.Viewperiodo_grupo_procesoTitle_idProceso}"/>
+                    <h:outputText value="#{bundle.Viewperiodo_grupo_procesoLabel_idPeriodo}"/>
+                    <h:outputText value="#{periodo_grupo_procesoController.selected.idPeriodo}" title="#{bundle.Viewperiodo_grupo_procesoTitle_idPeriodo}"/>
+                    <h:outputText value="#{bundle.Viewperiodo_grupo_procesoLabel_idGrupo}"/>
+                    <h:outputText value="#{periodo_grupo_procesoController.selected.idGrupo}" title="#{bundle.Viewperiodo_grupo_procesoTitle_idGrupo}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{periodo_grupo_procesoController.destroyAndView}" value="#{bundle.Viewperiodo_grupo_procesoDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.Viewperiodo_grupo_procesoEditLink}"/>
+                <br />
+                <h:commandLink action="#{periodo_grupo_procesoController.prepareCreate}" value="#{bundle.Viewperiodo_grupo_procesoCreateLink}" />
+                <br />
+                <h:commandLink action="#{periodo_grupo_procesoController.prepareList}" value="#{bundle.Viewperiodo_grupo_procesoShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.Viewperiodo_grupo_procesoIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

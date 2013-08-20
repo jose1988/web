@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.Createtarea_rolTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.Createtarea_rolLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{tarea_rolController.selected.id}" title="#{bundle.Createtarea_rolTitle_id}" required="true" requiredMessage="#{bundle.Createtarea_rolRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.Createtarea_rolLabel_borrado}" for="borrado" />
+                    <h:inputText id="borrado" value="#{tarea_rolController.selected.borrado}" title="#{bundle.Createtarea_rolTitle_borrado}" required="true" requiredMessage="#{bundle.Createtarea_rolRequiredMessage_borrado}"/>
+                    <h:outputLabel value="#{bundle.Createtarea_rolLabel_idTarea}" for="idTarea" />
+                    <h:selectOneMenu id="idTarea" value="#{tarea_rolController.selected.idTarea}" title="#{bundle.Createtarea_rolTitle_idTarea}" required="true" requiredMessage="#{bundle.Createtarea_rolRequiredMessage_idTarea}">
+                        <f:selectItems value="#{tareaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.Createtarea_rolLabel_idRol}" for="idRol" />
+                    <h:selectOneMenu id="idRol" value="#{tarea_rolController.selected.idRol}" title="#{bundle.Createtarea_rolTitle_idRol}" required="true" requiredMessage="#{bundle.Createtarea_rolRequiredMessage_idRol}">
+                        <f:selectItems value="#{rolController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{tarea_rolController.create}" value="#{bundle.Createtarea_rolSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{tarea_rolController.prepareList}" value="#{bundle.Createtarea_rolShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.Createtarea_rolIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

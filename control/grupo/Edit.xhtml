@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditgrupoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditgrupoLabel_nombre}" for="nombre" />
+                    <h:inputText id="nombre" value="#{grupoController.selected.nombre}" title="#{bundle.EditgrupoTitle_nombre}" required="true" requiredMessage="#{bundle.EditgrupoRequiredMessage_nombre}"/>
+                    <h:outputLabel value="#{bundle.EditgrupoLabel_descripcion}" for="descripcion" />
+                    <h:inputText id="descripcion" value="#{grupoController.selected.descripcion}" title="#{bundle.EditgrupoTitle_descripcion}" required="true" requiredMessage="#{bundle.EditgrupoRequiredMessage_descripcion}"/>
+                    <h:outputLabel value="#{bundle.EditgrupoLabel_documentacion}" for="documentacion" />
+                    <h:inputText id="documentacion" value="#{grupoController.selected.documentacion}" title="#{bundle.EditgrupoTitle_documentacion}" />
+                    <h:outputLabel value="#{bundle.EditgrupoLabel_fechaCreacion}" for="fechaCreacion" />
+                    <h:inputText id="fechaCreacion" value="#{grupoController.selected.fechaCreacion}" title="#{bundle.EditgrupoTitle_fechaCreacion}" required="true" requiredMessage="#{bundle.EditgrupoRequiredMessage_fechaCreacion}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditgrupoLabel_tipo}" for="tipo" />
+                    <h:inputText id="tipo" value="#{grupoController.selected.tipo}" title="#{bundle.EditgrupoTitle_tipo}" required="true" requiredMessage="#{bundle.EditgrupoRequiredMessage_tipo}"/>
+                    <h:outputLabel value="#{bundle.EditgrupoLabel_estado}" for="estado" />
+                    <h:inputText id="estado" value="#{grupoController.selected.estado}" title="#{bundle.EditgrupoTitle_estado}" />
+                    <h:outputLabel value="#{bundle.EditgrupoLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{grupoController.selected.id}" title="#{bundle.EditgrupoTitle_id}" required="true" requiredMessage="#{bundle.EditgrupoRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.EditgrupoLabel_borrado}" for="borrado" />
+                    <h:inputText id="borrado" value="#{grupoController.selected.borrado}" title="#{bundle.EditgrupoTitle_borrado}" required="true" requiredMessage="#{bundle.EditgrupoRequiredMessage_borrado}"/>
+                    <h:outputLabel value="#{bundle.EditgrupoLabel_idOrganizacion}" for="idOrganizacion" />
+                    <h:selectOneMenu id="idOrganizacion" value="#{grupoController.selected.idOrganizacion}" title="#{bundle.EditgrupoTitle_idOrganizacion}" required="true" requiredMessage="#{bundle.EditgrupoRequiredMessage_idOrganizacion}">
+                        <f:selectItems value="#{organizacionController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{grupoController.update}" value="#{bundle.EditgrupoSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditgrupoViewLink}"/>
+                <br />
+                <h:commandLink action="#{grupoController.prepareList}" value="#{bundle.EditgrupoShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditgrupoIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.Viewclasificacion_usuarioTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.Viewclasificacion_usuarioLabel_nombre}"/>
+                    <h:outputText value="#{clasificacion_usuarioController.selected.nombre}" title="#{bundle.Viewclasificacion_usuarioTitle_nombre}"/>
+                    <h:outputText value="#{bundle.Viewclasificacion_usuarioLabel_descripcion}"/>
+                    <h:outputText value="#{clasificacion_usuarioController.selected.descripcion}" title="#{bundle.Viewclasificacion_usuarioTitle_descripcion}"/>
+                    <h:outputText value="#{bundle.Viewclasificacion_usuarioLabel_fechaCreacion}"/>
+                    <h:outputText value="#{clasificacion_usuarioController.selected.fechaCreacion}" title="#{bundle.Viewclasificacion_usuarioTitle_fechaCreacion}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.Viewclasificacion_usuarioLabel_fechaModificacion}"/>
+                    <h:outputText value="#{clasificacion_usuarioController.selected.fechaModificacion}" title="#{bundle.Viewclasificacion_usuarioTitle_fechaModificacion}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.Viewclasificacion_usuarioLabel_id}"/>
+                    <h:outputText value="#{clasificacion_usuarioController.selected.id}" title="#{bundle.Viewclasificacion_usuarioTitle_id}"/>
+                    <h:outputText value="#{bundle.Viewclasificacion_usuarioLabel_borrado}"/>
+                    <h:outputText value="#{clasificacion_usuarioController.selected.borrado}" title="#{bundle.Viewclasificacion_usuarioTitle_borrado}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{clasificacion_usuarioController.destroyAndView}" value="#{bundle.Viewclasificacion_usuarioDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.Viewclasificacion_usuarioEditLink}"/>
+                <br />
+                <h:commandLink action="#{clasificacion_usuarioController.prepareCreate}" value="#{bundle.Viewclasificacion_usuarioCreateLink}" />
+                <br />
+                <h:commandLink action="#{clasificacion_usuarioController.prepareList}" value="#{bundle.Viewclasificacion_usuarioShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.Viewclasificacion_usuarioIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

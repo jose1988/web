@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewcondicionTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewcondicionLabel_nombre}"/>
+                    <h:outputText value="#{condicionController.selected.nombre}" title="#{bundle.ViewcondicionTitle_nombre}"/>
+                    <h:outputText value="#{bundle.ViewcondicionLabel_descripcion}"/>
+                    <h:outputText value="#{condicionController.selected.descripcion}" title="#{bundle.ViewcondicionTitle_descripcion}"/>
+                    <h:outputText value="#{bundle.ViewcondicionLabel_documentacion}"/>
+                    <h:outputText value="#{condicionController.selected.documentacion}" title="#{bundle.ViewcondicionTitle_documentacion}"/>
+                    <h:outputText value="#{bundle.ViewcondicionLabel_estado}"/>
+                    <h:outputText value="#{condicionController.selected.estado}" title="#{bundle.ViewcondicionTitle_estado}"/>
+                    <h:outputText value="#{bundle.ViewcondicionLabel_id}"/>
+                    <h:outputText value="#{condicionController.selected.id}" title="#{bundle.ViewcondicionTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewcondicionLabel_borrado}"/>
+                    <h:outputText value="#{condicionController.selected.borrado}" title="#{bundle.ViewcondicionTitle_borrado}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{condicionController.destroyAndView}" value="#{bundle.ViewcondicionDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewcondicionEditLink}"/>
+                <br />
+                <h:commandLink action="#{condicionController.prepareCreate}" value="#{bundle.ViewcondicionCreateLink}" />
+                <br />
+                <h:commandLink action="#{condicionController.prepareList}" value="#{bundle.ViewcondicionShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewcondicionIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
