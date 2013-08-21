@@ -55,7 +55,7 @@
          <div class="span12"> 
              <div class="span4" style="position: fixed">  
                  <h:form>         
-                        <p:tree value="#{loginController.mailboxes}" var="box" selectionMode="single" selection="#{loginController.mailbox}" style="width:170px">
+                        <p:tree value="#{loginController.mailboxes}" var="box" selectionMode="single" selection="#{loginController.mailbox}"  style="width:170px">
                             <p:treeNode icon="ui-icon-mail-closed">
                                 <h:outputText value="#{box}"/>
                             </p:treeNode>
@@ -83,27 +83,27 @@
              <div class="span6" style="padding-left: 180px;"> 
                  
                  <p:tabView>
-                                <p:tab title="Gmail">
+                     <p:tab title="#{loginController.act.estado}">
 
                                     <h:form>
 
-                                        <p:dataTable var="mail" value="#{loginController.mails}">
+                                        <p:dataTable var="actividad" value="#{loginController.actividades}"  paginator="true" rows="7" >
 
-                                            <p:column headerText="From" sortBy="from">
-                                                #{mail.para}
+                                            <p:column headerText="Id Actividad" >
+                                                #{actividad.id}
                                             </p:column>
 
-                                            <p:column headerText="Subject" sortBy="subject">
-                                                #{mail.asunto}
+                                            <p:column headerText="Duracion" >
+                                                #{actividad.duracion}
                                             </p:column>
 
-                                            <p:column headerText="Date">
-                                                #{mail.fecha}
+                                            <p:column headerText="Id Tarea">
+                                                #{actividad.idTarea}
                                             </p:column>
 
                                             <p:column>
                                                 <p:commandButton update=":mailViewer" icon="ui-icon-search" title="View">
-                                                    <f:setPropertyActionListener value="#{mail}" target="#{loginController.mail}" />
+                                                    <f:setPropertyActionListener value="#{actividad}" target="#{loginController.act}" />
                                                 </p:commandButton>
                                             </p:column>
 
@@ -121,9 +121,8 @@
            
            <div class="span8" style="padding-left: 180px;">
                 <p:outputPanel id="mailViewer">
-                                <h:outputText value="#{loginController.mail.id}" rendered="#{not empty loginController.mail}" />
-                                <h:outputText value="#{loginController.mail.asunto}" rendered="#{not empty loginController.mail}" />
-                                <h:outputText value="#{loginController.mail.fecha}" rendered="#{not empty loginController.mail}" />
+                    <h:outputText value="#{loginController.act.estado}" rendered="#{not empty loginController.mail}" />
+                    <h:outputText value="#{loginController.act.id}" rendered="#{not empty loginController.mail}" />
                             </p:outputPanel>
            </div>
        </div> 
