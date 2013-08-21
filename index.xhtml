@@ -53,7 +53,7 @@
          
        <div class="row">
          <div class="span12"> 
-             <div class="span4" style="position: relative">  
+             <div class="span4" style="position: fixed">  
                  <h:form>         
                         <p:tree value="#{loginController.mailboxes}" var="box" selectionMode="single" selection="#{loginController.mailbox}" style="width:170px">
                             <p:treeNode icon="ui-icon-mail-closed">
@@ -80,7 +80,7 @@
                  
              </div> 
              
-             <div class="span6" style="position: relative"> 
+             <div class="span6" style="padding-left: 180px;"> 
                  
                  <p:tabView>
                                 <p:tab title="Gmail">
@@ -119,7 +119,7 @@
              </div> 
          </div> 
            
-           <div class="offset4 span8">
+           <div class="span8" style="padding-left: 180px;">
                 <p:outputPanel id="mailViewer">
                                 <h:outputText value="#{loginController.mail.id}" rendered="#{not empty loginController.mail}" />
                                 <h:outputText value="#{loginController.mail.asunto}" rendered="#{not empty loginController.mail}" />
