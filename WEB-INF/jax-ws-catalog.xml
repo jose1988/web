@@ -12,6 +12,7 @@
     <system systemId="http://localhost:15362/CapaDeServicios/GestionarSkin?xsd=1" uri="wsdl/localhost_15362/CapaDeServicios/GestionarSkin.xsd_1.xsd"/>
     <system systemId="http://localhost:15362/CapaDeServicios/GestionDeGrupo?wsdl" uri="wsdl/localhost_15362/CapaDeServicios/GestionDeGrupo.wsdl"/>
     <system systemId="http://localhost:15362/CapaDeServicios/GestionDeGrupo?xsd=1" uri="wsdl/localhost_15362/CapaDeServicios/GestionDeGrupo.xsd_1.xsd"/>
+<<<<<<< HEAD
     <system systemId="http://localhost:15362/CapaDeServicios/GestionDeClasificacion_usuario?wsdl" uri="wsdl/localhost_15362/CapaDeServicios/GestionDeClasificacion_usuario.wsdl"/>
     <system systemId="http://localhost:15362/CapaDeServicios/GestionDeClasificacion_usuario?xsd=1" uri="wsdl/localhost_15362/CapaDeServicios/GestionDeClasificacion_usuario.xsd_1.xsd"/>
     <system systemId="http://localhost:15362/CapaDeServicios/GestionDeClasificacion_rol?wsdl" uri="wsdl/localhost_15362/CapaDeServicios/GestionDeClasificacion_rol.wsdl"/>
@@ -42,4 +43,10 @@
     <system systemId="http://localhost:9090/CapaDeServicios/GestionDeClasificacion_rol?xsd=1" uri="wsdl/localhost_9090/CapaDeServicios/GestionDeClasificacion_rol.xsd_1.xsd"/>
     <system systemId="http://localhost:9090/CapaDeServicios/GestionDeControlDeUsuarios?wsdl" uri="wsdl/localhost_9090/CapaDeServicios/GestionDeControlDeUsuarios.wsdl"/>
     <system systemId="http://localhost:9090/CapaDeServicios/GestionDeControlDeUsuarios?xsd=1" uri="wsdl/localhost_9090/CapaDeServicios/GestionDeControlDeUsuarios.xsd_1.xsd"/>
+=======
+    <system systemId="http://localhost:15362/CapaDeServicios/Mensajeria?wsdl" uri="wsdl/localhost_15362/CapaDeServicios/Mensajeria.wsdl"/>
+    <system systemId="http://localhost:15362/CapaDeServicios/Mensajeria?xsd=1" uri="wsdl/localhost_15362/CapaDeServicios/Mensajeria.xsd_1.xsd"/>
+    <system systemId="http://localhost:15362/CapaDeServicios/GestionDeControlDeUsuarios?wsdl" uri="wsdl/localhost_15362/CapaDeServicios/GestionDeControlDeUsuarios.wsdl"/>
+    <system systemId="http://localhost:15362/CapaDeServicios/GestionDeControlDeUsuarios?xsd=1" uri="wsdl/localhost_15362/CapaDeServicios/GestionDeControlDeUsuarios.xsd_1.xsd"/>
+>>>>>>> 1dd3941f3317d02b46a0bca15c3eba7701581424
 </catalog>
