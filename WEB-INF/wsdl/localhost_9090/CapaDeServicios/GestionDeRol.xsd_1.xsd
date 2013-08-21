@@ -61,6 +61,16 @@
 <xs:sequence/>
 </xs:complexType>
 
+<xs:complexType name="editarRol">
+<xs:sequence>
+<xs:element name="edtiRol" type="tns:rol" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="editarRolResponse">
+<xs:sequence/>
+</xs:complexType>
+
 <xs:complexType name="listarRol">
 <xs:sequence>
 <xs:element name="sortF" type="xs:string" minOccurs="0"/>
@@ -100,16 +110,6 @@
 <xs:sequence>
 <xs:element name="return" type="xs:string" minOccurs="0"/>
 </xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="editarRol">
-<xs:sequence>
-<xs:element name="edtiRol" type="tns:rol" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="editarRolResponse">
-<xs:sequence/>
 </xs:complexType>
 
 <xs:complexType name="eliminarRol">

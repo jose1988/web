@@ -362,6 +362,18 @@
 </xs:sequence>
 </xs:complexType>
 
+<xs:complexType name="EnviarPost">
+<xs:sequence>
+<xs:element name="mensajeActual" type="tns:post" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="EnviarPostResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:wrResultado" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
 <xs:complexType name="ConsultarMensajes">
 <xs:sequence>
 <xs:element name="usuarioActual" type="tns:usuario" minOccurs="0"/>
@@ -380,18 +392,6 @@
 <xs:element name="estatus" type="xs:string" minOccurs="0"/>
 <xs:element name="observacion" type="xs:string" minOccurs="0"/>
 <xs:element name="posts" type="tns:post" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="EnviarPost">
-<xs:sequence>
-<xs:element name="mensajeActual" type="tns:post" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="EnviarPostResponse">
-<xs:sequence>
-<xs:element name="return" type="tns:wrResultado" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 

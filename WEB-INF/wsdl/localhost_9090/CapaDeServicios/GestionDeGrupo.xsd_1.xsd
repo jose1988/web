@@ -101,16 +101,6 @@
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="insertarGrupo">
-<xs:sequence>
-<xs:element name="registroGrupo" type="tns:grupo" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="insertarGrupoResponse">
-<xs:sequence/>
-</xs:complexType>
-
 <xs:complexType name="listarGrupo">
 <xs:sequence>
 <xs:element name="sortF" type="xs:string" minOccurs="0"/>
@@ -138,5 +128,15 @@
 <xs:sequence>
 <xs:element name="return" type="tns:grupo" minOccurs="0" maxOccurs="unbounded"/>
 </xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="insertarGrupo">
+<xs:sequence>
+<xs:element name="registroGrupo" type="tns:grupo" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="insertarGrupoResponse">
+<xs:sequence/>
 </xs:complexType>
 </xs:schema>

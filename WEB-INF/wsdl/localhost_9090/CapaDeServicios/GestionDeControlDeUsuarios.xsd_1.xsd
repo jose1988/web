@@ -1,40 +1,26 @@
 <?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI at http://jax-ws.dev.java.net. RI's version is Metro/2.2.0-1 (tags/2.2.0u1-7139; 2012-06-02T10:55:19+0000) JAXWS-RI/2.2.6-2 JAXWS/2.2 svn-revision#unknown. --><xs:schema xmlns:tns="http://servicios.capadeservicios.pangea.com/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://servicios.capadeservicios.pangea.com/">
 
+<xs:element name="LogIn" type="tns:LogIn"/>
+
+<xs:element name="LogInResponse" type="tns:LogInResponse"/>
+
+<xs:element name="LogOut" type="tns:LogOut"/>
+
+<xs:element name="LogOutResponse" type="tns:LogOutResponse"/>
+
 <xs:element name="clasificacionUsuario" type="tns:clasificacionUsuario"/>
 
-<xs:element name="contarUsuario" type="tns:contarUsuario"/>
-
-<xs:element name="contarUsuarioResponse" type="tns:contarUsuarioResponse"/>
-
-<xs:element name="editarUsuario" type="tns:editarUsuario"/>
-
-<xs:element name="editarUsuarioResponse" type="tns:editarUsuarioResponse"/>
-
-<xs:element name="eliminarUsuario" type="tns:eliminarUsuario"/>
-
-<xs:element name="eliminarUsuarioResponse" type="tns:eliminarUsuarioResponse"/>
-
-<xs:element name="hello" type="tns:hello"/>
-
-<xs:element name="helloResponse" type="tns:helloResponse"/>
-
-<xs:element name="insertarUsuario" type="tns:insertarUsuario"/>
-
-<xs:element name="insertarUsuarioResponse" type="tns:insertarUsuarioResponse"/>
-
-<xs:element name="listarUsuario" type="tns:listarUsuario"/>
-
-<xs:element name="listarUsuarioResponse" type="tns:listarUsuarioResponse"/>
-
 <xs:element name="organizacion" type="tns:organizacion"/>
+
+<xs:element name="sesion" type="tns:sesion"/>
 
 <xs:element name="skin" type="tns:skin"/>
 
 <xs:element name="usuario" type="tns:usuario"/>
 
-<xs:complexType name="insertarUsuario">
+<xs:complexType name="LogOut">
 <xs:sequence>
-<xs:element name="registroUsuario" type="tns:usuario" minOccurs="0"/>
+<xs:element name="usuarioActual" type="tns:usuario" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 
@@ -102,78 +88,48 @@
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="insertarUsuarioResponse">
-<xs:sequence/>
-</xs:complexType>
-
-<xs:complexType name="contarUsuario">
-<xs:sequence/>
-</xs:complexType>
-
-<xs:complexType name="contarUsuarioResponse">
+<xs:complexType name="LogOutResponse">
 <xs:sequence>
-<xs:element name="return" type="xs:int"/>
+<xs:element name="return" type="tns:wrResultado" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="hello">
+<xs:complexType name="wrResultado">
 <xs:sequence>
-<xs:element name="name" type="xs:string" minOccurs="0"/>
+<xs:element name="estatus" type="xs:string" minOccurs="0"/>
+<xs:element name="observacion" type="xs:string" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="helloResponse">
+<xs:complexType name="LogIn">
 <xs:sequence>
-<xs:element name="return" type="xs:string" minOccurs="0"/>
+<xs:element name="sesionActual" type="tns:sesion" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="eliminarUsuario">
+<xs:complexType name="sesion">
 <xs:sequence>
-<xs:element name="eliminoUsuario" type="xs:string" minOccurs="0"/>
+<xs:element name="borrado" type="xs:boolean"/>
+<xs:element name="estado" type="xs:string" minOccurs="0"/>
+<xs:element name="fechaCreacion" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="fechaFinalizacion" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="id" type="xs:long" minOccurs="0"/>
+<xs:element name="idUsuario" type="tns:usuario" minOccurs="0"/>
+<xs:element name="ip" type="xs:string" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="eliminarUsuarioResponse">
-<xs:sequence/>
-</xs:complexType>
-
-<xs:complexType name="listarUsuario">
+<xs:complexType name="LogInResponse">
 <xs:sequence>
-<xs:element name="sortF" type="xs:string" minOccurs="0"/>
-<xs:element name="sortB" type="xs:boolean"/>
-<xs:element name="range" type="xs:int" minOccurs="0" maxOccurs="unbounded"/>
-<xs:element name="fil">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="entry" minOccurs="0" maxOccurs="unbounded">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="key" minOccurs="0" type="xs:string"/>
-<xs:element name="value" minOccurs="0" type="xs:string"/>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-<xs:element name="cad" type="xs:string" minOccurs="0"/>
+<xs:element name="return" type="tns:wrSesion" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="listarUsuarioResponse">
+<xs:complexType name="wrSesion">
 <xs:sequence>
-<xs:element name="return" type="tns:usuario" minOccurs="0" maxOccurs="unbounded"/>
+<xs:element name="estatus" type="xs:string" minOccurs="0"/>
+<xs:element name="observacion" type="xs:string" minOccurs="0"/>
+<xs:element name="sesions" type="tns:sesion" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
 </xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="editarUsuario">
-<xs:sequence>
-<xs:element name="editoUsuario" type="tns:usuario" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="editarUsuarioResponse">
-<xs:sequence/>
 </xs:complexType>
 </xs:schema>
