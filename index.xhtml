@@ -3,61 +3,66 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
-       xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
-       <title>Pangea Flow</title>
-       
-         <script type="text/javascript" src="recursos/js/jquery.js" ></script> 
+        <title>Pangea Flow</title>
+
+        <script type="text/javascript" src="recursos/js/jquery.js" ></script> 
         <h:outputStylesheet name="../recursos/css/bootstrap.css"/>
         <h:outputStylesheet name="../recursos/css/bootstrap-theme.css"/>
         <script type="text/javascript" src="recursos/js/bootstrap.js"></script>
     </h:head>
-    
-    
-    <h:body>  
-      <div class="row-fluid">
-         <div class="span12"> 
-             <div class="span4">
-             <h:graphicImage value="/recursos/images/pangea.jpg"  width="400" height="90"></h:graphicImage> 
-             </div>
-           <div class="span8">  
-         
-               <nav class="navbar navbar-default" role="navigation">
-  <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
 
-          <a class="navbar-brand" href="#">PangeaFlow</a>
+
+    <h:body>  
+        <div class="row-fluid">
+            <div class="span12"> 
+                <div class="span4">
+                    <h:graphicImage value="/recursos/images/pangea.jpg"  width="400" height="90"></h:graphicImage> 
+                </div>
+                <div class="span8">  
+
+                    <nav class="navbar navbar-default" role="navigation">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+
+                            <a class="navbar-brand" href="#">PangeaFlow</a>
+                        </div>
+
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse navbar-ex1-collapse">
+                            <ul class="nav navbar-nav">
+                                <li class="active"><a href="#">Archivo</a></li>
+                                <li><a href="#">Atrás</a></li>
+                                <li>
+                                    <a href="#" >Opciones</a>
+
+                                </li>
+                            </ul>
+
+                            <ul class="nav navbar-nav navbar-right">
+                                <li><a href="#">Cerrar Sesión</a></li>
+
+                            </ul>
+                        </div><!-- /.navbar-collapse -->
+                    </nav>      
+                </div>
+            </div>
         </div>
 
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse navbar-ex1-collapse">
-              <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Archivo</a></li>
-                <li><a href="#">Atrás</a></li>
-                <li>
-                  <a href="#" >Opciones</a>
 
-                </li>
-              </ul>
+        <div class="row">
+            <h:form id="fom" styleClass="jsfcrud_list_form" prependId="false">
+                <div class="span12"> 
+                    <div class="span4" style="position: fixed">
+                        <p:growl id="messages" showDetail="true" />  
 
-              <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">Cerrar Sesión</a></li>
+                        <p:tree value="#{loginController.estact}" selection="#{loginController.estados}" var="box" selectionMode="single" style="width:170px">
 
-              </ul>
-            </div><!-- /.navbar-collapse -->
-          </nav>      
-                   </div>
-                </div>
-                </div>
-
-         
-       <div class="row">
-         <div class="span12"> 
-             <div class="span4" style="position: fixed">  
-                 <h:form>         
-                        <p:tree value="#{loginController.mailboxes}" var="box" selectionMode="single" selection="#{loginController.mailbox}"  style="width:170px">
-                            <p:treeNode icon="ui-icon-mail-closed">
+                            <p:ajax event="select" update=":fom:paneltabla" listener="#{loginController.onNodeSelect(event)}" /> 
+                            <p:treeNode icon="ui-icon-mail-closed" >
                                 <h:outputText value="#{box}"/>
+
                             </p:treeNode>
 
                             <p:treeNode type="i" icon="ui-icon-mail-closed">
@@ -76,56 +81,56 @@
                                 <h:outputText value="#{box}"/>
                             </p:treeNode>
                         </p:tree>
-                    </h:form>  
-                 
-             </div> 
-             
-             <div class="span6" style="padding-left: 180px;"> 
-                 
-                 <p:tabView>
-                     <p:tab title="#{loginController.act.estado}">
 
-                                    <h:form>
+                    </div> 
 
-                                        <p:dataTable var="actividad" value="#{loginController.actividades}"  paginator="true" rows="7" >
+                    <div class="span6" style="padding-left: 180px;"> 
 
-                                            <p:column headerText="Id Actividad" >
-                                                #{actividad.id}
-                                            </p:column>
+                        <p:tabView>
+                            <p:tab title="#{loginController.act.estado}">
 
-                                            <p:column headerText="Duracion" >
-                                                #{actividad.duracion}
-                                            </p:column>
+                                <h:panelGroup id="paneltabla">
 
-                                            <p:column headerText="Id Tarea">
-                                                #{actividad.idTarea.nombre}
-                                            </p:column>
 
-                                            <p:column>
-                                                <p:commandButton update=":mailViewer" icon="ui-icon-search" title="View">
-                                                    <f:setPropertyActionListener value="#{actividad}" target="#{loginController.act}" />
-                                                </p:commandButton>
-                                            </p:column>
+                                    <p:dataTable var="actividad" value="#{loginController.actividades}"  paginator="true" rows="7">
 
-                                        </p:dataTable>
+                                        <p:column headerText="Id Actividad" >
+                                            #{actividad.id}
+                                        </p:column>
 
-                                    </h:form>
+                                        <p:column headerText="Duracion" >
+                                            #{actividad.duracion}
+                                        </p:column>
 
-                                </p:tab>
+                                        <p:column headerText="Id Tarea">
+                                            #{actividad.idTarea.nombre}
+                                        </p:column>
 
-                            </p:tabView>
+                                        <p:column>
+                                            <p:commandButton update=":mailViewer" icon="ui-icon-search" title="View">
+                                                <f:setPropertyActionListener value="#{actividad}" target="#{loginController.act}" />
+                                            </p:commandButton>
+                                        </p:column>
 
-                 
-             </div> 
-         </div> 
-           
-           <div class="span8" style="padding-left: 180px;">
+                                    </p:dataTable>
+
+
+                                </h:panelGroup>
+                            </p:tab>
+
+                        </p:tabView>
+
+
+                    </div> 
+                </div> 
+            </h:form> 
+            <div class="span8" style="padding-left: 180px;">
                 <p:outputPanel id="mailViewer">
                     <h:outputText value="#{loginController.act.estado}" rendered="#{not empty loginController.mail}" />
                     <h:outputText value="#{loginController.act.id}" rendered="#{not empty loginController.mail}" />
-                            </p:outputPanel>
-           </div>
-       </div> 
+                </p:outputPanel>
+            </div>
+        </div> 
     </h:body>
 </html>
 
