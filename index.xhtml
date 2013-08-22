@@ -57,9 +57,9 @@
                     <div class="span4" style="position: fixed">
                         <p:growl id="messages" showDetail="true" />  
 
-                        <p:tree value="#{loginController.estact}" selection="#{loginController.estados}" var="box" selectionMode="single" style="width:170px">
+                        <p:tree value="#{loginController.estact}" selection="#{loginController.estadoSeleccionado}" var="box" selectionMode="single" style="width:170px">
 
-                            <p:ajax event="select" update=":fom:paneltabla" listener="#{loginController.onNodeSelect(event)}" /> 
+                            <p:ajax event="select" update="@form" listener="#{loginController.onNodeSelect}" /> 
                             <p:treeNode icon="ui-icon-mail-closed" >
                                 <h:outputText value="#{box}"/>
 
