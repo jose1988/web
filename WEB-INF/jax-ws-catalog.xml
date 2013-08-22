@@ -24,4 +24,6 @@
     <system systemId="http://localhost:15362/CapaDeServicios/GestionDeControlDeUsuarios?xsd=1" uri="wsdl/localhost_15362/CapaDeServicios/GestionDeControlDeUsuarios.xsd_1.xsd"/>
     <system systemId="http://localhost:15362/CapaDeServicios/GestionDeActividades?wsdl" uri="wsdl/localhost_15362/CapaDeServicios/GestionDeActividades.wsdl"/>
     <system systemId="http://localhost:15362/CapaDeServicios/GestionDeActividades?xsd=1" uri="wsdl/localhost_15362/CapaDeServicios/GestionDeActividades.xsd_1.xsd"/>
+    <system systemId="http://localhost:15362/CapaDeServicios/GestionarInterfaz?wsdl" uri="wsdl/localhost_15362/CapaDeServicios/GestionarInterfaz.wsdl"/>
+    <system systemId="http://localhost:15362/CapaDeServicios/GestionarInterfaz?xsd=1" uri="wsdl/localhost_15362/CapaDeServicios/GestionarInterfaz.xsd_1.xsd"/>
 </catalog>
