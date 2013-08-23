@@ -106,9 +106,12 @@
                                             #{actividad.idTarea.nombre}
                                         </p:column>
 
-                                        <p:column>
-                                            <p:commandButton update=":mailViewer" icon="ui-icon-search" title="View">
+                                        <p:column headerText="Iniciar Actividad">
+                                          
+                                            <p:commandButton update="@form" icon="ui-icon-check" actionListener="#{loginController.cambiarestado(loginController.act)}" title="aceptar">
+                                                
                                                 <f:setPropertyActionListener value="#{actividad}" target="#{loginController.act}" />
+                                                
                                             </p:commandButton>
                                         </p:column>
 
