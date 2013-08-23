@@ -50,19 +50,17 @@
             </div>
         </div>
 
-        <h:form  id="fom" styleClass="jsfcrud_list_form" prependId="false">
+
         <div class="row">
-           
+            <h:form id="fom" styleClass="jsfcrud_list_form" prependId="false">
                 <div class="span12"> 
                     <div class="span4" style="position: fixed">
-                        
-                       
                         <p:growl id="messages" showDetail="true" />  
 
-                        <p:tree value="#{loginController.estact}" selection="#{loginController.estados}" var="box" selectionMode="single" style="width:170px">
+                        <p:tree value="#{loginController.estact}" selection="#{loginController.estadoSeleccionado}" var="box" selectionMode="single" style="width:170px">
 
-                            <p:ajax event="select" update=":fom :paneltabla" listener="#{loginController.onNodeSelect(event)}" /> 
-                            <p:treeNode icon="ui-icon-mail-closed">
+                            <p:ajax event="select" update="@form" listener="#{loginController.onNodeSelect}" /> 
+                            <p:treeNode icon="ui-icon-mail-closed" >
                                 <h:outputText value="#{box}"/>
 
                             </p:treeNode>
@@ -83,16 +81,16 @@
                                 <h:outputText value="#{box}"/>
                             </p:treeNode>
                         </p:tree>
-                  
+
                     </div> 
 
                     <div class="span6" style="padding-left: 180px;"> 
 
                         <p:tabView>
                             <p:tab title="#{loginController.act.estado}">
-                            
-                      <h:panelGroup id="paneltabla">
-                                
+
+                                <h:panelGroup id="paneltabla">
+
 
                                     <p:dataTable var="actividad" value="#{loginController.actividades}"  paginator="true" rows="7">
 
@@ -115,9 +113,9 @@
                                         </p:column>
 
                                     </p:dataTable>
-                        </h:panelGroup>
-          
-                                
+
+
+                                </h:panelGroup>
                             </p:tab>
 
                         </p:tabView>
@@ -125,16 +123,14 @@
 
                     </div> 
                 </div> 
-                  
-            
+            </h:form> 
             <div class="span8" style="padding-left: 180px;">
                 <p:outputPanel id="mailViewer">
                     <h:outputText value="#{loginController.act.estado}" rendered="#{not empty loginController.mail}" />
                     <h:outputText value="#{loginController.act.id}" rendered="#{not empty loginController.mail}" />
                 </p:outputPanel>
             </div>
-        </div>
-       </h:form>
+        </div> 
     </h:body>
 </html>
 
