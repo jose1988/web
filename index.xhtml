@@ -106,6 +106,12 @@
                                             #{actividad.idTarea.nombre}
                                         </p:column>
 
+                                        <p:column headerText="Ver Información">
+                                          
+                                            <p:commandButton icon="ui-icon-search" id="verinfo" onclick="PF('infoactividad').show();" type="button" title="Ver"/>
+                                            
+                                        </p:column>
+                                        
                                         <p:column headerText="Iniciar Actividad">
                                           
                                             <p:commandButton update="@form" icon="ui-icon-check" actionListener="#{loginController.cambiarestado(loginController.act)}" title="aceptar">
@@ -116,7 +122,10 @@
                                         </p:column>
                                      
                                     </p:dataTable>
-
+                                    
+                                    <p:dialog id="basicDialog" header="Actividad" widgetVar="infoactividad">  
+                                            <h:outputText value="Resistance to PrimeFaces is futile!" />  
+                                       </p:dialog>
 
                                 </h:panelGroup>
                             </p:tab>
