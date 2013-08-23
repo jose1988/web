@@ -216,11 +216,11 @@
                                           
                                             <p:commandButton update="@form" icon="ui-icon-check" actionListener="#{loginController.cambiarestado(loginController.act)}" title="aceptar">
                                                 
-                                                <f:setPropertyActionListener value="#{actividad}" target="#{loginController.act}" />
+                                            <f:setPropertyActionListener value="#{actividad}" target="#{loginController.act}" />
                                                 
                                             </p:commandButton>
                                         </p:column>
-
+                                     
                                     </p:dataTable>
                                     
                                     <p:dialog id="dlgactividadPendiente"  header="Actividad" widgetVar="infoActividadPendiente" >  
