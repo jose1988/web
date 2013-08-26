@@ -26,4 +26,12 @@
     <system systemId="http://localhost:15362/CapaDeServicios/GestionDeActividades?xsd=1" uri="wsdl/localhost_15362/CapaDeServicios/GestionDeActividades.xsd_1.xsd"/>
     <system systemId="http://localhost:15362/CapaDeServicios/GestionarInterfaz?wsdl" uri="wsdl/localhost_15362/CapaDeServicios/GestionarInterfaz.wsdl"/>
     <system systemId="http://localhost:15362/CapaDeServicios/GestionarInterfaz?xsd=1" uri="wsdl/localhost_15362/CapaDeServicios/GestionarInterfaz.xsd_1.xsd"/>
+    <system systemId="http://localhost:15362/CapaDeServicios/ConsultasOperacionales?wsdl" uri="wsdl/localhost_15362/CapaDeServicios/ConsultasOperacionales.wsdl"/>
+    <system systemId="http://localhost:15362/CapaDeServicios/ConsultasOperacionales?xsd=1" uri="wsdl/localhost_15362/CapaDeServicios/ConsultasOperacionales.xsd_1.xsd"/>
+    <system systemId="http://localhost:15362/CapaDeServicios/Reportes?wsdl" uri="wsdl/localhost_15362/CapaDeServicios/Reportes.wsdl"/>
+    <system systemId="http://localhost:15362/CapaDeServicios/Reportes?xsd=1" uri="wsdl/localhost_15362/CapaDeServicios/Reportes.xsd_1.xsd"/>
+    <system systemId="http://localhost:15362/CapaDeServicios/GestionDeClasificaciones?wsdl" uri="wsdl/localhost_15362/CapaDeServicios/GestionDeClasificaciones.wsdl"/>
+    <system systemId="http://localhost:15362/CapaDeServicios/GestionDeClasificaciones?xsd=1" uri="wsdl/localhost_15362/CapaDeServicios/GestionDeClasificaciones.xsd_1.xsd"/>
+    <system systemId="http://localhost:15362/CapaDeServicios/ConsultarDestinatarios?wsdl" uri="wsdl/localhost_15362/CapaDeServicios/ConsultarDestinatarios.wsdl"/>
+    <system systemId="http://localhost:15362/CapaDeServicios/ConsultarDestinatarios?xsd=1" uri="wsdl/localhost_15362/CapaDeServicios/ConsultarDestinatarios.xsd_1.xsd"/>
 </catalog>
