@@ -34,4 +34,5 @@
     <system systemId="http://localhost:15362/CapaDeServicios/GestionDeClasificaciones?xsd=1" uri="wsdl/localhost_15362/CapaDeServicios/GestionDeClasificaciones.xsd_1.xsd"/>
     <system systemId="http://localhost:15362/CapaDeServicios/ConsultarDestinatarios?wsdl" uri="wsdl/localhost_15362/CapaDeServicios/ConsultarDestinatarios.wsdl"/>
     <system systemId="http://localhost:15362/CapaDeServicios/ConsultarDestinatarios?xsd=1" uri="wsdl/localhost_15362/CapaDeServicios/ConsultarDestinatarios.xsd_1.xsd"/>
+   
 </catalog>
