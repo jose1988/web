@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Pangea Flow</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="description" content=""/>
+        <meta name="author" content=""/>
+        <script type="text/javascript" src="recursos/js/jquery.js" ></script> 
+        <h:outputStylesheet name="../recursos/css/bootstrap.css"/>
+        <h:outputStylesheet name="../recursos/css/bootstrap-theme.css"/>
+        <h:outputStylesheet name="../recursos/css/InicioSesion.css"/>
+        <script type="text/javascript" src="recursos/js/bootstrap.js"></script>
+
+    </h:head>
+
+
+    <h:body>  
+        <p:growl id="mensajes" showDetail="true" sticky="true" life="6000" />
+       
+        <div class="container" align="center">
+            <h:form class="form-signin">
+                <h3 class="form-signin-heading">Por favor, inicie sesión</h3>
+                <h:inputText id="usuario" value="#{logIntOutController.user}"  required="true"  />
+           <!--     <p:watermark for="usuario" value="Usuario" /> -->
+                <h:inputSecret id="pass" value="#{logIntOutController.contrasena}" required="true"  />
+           <!--     <p:watermark for="pass" value="Contraseña" /> -->
+           <h:commandButton  actionListener="#{logIntOutController.LogeoInt}" class="btn btn-default"  value="Iniciar Sesión"/>
+            </h:form>
+
+        </div>
+
+    </h:body>
+</html>
+
