@@ -19,8 +19,7 @@
                 <div class="span4">
                     <h:graphicImage value="/recursos/images/pangea.jpg"  width="400" height="90"></h:graphicImage> 
                 </div>
-                <div class="span8">  
-
+                <div class="span8">
                     <nav class="navbar navbar-default" role="navigation">
                         <!-- Brand and toggle get grouped for better mobile display -->
                         <div class="navbar-header">
@@ -63,11 +62,9 @@
                                 <h:outputText value="#{box}"/>
 
                             </p:treeNode>
-
-                            <p:treeNode type="s" icon="ui-icon-transfer-e-w">
+                            <p:treeNode icon="ui-icon-transfer-e-w">
                                 <h:outputText value="#{box}"/>
                             </p:treeNode>
-                            
                         </p:tree>
 
                     </div> 
@@ -76,7 +73,6 @@
 
                         <p:tabView dynamic="false" >
                             <p:tab title="#{actividadController.estadoSeleccionado}">
-                                
                                 <h:panelGroup id="paneltablaPendiente" rendered="#{actividadController.estadoSeleccionado eq 'pendiente'}">
 
 
@@ -96,19 +92,19 @@
 
                                         <p:column headerText="Asignar Actividad">
                                           
-                                            <p:commandButton update="@form" icon="ui-icon-check" actionListener="#{actividadController}" title="aceptar">
-                                                
-                                                <f:setPropertyActionListener value="#{actividad}" target="#{actividadController.act}" />
-                                                
-                                            </p:commandButton>
+                                            <p:commandButton icon="ui-icon-check" id="asignaractividad"  type="button" title="Ver"/>
+                                            
                                         </p:column>
-                                     
+                                        
                                     </p:dataTable>
-
-                                </h:panelGroup>
-                              </p:tab>
+                                    
+                                  </h:panelGroup>
+                                
+                            </p:tab>
 
                         </p:tabView>
+
+
                     </div> 
                 </div> 
             </h:form> 
@@ -116,3 +112,6 @@
         </div> 
     </h:body>
 </html>
+
+
+
