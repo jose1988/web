@@ -106,97 +106,69 @@
                                         </p:column>
 
                                         <p:column headerText="Ver Información">
-                                          
-                                            <p:commandButton update=":dlgactividadAbierta" icon="ui-icon-search" id="verinfo" onclick="infoActividadAbierta.show()" type="button" title="Ver">
+
+                                            <p:commandButton id="verinfo" update="@form" icon="ui-icon-search"  oncomplete="infoActividadAbierta.show()"  title="Ver">
                                                 <f:setPropertyActionListener value="#{actividad}" target="#{loginController.act}" />
                                             </p:commandButton>
-                                            
+
                                         </p:column>
-                                        
-                                        
+
+
 
                                     </p:dataTable>
-                                    
+
                                     <p:dialog id="dlgactividadAbierta"  header="Actividad" widgetVar="infoActividadAbierta">  
-                                        
-                                        
-                                        <table>
 
-                                            <td align="right" width="200px" >
-                                        <h:outputLabel>Id: </h:outputLabel>
-                                        <br></br>
-                                        <h:outputLabel>Estado:</h:outputLabel>
-                                        <br></br>
-                                        <h:outputLabel>Duracion: </h:outputLabel>
-                                        <br></br>
-                                        <h:outputLabel>Fecha de asignacion: </h:outputLabel>
-                                        <br></br>
-                                        <h:outputLabel>Fecha de apertura : </h:outputLabel>
-                                        <br></br>
-                                        <h:outputLabel>Fecha de alerta:  </h:outputLabel>
-                                        <br></br>
-                                        <h:outputLabel>Fecha de cierre: </h:outputLabel>
-                                        <br></br>
-                                        <h:outputLabel>tarea:  </h:outputLabel>
-                                        <br></br>
-                                        <h:outputLabel>Usuario:  </h:outputLabel>
-                                        <br></br>
-                                        <h:outputLabel>Prioridad:</h:outputLabel>
-                                        <br></br>
-                                        <h:outputLabel>Instancia: </h:outputLabel>
-                                        
-                                            </td>
+                                        <h:panelGroup id="actabierta">
+                                        <dl class="dl-horizontal">
+                                            <dt>Id:</dt> 
+                                            <dd><h:outputText value="#{loginController.act.id}" rendered="#{not empty loginController.actividades}" />
+                                            </dd>
+                                            <dt>Estado:</dt>
+                                            <dd> <h:outputLabel> #{loginController.act.estado} </h:outputLabel>
+                                            </dd>
+                                            <dt>Duracion:</dt>
+                                            <dd><h:outputLabel> #{loginController.act.duracion} </h:outputLabel>
+                                            </dd>
+                                            <dt>Fecha de asignacion: </dt>
+                                            <dd>  <h:outputLabel> #{loginController.act.fechaAsignacion} </h:outputLabel>
+                                            </dd>
+                                            <dt>Fecha de apertura :</dt>
+                                            <dd><h:outputLabel> #{loginController.act.fechaApertura} </h:outputLabel>
+                                            </dd>
+                                            <dt>Fecha de alerta:  </dt>
+                                            <dd> <h:outputLabel> #{loginController.act.fechaAlerta} </h:outputLabel>
+                                            </dd>
+                                            <dt>Fecha de cierre:</dt>
+                                            <dd>  <h:outputLabel> #{loginController.act.fechaCierre} </h:outputLabel>
+                                            </dd>
+                                            <dt>tarea:  </dt>
+                                            <dd> <h:outputLabel>#{loginController.act.idTarea.nombre} </h:outputLabel>
+                                            </dd>
+                                            <dt>Usuario: </dt>
+                                            <dd><h:outputLabel> #{loginController.act.idUsuario.id} </h:outputLabel>
+                                            </dd>
+                                            <dt>Prioridad:</dt> 
+                                            <dd> <h:outputLabel> #{loginController.act.idPrioridad.nombre} </h:outputLabel>
+                                            </dd>
+                                            <dt>Instancia: </dt>
+                                            <dd> <h:outputLabel> #{loginController.act.idInstancia.descripcion} </h:outputLabel>
+                                            </dd>
+                                            <dt> 
+                                                <p:commandButton update="@form" value="Finalizar Actividad" label="Finalizar Actividad" icon="ui-icon-check" process="actabierta" actionListener="#{loginController.finalizaract}" oncomplete="infoActividadAbierta.hide();" title="Finalizar Actividad">
+                                                </p:commandButton></dt>
+                                            <dd>
+                                                <p:commandButton value="Cancelar" label="Cancelar" onclick="infoActividadAbierta.hide()" icon="ui-icon-remove"  title="Cancelar">
 
-                                        <td width="200px">
-                                        <h:outputText value="#{actividad.id}" rendered="#{not empty loginController.actividades}" />
-                                        <br></br>
-                                        <h:outputLabel> #{actividad.estado} </h:outputLabel>
-                                        <br></br>
-                                        <h:outputLabel> #{actividad.duracion} </h:outputLabel>
-                                        <br></br>
-                                        <h:outputLabel> #{actividad.fechaAsignacion} </h:outputLabel>
-                                        <br></br>
-                                        <h:outputLabel> #{actividad.fechaApertura} </h:outputLabel>
-                                        <br></br>
-                                        <h:outputLabel> #{actividad.fechaAlerta} </h:outputLabel>
-                                        <br></br>
-                                        <h:outputLabel> #{actividad.fechaCierre} </h:outputLabel>
-                                        <br></br>
-                                        <h:outputLabel>#{actividad.idTarea.nombre} </h:outputLabel>
-                                        <br></br>
-                                        <h:outputLabel> #{actividad.idUsuario.id} </h:outputLabel>
-                                        <br></br>
-                                        <h:outputLabel> #{actividad.idPrioridad.nombre} </h:outputLabel>
-                                        <br></br>
-                                        <h:outputLabel> #{actividad.idInstancia.descripcion} </h:outputLabel>
-                                        
-                                        </td>
-                                            <tr>
-                                                
-                                                <td align="right"> 
-                                                    <p:commandButton update="@form" value="Finalizar Actividad" label="Finalizar Actividad" icon="ui-icon-check" actionListener="#{loginController.finalizaract(Actividad, usuact)}" title="Finalizar Actividad">
-                                                 
-                                            </p:commandButton>
-                                            
-                                                </td>
-                                                <td>  
-                                                   <p:commandButton update="@form" value="Cancelar" label="Cancelar" icon="ui-icon-remove" actionListener="close();" title="Cancelar">
-                                                 
-                                            </p:commandButton>  
-                                                </td>
-                                            </tr>   
+                                                </p:commandButton> </dd>
 
-                                        </table>
-                                 
-                                        
-                                        
-                                       
-                                        
-                                        
-                                       </p:dialog>
+
+                                        </dl>
+                                            </h:panelGroup>
+                                    </p:dialog>
 
                                 </h:panelGroup>
-                                    <h:panelGroup id="paneltablaCerrada" rendered="#{loginController.estadoSeleccionado eq 'cerrada'}" >
+                                <h:panelGroup id="paneltablaCerrada" rendered="#{loginController.estadoSeleccionado eq 'cerrada'}" >
 
 
                                     <p:dataTable var="actividad" value="#{loginController.actividades}"  paginator="true" rows="7">
@@ -214,20 +186,20 @@
                                         </p:column>
 
                                         <p:column headerText="Ver Información">
-                                          
+
                                             <p:commandButton icon="ui-icon-search" id="verinfo" onclick="infoActividad.show()" type="button" title="Ver"/>
-                                            
+
                                         </p:column>
-                                       
+
 
                                     </p:dataTable>
-                                    
+
                                     <p:dialog id="dlgactividadCerrada"  header="Actividad" widgetVar="infoActividadCerrada" >  
-                                            <h:outputText value="Resistance to PrimeFaces is futile!" />  
-                                       </p:dialog>
+                                        <h:outputText value="Resistance to PrimeFaces is futile!" />  
+                                    </p:dialog>
 
                                 </h:panelGroup>
-                                       <h:panelGroup id="paneltablaAnulada" rendered="#{loginController.estadoSeleccionado eq 'anulada'}" >
+                                <h:panelGroup id="paneltablaAnulada" rendered="#{loginController.estadoSeleccionado eq 'anulada'}" >
 
 
                                     <p:dataTable var="actividad" value="#{loginController.actividades}"  paginator="true" rows="7">
@@ -245,20 +217,20 @@
                                         </p:column>
 
                                         <p:column headerText="Ver Información">
-                                          
+
                                             <p:commandButton icon="ui-icon-search" id="verinfo" onclick="infoActividad.show()" type="button" title="Ver"/>
-                                            
+
                                         </p:column>
-                                       
+
 
                                     </p:dataTable>
-                                    
+
                                     <p:dialog id="dlgactividadAnulada"  header="Actividad" widgetVar="infoActividadAnulada" >  
-                                            <h:outputText value="Resistance to PrimeFaces is futile!" />  
-                                       </p:dialog>
+                                        <h:outputText value="Resistance to PrimeFaces is futile!" />  
+                                    </p:dialog>
 
                                 </h:panelGroup>
-                                 <h:panelGroup id="paneltablaPendiente" rendered="#{loginController.estadoSeleccionado eq 'pendiente'}">
+                                <h:panelGroup id="paneltablaPendiente" rendered="#{loginController.estadoSeleccionado eq 'pendiente'}">
 
 
                                     <p:dataTable var="actividad" value="#{loginController.actividades}"  paginator="true" rows="7">
@@ -276,25 +248,25 @@
                                         </p:column>
 
                                         <p:column headerText="Ver Información">
-                                          
+
                                             <p:commandButton icon="ui-icon-search" id="verinfo" onclick="infoActividadAbierta.show()" type="button" title="Ver"/>
-                                            
+
                                         </p:column>
-                                        
+
                                         <p:column headerText="Iniciar Actividad">
-                                          
+
                                             <p:commandButton update="@form" icon="ui-icon-check" actionListener="#{loginController.cambiarestado(loginController.act)}" title="aceptar">
-                                                
-                                            <f:setPropertyActionListener value="#{actividad}" target="#{loginController.act}" />
-                                                
+
+                                                <f:setPropertyActionListener value="#{actividad}" target="#{loginController.act}" />
+
                                             </p:commandButton>
                                         </p:column>
-                                     
+
                                     </p:dataTable>
-                                    
+
                                     <p:dialog id="dlgactividadPendiente"  header="Actividad" widgetVar="infoActividadPendiente" >  
-                                            <h:outputText value="Resistance to PrimeFaces is futile!" />  
-                                       </p:dialog>
+                                        <h:outputText value="Resistance to PrimeFaces is futile!" />  
+                                    </p:dialog>
 
                                 </h:panelGroup>
                             </p:tab>
@@ -305,7 +277,7 @@
                     </div> 
                 </div> 
             </h:form> 
-            
+
         </div> 
     </h:body>
 </html>
