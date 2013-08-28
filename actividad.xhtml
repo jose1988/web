@@ -1,0 +1,117 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Pangea Flow</title>
+
+        <h:outputStylesheet name="../recursos/css/bootstrap.css"/>
+        <h:outputStylesheet name="../recursos/css/bootstrap-theme.css"/>
+        <script type="text/javascript" src="recursos/js/bootstrap.js"></script>
+    </h:head>
+
+
+    <h:body>  
+        <div class="row-fluid">
+            <div class="span12"> 
+                <div class="span4">
+                    <h:graphicImage value="/recursos/images/pangea.jpg"  width="400" height="90"></h:graphicImage> 
+                </div>
+                <div class="span8">
+                    <nav class="navbar navbar-default" role="navigation">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+
+                            <a class="navbar-brand" href="#">PangeaFlow</a>
+                        </div>
+
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse navbar-ex1-collapse">
+                            <ul class="nav navbar-nav">
+                                <li class="active"><a href="#">Archivo</a></li>
+                                <li><a href="#">Atrás</a></li>
+                                <li>
+                                    <a href="#" >Opciones</a>
+
+                                </li>
+                            </ul>
+
+                            <ul class="nav navbar-nav navbar-right">
+                                <li><a href="#">Cerrar Sesión</a></li>
+
+                            </ul>
+                        </div><!-- /.navbar-collapse -->
+                    </nav>      
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <h:form id="fom" styleClass="jsfcrud_list_form" prependId="false">
+                <div class="span12"> 
+                    <div class="span4" style="position: fixed">
+                        <p:growl id="messages" showDetail="true" />  
+
+                        <p:tree value="#{actividadController.estact}" selection="#{actividadController.estadoSeleccionado}" var="box" selectionMode="single" style="width:170px">
+
+                            <p:ajax event="select" update="@form" listener="#{actividadController.onNodeSelect}" /> 
+                            <p:treeNode icon="ui-icon-mail-closed" >
+                                <h:outputText value="#{box}"/>
+
+                            </p:treeNode>
+                            <p:treeNode icon="ui-icon-transfer-e-w">
+                                <h:outputText value="#{box}"/>
+                            </p:treeNode>
+                        </p:tree>
+
+                    </div> 
+
+                    <div class="span6" style="padding-left: 180px;"> 
+
+                        <p:tabView dynamic="false" >
+                            <p:tab title="#{actividadController.estadoSeleccionado}">
+                                <h:panelGroup id="paneltablaPendiente" rendered="#{actividadController.estadoSeleccionado eq 'pendiente'}">
+
+
+                                    <p:dataTable var="actividad" value="#{actividadController.actividades}"  paginator="true" rows="7">
+
+                                        <p:column headerText="Id Actividad" >
+                                            #{actividad.id}
+                                        </p:column>
+
+                                        <p:column headerText="Duracion" >
+                                            #{actividad.duracion}
+                                        </p:column>
+
+                                        <p:column headerText="Id Tarea">
+                                            #{actividad.idTarea.nombre}
+                                        </p:column>
+
+                                        <p:column headerText="Asignar Actividad">
+                                          
+                                            <p:commandButton icon="ui-icon-check" id="asignaractividad"  type="submit" title="Ver" actionListener="#{actividadController.actividades(actividad.id)}"/>
+                                            
+                                        </p:column>
+                                        
+                                    </p:dataTable>
+                                    
+                                  </h:panelGroup>
+                                
+                            </p:tab>
+
+                        </p:tabView>
+
+
+                    </div> 
+                </div> 
+            </h:form> 
+            
+        </div> 
+    </h:body>
+</html>
+
+
+
