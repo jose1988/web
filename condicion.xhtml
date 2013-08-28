@@ -5,8 +5,7 @@ and open the template in the editor.
 -->
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-          
+      xmlns:h="http://java.sun.com/jsf/html"   
       xmlns:p="http://primefaces.org/ui">
     <head>
         <title>Pangea Flow - Condiciones</title>
@@ -17,7 +16,9 @@ and open the template in the editor.
         <script type="text/javascript" src="recursos/js/bootstrap.js"></script>
     </head>
     <body>
-        <p:dataTable var="actividad" value="#{loginController.actividades}"  paginator="true" rows="7">
+        <h:outputText value="#{loginController.actualactividad}" />
+                                        
+        <p:dataTable var="actividad" value="#{loginController.actualactividad}"  paginator="true" rows="7">
 
                                         <p:column headerText="Id Actividad" >
                                             #{actividad.id}
@@ -33,11 +34,8 @@ and open the template in the editor.
 
                                         <p:column headerText="Ver Información">
                                           
-                                            <p:commandButton icon="ui-icon-search" id="verinfo" onclick="infoActividadAbierta.show()" type="button" title="Ver"/>
-                                            
+                                              
                                         </p:column>
-                                        
-                                        
 
                                     </p:dataTable>
     </body>
