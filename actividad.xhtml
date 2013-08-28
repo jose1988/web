@@ -36,6 +36,9 @@
                                     <a href="#" >Opciones</a>
 
                                 </li>
+                                <li>
+                                    <a href="actividad.xhtml" >Asignar Actividad</a>
+                                </li>
                             </ul>
 
                             <ul class="nav navbar-nav navbar-right">
@@ -92,7 +95,7 @@
 
                                         <p:column headerText="Asignar Actividad">
                                           
-                                            <p:commandButton icon="ui-icon-check" id="asignaractividad"  type="submit" title="Ver" actionListener="#{actividadController.actividades(actividad.id)}"/>
+                                            <p:commandButton icon="ui-icon-check" id="asignaractividad"  type="submit" title="Ver" actionListener="#{actividadController.verActividades(actividad.id)}"/>
                                             
                                         </p:column>
                                         
