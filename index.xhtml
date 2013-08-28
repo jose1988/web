@@ -9,6 +9,7 @@
 
         <h:outputStylesheet name="../recursos/css/bootstrap.css"/>
         <h:outputStylesheet name="../recursos/css/bootstrap-theme.css"/>
+        <h:outputStylesheet name="../recursos/css/estilos.css"/>
         <script type="text/javascript" src="recursos/js/bootstrap.js"></script>
     </h:head>
 
@@ -106,23 +107,92 @@
 
                                         <p:column headerText="Ver Información">
                                           
-                                            <p:commandButton icon="ui-icon-search" id="verinfo" onclick="infoActividadAbierta.show()" type="button" title="Ver"/>
+                                            <p:commandButton update=":dlgactividadAbierta" icon="ui-icon-search" id="verinfo" onclick="infoActividadAbierta.show()" type="button" title="Ver">
+                                                <f:setPropertyActionListener value="#{actividad}" target="#{loginController.act}" />
+                                            </p:commandButton>
                                             
                                         </p:column>
                                         
-                                        <p:column headerText="Finalizar Actividad">
-                                          
-                                            <p:commandButton update="@form" icon="ui-icon-check" actionListener="#{loginController.cerraractividad(loginController.act)}" title="aceptar">
-                                                
-                                                <f:setPropertyActionListener value="#{actividad}" target="#{loginController.act}" />
-                                                
-                                            </p:commandButton>
-                                        </p:column>
+                                        
 
                                     </p:dataTable>
                                     
-                                    <p:dialog id="dlgactividadAbierta"  header="Actividad" widgetVar="infoActividadAbierta" >  
-                                            <h:outputText value="Resistance to PrimeFaces is futile!" />  
+                                    <p:dialog id="dlgactividadAbierta"  header="Actividad" widgetVar="infoActividadAbierta">  
+                                        
+                                        
+                                        <table>
+
+                                            <td align="right" width="200px" >
+                                        <h:outputLabel>Id: </h:outputLabel>
+                                        <br></br>
+                                        <h:outputLabel>Estado:</h:outputLabel>
+                                        <br></br>
+                                        <h:outputLabel>Duracion: </h:outputLabel>
+                                        <br></br>
+                                        <h:outputLabel>Fecha de asignacion: </h:outputLabel>
+                                        <br></br>
+                                        <h:outputLabel>Fecha de apertura : </h:outputLabel>
+                                        <br></br>
+                                        <h:outputLabel>Fecha de alerta:  </h:outputLabel>
+                                        <br></br>
+                                        <h:outputLabel>Fecha de cierre: </h:outputLabel>
+                                        <br></br>
+                                        <h:outputLabel>tarea:  </h:outputLabel>
+                                        <br></br>
+                                        <h:outputLabel>Usuario:  </h:outputLabel>
+                                        <br></br>
+                                        <h:outputLabel>Prioridad:</h:outputLabel>
+                                        <br></br>
+                                        <h:outputLabel>Instancia: </h:outputLabel>
+                                        
+                                            </td>
+
+                                        <td width="200px">
+                                        <h:outputText value="#{actividad.id}" rendered="#{not empty loginController.actividades}" />
+                                        <br></br>
+                                        <h:outputLabel> #{actividad.estado} </h:outputLabel>
+                                        <br></br>
+                                        <h:outputLabel> #{actividad.duracion} </h:outputLabel>
+                                        <br></br>
+                                        <h:outputLabel> #{actividad.fechaAsignacion} </h:outputLabel>
+                                        <br></br>
+                                        <h:outputLabel> #{actividad.fechaApertura} </h:outputLabel>
+                                        <br></br>
+                                        <h:outputLabel> #{actividad.fechaAlerta} </h:outputLabel>
+                                        <br></br>
+                                        <h:outputLabel> #{actividad.fechaCierre} </h:outputLabel>
+                                        <br></br>
+                                        <h:outputLabel>#{actividad.idTarea.nombre} </h:outputLabel>
+                                        <br></br>
+                                        <h:outputLabel> #{actividad.idUsuario.id} </h:outputLabel>
+                                        <br></br>
+                                        <h:outputLabel> #{actividad.idPrioridad.nombre} </h:outputLabel>
+                                        <br></br>
+                                        <h:outputLabel> #{actividad.idInstancia.descripcion} </h:outputLabel>
+                                        
+                                        </td>
+                                            <tr>
+                                                
+                                                <td align="right"> 
+                                                    <p:commandButton update="@form" value="Finalizar Actividad" label="Finalizar Actividad" icon="ui-icon-check" actionListener="#{loginController.finalizaract(Actividad, usuact)}" title="Finalizar Actividad">
+                                                 
+                                            </p:commandButton>
+                                            
+                                                </td>
+                                                <td>  
+                                                   <p:commandButton update="@form" value="Cancelar" label="Cancelar" icon="ui-icon-remove" actionListener="close();" title="Cancelar">
+                                                 
+                                            </p:commandButton>  
+                                                </td>
+                                            </tr>   
+
+                                        </table>
+                                 
+                                        
+                                        
+                                       
+                                        
+                                        
                                        </p:dialog>
 
                                 </h:panelGroup>
