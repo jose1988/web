@@ -18,7 +18,7 @@
 
 
     <h:body>  
-        <div class="row">
+          <div class="row">
             <div class="col-md-12">
                 <h:graphicImage value="/recursos/images/pangea.jpg"  width="400" height="90"></h:graphicImage> 
             </div>
@@ -77,24 +77,23 @@
                             <h:panelGroup id="paneltablaAbierta">
 
 
-                                <p:dataTable var="actividad" value="#{finalizarActController.actividades}"  paginator="true" rows="7">
+                                <p:dataTable var="condicion" value="#{finalizarActController.cond}"  paginator="true" rows="7">
 
-                                    <p:column headerText="Id Actividad" >
-                                        #{actividad.id}
+                                    <p:column headerText="Id Condicion" >
+                                        #{condicion.id}
+                                    </p:column>
+                                     <p:column headerText="Nombre" >
+                                        #{condicion.nombre}
                                     </p:column>
 
-                                    <p:column headerText="Duracion" >
-                                        #{actividad.duracion}
+                                    <p:column headerText="Estado" >
+                                        #{condicion.estado}
                                     </p:column>
-
-                                    <p:column headerText="Id Tarea">
-                                        #{actividad.idTarea.nombre}
-                                    </p:column>
-
+                   
                                     <p:column headerText="Ver Información">
 
                                         <p:commandButton id="verinfo" update="@form" icon="ui-icon-search"  oncomplete="infoActividadAbierta.show()"  title="Ver">
-                                            <f:setPropertyActionListener value="#{actividad}" target="#{finalizarActController.act}" />
+                                            <f:setPropertyActionListener value="#{condicion}" target="#{finalizarActController.condactual}" />
                                         </p:commandButton>
 
                                     </p:column>
@@ -108,40 +107,23 @@
                                     <h:panelGroup id="actabierta">
                                         <dl class="dl-horizontal">
                                             <dt>Id:</dt> 
-                                            <dd><h:outputText value="#{finalizarActController.act.id}" rendered="#{not empty finalizarActController.actividades}" />
+                                            <dd><h:outputText value="#{finalizarActController.condactual.id}" rendered="#{not empty finalizarActController.condactual}" />
                                             </dd>
                                             <dt>Estado:</dt>
-                                            <dd> <h:outputLabel> #{finalizarActController.act.estado} </h:outputLabel>
+                                            <dd> <h:outputLabel> #{finalizarActController.condactual.nombre} </h:outputLabel>
                                             </dd>
                                             <dt>Duracion:</dt>
-                                            <dd><h:outputLabel> #{finalizarActController.act.duracion} </h:outputLabel>
+                                            <dd><h:outputLabel> #{finalizarActController.condactual.estado} </h:outputLabel>
                                             </dd>
                                             <dt>Fecha de asignacion: </dt>
-                                            <dd>  <h:outputLabel> #{finalizarActController.act.fechaAsignacion} </h:outputLabel>
+                                            <dd>  <h:outputLabel> #{finalizarActController.condactual.descripcion} </h:outputLabel>
                                             </dd>
                                             <dt>Fecha de apertura :</dt>
-                                            <dd><h:outputLabel> #{finalizarActController.act.fechaApertura} </h:outputLabel>
+                                            <dd><h:outputLabel> #{finalizarActController.condactual.documentacion} </h:outputLabel>
                                             </dd>
-                                            <dt>Fecha de alerta:  </dt>
-                                            <dd> <h:outputLabel> #{finalizarActController.act.fechaAlerta} </h:outputLabel>
-                                            </dd>
-                                            <dt>Fecha de cierre:</dt>
-                                            <dd>  <h:outputLabel> #{finalizarActController.act.fechaCierre} </h:outputLabel>
-                                            </dd>
-                                            <dt>tarea:  </dt>
-                                            <dd> <h:outputLabel>#{finalizarActController.act.idTarea.nombre} </h:outputLabel>
-                                            </dd>
-                                            <dt>Usuario: </dt>
-                                            <dd><h:outputLabel> #{finalizarActController.act.idUsuario.id} </h:outputLabel>
-                                            </dd>
-                                            <dt>Prioridad:</dt> 
-                                            <dd> <h:outputLabel> #{finalizarActController.act.idPrioridad.nombre} </h:outputLabel>
-                                            </dd>
-                                            <dt>Instancia: </dt>
-                                            <dd> <h:outputLabel> #{finalizarActController.act.idInstancia.descripcion} </h:outputLabel>
-                                            </dd>
+                                          
                                             <dt> 
-                                                <p:commandButton update="@form" value="Finalizar Actividad" label="Finalizar Actividad" icon="ui-icon-check" process="actabierta" actionListener="#{finalizarActController.finalizaract}" oncomplete="infoActividadAbierta.hide();" title="Finalizar Actividad">
+                                                <p:commandButton update="@form" value="Aceptar" label="Aceptar" icon="ui-icon-check" process="actabierta"  oncomplete="infoActividadAbierta.hide();" title="Finalizar Actividad">
                                                 </p:commandButton></dt>
                                             <dd>
                                                 <p:commandButton value="Cancelar" label="Cancelar" onclick="infoActividadAbierta.hide()" icon="ui-icon-remove"  title="Cancelar">
@@ -166,6 +148,7 @@
 
         </div> 
 
+      
     </h:body>
 </html>
 
