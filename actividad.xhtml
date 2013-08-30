@@ -40,7 +40,7 @@
                             </ul>
 
                             <ul class="nav navbar-nav navbar-right">
-                                <li><a href="#">Cerrar Sesión</a></li>
+                                <li><a href="cierreSesion.xhtml"  >Cerrar Sesión</a></li>
                             </ul>
                         </div><!-- /.navbar-collapse -->
                     </nav>      
@@ -91,7 +91,7 @@
                                         </p:column>
 
                                         <p:column headerText="Asignar Actividad">
-                                            <p:commandButton id="asignaractividad" icon="ui-icon-check" title="Ver" actionListener="#{actividadController.actividadAsignar}" >
+                                            <p:commandButton id="asignaractividad" update="@form" icon="ui-icon-check" title="Ver" actionListener="#{actividadController.actividadAsignar}" >
                                                 <f:setPropertyActionListener value="#{actividad}" target="#{actividadController.act}" />
                                             </p:commandButton>
                                         </p:column>
