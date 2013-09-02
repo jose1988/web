@@ -91,7 +91,7 @@
                                         </p:column>
 
                                         <p:column headerText="Asignar Actividad">
-                                            <p:commandButton id="asignaractividad" update="@form" icon="ui-icon-check" title="Ver" actionListener="#{actividadController.actividadAsignar}" >
+                                            <p:commandButton id="asignaractividad" update="@form" icon="ui-icon-check" title="Ver" actionListener="#{actividadController.actividadAsignar}" ajax="false" >
                                                 <f:setPropertyActionListener value="#{actividad}" target="#{actividadController.act}" />
                                             </p:commandButton>
                                         </p:column>
