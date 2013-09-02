@@ -96,9 +96,9 @@
   
                        
                             <h:panelGroup id="paneltablaAbierta" rendered="#{loginController.estadoSeleccionado ne 'Cola de Actividades'}">
-                              <p:tabView id="tabView" var="grupo" value="#{loginController.grupos}">  
+                              <p:tabView id="tabView" var="grupo" value="#{loginController.grupos}" >  
   
-                                   <p:tab id="playerTab" title="#{grupo.nombre}">  
+                                  <p:tab id="playerTab" title="#{grupo.nombre}">  
                                 <p:dataTable var="actividad" value="#{loginController.actividades}"  paginator="true" rows="7">
 
                                     <p:column headerText="Id Actividad" >
