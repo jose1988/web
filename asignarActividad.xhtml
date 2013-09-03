@@ -4,21 +4,26 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:c="http://java.sun.com/jsp/jstl/core">
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
     <h:head>
         <title>Pangea Flow</title>
 
         <h:outputStylesheet name="../recursos/css/bootstrap.css"/>
         <h:outputStylesheet name="../recursos/css/bootstrap-theme.css"/>
         <script type="text/javascript" src="recursos/js/bootstrap.js"></script>
+
     </h:head>
 
 
     <h:body>
+
         <c:if test="#{asignarActividadController.verificarLogueo()}">
             <h:outputText value="#{asignarActividadController.Redireccionar()}" />
         </c:if>
-
+        <p:idleMonitor timeout="180000">  
+            <p:ajax event="idle" listener="#{asignarActividadController.Cerrar}" />  
+        </p:idleMonitor> 
         <div class="row-fluid">
             <div class="span12"> 
                 <div class="span4">

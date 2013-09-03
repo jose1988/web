@@ -1,0 +1,184 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Pangea Flow</title>
+
+        <h:outputStylesheet name="../recursos/css/bootstrap.css"/>
+        <h:outputStylesheet name="../recursos/css/bootstrap-theme.css"/>
+        <h:outputStylesheet name="../recursos/css/estilos.css"/>
+        <script type="text/javascript" src="recursos/js/bootstrap.js"></script>
+    </h:head>
+
+
+    <h:body>  
+        <div class="row">
+            <div class="col-md-12">
+                <h:graphicImage value="/recursos/images/pangea.jpg"  width="400" height="90"></h:graphicImage> 
+            </div>
+            <div class="col-md-12">
+                <nav class="navbar navbar-default" role="navigation">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+
+                        <a class="navbar-brand" href="#">PangeaFlow</a>
+                    </div>
+
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse navbar-ex1-collapse">
+                        <ul class="nav navbar-nav">
+                            <li class="active"><a href="#">Archivo</a></li>
+                            <li><a href="#">Atrás</a></li>
+                            <li>
+                                <a href="#" >Opciones</a>
+
+                            </li>
+                        </ul>
+
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="#">Cerrar Sesión</a></li>
+
+                        </ul>
+                    </div><!-- /.navbar-collapse -->
+                </nav>      
+            </div>
+        </div>
+
+        <div class="row">
+            <h:form id="fom"  prependId="false">
+                <div class="col-md-2 well" >
+                    <div class="col-md-12" >
+
+                        <div class="col-md-2" >
+                        </div>
+                        <div class="col-md-10" > 
+                            <p:growl id="messages" showDetail="true" />  
+
+
+                            <p:tree value="#{instanciaUsuarioController.estact}" selection="#{instanciaUsuarioController.estadoSeleccionado}" var="box" selectionMode="single">
+                                <p:ajax event="select" update="@form" listener="#{instanciaUsuarioController.onNodeSelect}" /> 
+                                <p:treeNode icon="ui-icon-mail-closed" >
+                                    <h:outputText value="#{box}"/>
+                                </p:treeNode>
+
+                                <p:treeNode type="i" icon="ui-icon-mail-closed">
+                                    <h:outputText value="#{box}"/>
+                                </p:treeNode>
+
+                                <p:treeNode type="s" icon="ui-icon-transfer-e-w">
+                                    <h:outputText value="#{box}"/>
+                                </p:treeNode>
+
+                                <p:treeNode type="j" icon="ui-icon-trash">
+                                    <h:outputText value="#{box}"/>
+                                </p:treeNode>
+                            </p:tree>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-10"> 
+
+                    <p:tabView dynamic="false" >
+                        <p:tab title="#{instanciaUsuarioController.estadoSeleccionado}" >
+                            
+                            <h:panelGroup id="paneltablaAbierta" rendered="#{instanciaUsuarioController.estadoSeleccionado eq 'abierta'}">
+                                
+                                <p:dataTable var="Instancia" value="#{instanciaUsuarioController.instancias}"  paginator="true" rows="7">
+
+                                    <p:column headerText="Id Instancia" >
+                                        #{Instancia.id}
+                                    </p:column>
+                                    
+                                    <p:column headerText="Referencia" >
+                                        #{Instancia.referencia}
+                                    </p:column>
+
+                                    <p:column headerText="Ver Información">
+                                        <p:commandButton id="verinfo" update="@form" icon="ui-icon-search"  oncomplete="infoInstanciaAbierta.show()"  title="Ver">
+                                            <f:setPropertyActionListener value="#{Instancia}" target="#{instanciaUsuarioController.inst}" />
+                                        </p:commandButton>
+                                    </p:column>
+                                    
+                                </p:dataTable>
+                                
+                                
+
+                                <p:dialog id="dlgInstanciaAbierta"  header="Instancia" widgetVar="infoInstanciaAbierta">  
+
+                                    <h:panelGroup id="instabierta">
+                                        <dl class="dl-horizontal">
+                                            <dt>Id:</dt> 
+                                            <dd><h:outputText value="#{instanciaUsuarioController.inst.id}" rendered="#{not empty instanciaUsuarioController.instancias}" />
+                                            </dd>
+                                            <dt>Estado:</dt>
+                                            <dd> <h:outputLabel> #{instanciaUsuarioController.inst.estado} </h:outputLabel>
+                                            </dd>
+                                            <dt>Descripción:</dt>
+                                            <dd><h:outputLabel> #{instanciaUsuarioController.inst.descripcion} </h:outputLabel>
+                                            </dd>
+                                            <dt>Fecha de Apertura :</dt>
+                                            <dd><h:outputLabel> #{instanciaUsuarioController.inst.fechaApertura} </h:outputLabel>
+                                            </dd>
+                                            <dt>Fecha de Cierre:</dt>
+                                            <dd>  <h:outputLabel> #{instanciaUsuarioController.inst.fechaCierre} </h:outputLabel>
+                                            </dd>
+                                            <dt>Referencia:</dt>
+                                            <dd> <h:outputLabel>#{instanciaUsuarioController.inst.referencia} </h:outputLabel>
+                                            </dd>
+                                            <dt>Usuario:</dt>
+                                            <dd><h:outputLabel> #{instanciaUsuarioController.inst.idUsuario.id} </h:outputLabel>
+                                            </dd>
+                                            <dt>PerGruPro:</dt> 
+                                            <dd> <h:outputLabel> #{instanciaUsuarioController.inst.idPeriodoGrupoProceso.id} </h:outputLabel>
+                                            </dd>
+                                                <dt> 
+                                                    <p:commandButton update="@form" value="Ver Actividades" label="Ver Actividades" icon="ui-icon-check" actionListener="#{instanciaUsuarioController.listarActividades}" oncomplete="infoActividades.show()" title="Ver Actividades">
+                                                    </p:commandButton></dt>
+                                            <dd>
+                                                <p:commandButton value="Cancelar" label="Cancelar" onclick="infoActividadAbierta.hide()" icon="ui-icon-remove"  title="Cancelar">
+
+                                                </p:commandButton> </dd>
+                                        </dl>
+                                    </h:panelGroup>
+                                </p:dialog>
+                                
+                            </h:panelGroup>
+                            <h:panelGroup id="paneltablaCerrada" rendered="#{instanciaUsuarioController.estadoSeleccionado eq 'cerrada'}" >
+
+
+                                <p:dataTable var="Instancia" value="#{instanciaUsuarioController.instancias}"  paginator="true" rows="7">
+
+                                    <p:column headerText="Id Instancia" >
+                                        #{Instancia.id}
+                                    </p:column>
+
+                                    <p:column headerText="Referencia" >
+                                        #{Instancia.referencia}
+                                    </p:column>
+
+                                    <p:column headerText="Ver Información">
+
+                                        <p:commandButton id="verinfo" update="@form" icon="ui-icon-search"  oncomplete="infoInstanciaAbierta.show()"  title="Ver">
+                                            <f:setPropertyActionListener value="#{Instancia}" target="#{instanciaUsuarioController.inst}" />
+                                        </p:commandButton>
+
+                                    </p:column>
+
+                                </p:dataTable>
+
+                            </h:panelGroup>
+                            
+                        </p:tab>
+
+                    </p:tabView>
+                </div> 
+
+            </h:form> 
+
+        </div> 
+    </h:body>
+</html>
