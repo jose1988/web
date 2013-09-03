@@ -146,13 +146,6 @@
                                     </h:panelGroup>
                                 </p:dialog>
                                 
-                                <p:dialog id="dlgActividades"  header="Actividades" widgetVar="infoActividades">
-                                    <dl class="dl-horizontal">
-                                            <dt>Id:</dt> 
-                                            <dd><h:outputText value="#{instanciaUsuarioController.activi.id}" rendered="#{not empty instanciaUsuarioController.actividades}" />
-                                            </dd>
-                                    </dl>
-                                </p:dialog>
                             </h:panelGroup>
                             <h:panelGroup id="paneltablaCerrada" rendered="#{instanciaUsuarioController.estadoSeleccionado eq 'cerrada'}" >
 
