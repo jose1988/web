@@ -53,14 +53,13 @@
         <div class="row">
             <h:form id="fom"  prependId="false">
                 <div class="col-md-2 well" >
-                    <div class="col-md-12" >
-
-                        
-                        <div class="col-md-10" > 
+                    <div class="row">
+                       
+                        <div class="col-md-12" > 
                             <p:growl id="messages" showDetail="true" />  
 
 
-                            <p:tree value="#{loginController.estact}" selection="#{loginController.estadoSeleccionado}" var="box" selectionMode="single">
+                            <p:tree value="#{loginController.estact}" selection="#{loginController.estadoSeleccionado}" var="box" selectionMode="single" style="width: auto;">
                                 <p:ajax event="select" update="@form" listener="#{loginController.onNodeSelect}" /> 
                                 <p:treeNode icon="ui-icon-mail-closed" >
                                     <h:outputText value="#{box}"/>
@@ -86,19 +85,20 @@
                             </p:tree>
                         </div>
                     </div>
+
                 </div> 
-                   
-                   
+
+
 
                 <div class="col-md-10"> 
 
-                    
-  
-                       
-                            <h:panelGroup id="paneltablaAbierta" rendered="#{loginController.estadoSeleccionado ne 'Cola de Actividades'}">
-                                <p:tabView id="tabView" var="grupo" value="#{loginController.grupos}" >  
-                                  <p:ajax event="tabChange" listener="#{loginController.recargarActividades}" update="paneltablaAbierta"/>  
-                                  <p:tab id="playerTab" title="#{grupo.nombre}">  
+
+
+
+                    <h:panelGroup id="paneltablaAbierta" rendered="#{loginController.estadoSeleccionado ne 'Cola de Actividades'}">
+                        <p:tabView id="tabView" var="grupo" dynamic="true" cache="false" value="#{loginController.grupos}" >  
+                            <p:ajax event="tabChange" listener="#{loginController.onTabChange}"  update="@this"/>  
+                            <p:tab  title="#{grupo.nombre}">  
                                 <p:dataTable var="actividad" value="#{loginController.actividades}"  paginator="true" rows="7">
 
                                     <p:column headerText="Id Actividad" >
@@ -121,11 +121,11 @@
 
                                     </p:column>
 
-                                    
+
 
                                 </p:dataTable>
 
-                       
+
 
                                 <p:dialog id="dlgactividadAbierta"  header="Actividad" widgetVar="infoActividadAbierta">  
 
@@ -176,16 +176,17 @@
                                         </dl>
                                     </h:panelGroup>
                                 </p:dialog>
-                             
+
                             </p:tab>
-                               
-                      </p:tabView>
-                </h:panelGroup>
-                    
-                    
-                     <h:panelGroup id="paneltablacola" rendered="#{loginController.estadoSeleccionado eq 'Cola de Actividades'}">
-                             <p:tabView  dynamic="false">  
-                                 <p:tab title="Cola de Actividades"> 
+
+                        </p:tabView>
+                    </h:panelGroup>
+
+
+                    <h:panelGroup id="paneltablacola" rendered="#{loginController.estadoSeleccionado eq 'Cola de Actividades'}">
+                        <p:tabView  dynamic="false">  
+
+                            <p:tab title="Cola de Actividades"> 
                                 <p:dataTable var="actividad" value="#{loginController.actividades}"  paginator="true" rows="7">
 
                                     <p:column headerText="Id Actividad" >
@@ -208,11 +209,11 @@
 
                                     </p:column>
 
-                                    
+
 
                                 </p:dataTable>
 
-                       
+
 
                                 <p:dialog id="dlgactividadAbierta"  header="Actividad" widgetVar="infoActividadAbierta">  
 
@@ -263,11 +264,11 @@
                                         </dl>
                                     </h:panelGroup>
                                 </p:dialog>
-                             
+
                             </p:tab>
-                               
-                            </p:tabView>
-                </h:panelGroup>
+
+                        </p:tabView>
+                    </h:panelGroup>
 
 
                 </div> 
