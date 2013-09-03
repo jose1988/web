@@ -21,14 +21,9 @@
         <c:if test="#{asignarActividadController.verificarLogueo()}">
             <h:outputText value="#{asignarActividadController.Redireccionar()}" />
         </c:if>
-        <p:idleMonitor onactive="sessionTimeOutDialog.show();" timeout="6000" />
-        <p:dialog header="Sesión caducada" widgetVar="sessionTimeOutDialog"
-                  modal="true" closable="false" width="400" visible="false">
-            <h:outputText value="La sesión ha caducado, por favor ,pulse sobre el siguiente botón para volver a acceder a la aplicación" />
-            <input id="confirmBackToLogin" type="button" value="Volver a acceder a la aplicación"
-                   onclick="window.location = 'index.xhtml';"  />
-        </p:dialog>
-
+        <p:idleMonitor timeout="180000">  
+            <p:ajax event="idle" listener="#{asignarActividadController.Cerrar}" />  
+        </p:idleMonitor> 
         <div class="row-fluid">
             <div class="span12"> 
                 <div class="span4">
