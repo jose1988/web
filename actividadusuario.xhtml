@@ -97,7 +97,7 @@
                         <p:tab title="#{loginController.estadoSeleccionado}"  >
 
 
-                            <h:panelGroup id="paneltablaAbierta">
+                            <h:panelGroup id="paneltablaAbierta" rendered="#{loginController.estadoSeleccionado eq 'abierta'}">
 
 
                                 <p:dataTable var="actividad" value="#{loginController.actividades}"  paginator="true" rows="7">
@@ -177,7 +177,109 @@
                                 </p:dialog>
 
                             </h:panelGroup>
+                            <h:panelGroup id="paneltablaCerrada" rendered="#{loginController.estadoSeleccionado eq 'cerrada'}" >
+
+
+                                <p:dataTable var="actividad" value="#{loginController.actividades}"  paginator="true" rows="7">
+
+                                    <p:column headerText="Id Actividad" >
+                                        #{actividad.id}
+                                    </p:column>
+
+                                    <p:column headerText="Duracion" >
+                                        #{actividad.duracion}
+                                    </p:column>
+
+                                    <p:column headerText="Id Tarea">
+                                        #{actividad.idTarea.nombre}
+                                    </p:column>
+
+                                    <p:column headerText="Ver Información">
+
+                                        <p:commandButton icon="ui-icon-search" id="verinfo" onclick="infoActividad.show()" type="button" title="Ver"/>
+
+                                    </p:column>
+
+
+                                </p:dataTable>
+
+                                <p:dialog id="dlgactividadCerrada"  header="Actividad" widgetVar="infoActividadCerrada" >  
+                                    <h:outputText value="Resistance to PrimeFaces is futile!" />  
+                                </p:dialog>
+
+                            </h:panelGroup>
+                            <h:panelGroup id="paneltablaAnulada" rendered="#{loginController.estadoSeleccionado eq 'anulada'}" >
+
+
+                                <p:dataTable var="actividad" value="#{loginController.actividades}"  paginator="true" rows="7">
+
+                                    <p:column headerText="Id Actividad" >
+                                        #{actividad.id}
+                                    </p:column>
+
+                                    <p:column headerText="Duracion" >
+                                        #{actividad.duracion}
+                                    </p:column>
+
+                                    <p:column headerText="Id Tarea">
+                                        #{actividad.idTarea.nombre}
+                                    </p:column>
+
+                                    <p:column headerText="Ver Información">
+
+                                        <p:commandButton icon="ui-icon-search" id="verinfo" onclick="infoActividad.show()" type="button" title="Ver"/>
+
+                                    </p:column>
+
+
+                                </p:dataTable>
+
+                                <p:dialog id="dlgactividadAnulada"  header="Actividad" widgetVar="infoActividadAnulada" >  
+                                    <h:outputText value="Resistance to PrimeFaces is futile!" />  
+                                </p:dialog>
+
+                            </h:panelGroup>
+                            <h:panelGroup id="paneltablaPendiente" rendered="#{loginController.estadoSeleccionado eq 'pendiente'}">
+
+
+                                <p:dataTable var="actividad" value="#{loginController.actividades}"  paginator="true" rows="7">
+
+                                    <p:column headerText="Id Actividad" >
+                                        #{actividad.id}
+                                    </p:column>
+
+                                    <p:column headerText="Duracion" >
+                                        #{actividad.duracion}
+                                    </p:column>
+
+                                    <p:column headerText="Id Tarea">
+                                        #{actividad.idTarea.nombre}
+                                    </p:column>
+
+                                    <p:column headerText="Ver Información">
+
+                                        <p:commandButton icon="ui-icon-search" id="verinfo" onclick="infoActividadAbierta.show()" type="button" title="Ver"/>
+
+                                    </p:column>
+
+                                    <p:column headerText="Iniciar Actividad">
+
+                                        <p:commandButton update="@form" icon="ui-icon-check" actionListener="#{loginController.cambiarestado}" title="aceptar">
+
+                                            <f:setPropertyActionListener value="#{actividad}" target="#{loginController.act}" />
+
+                                        </p:commandButton>
+                                    </p:column>
+
+                                </p:dataTable>
+
+                                <p:dialog id="dlgactividadPendiente"  header="Actividad" widgetVar="infoActividadPendiente" >  
+                                    <h:outputText value="Resistance to PrimeFaces is futile!" />  
+                                </p:dialog>
+
+                            </h:panelGroup>
                         </p:tab>
+
                     </p:tabView>
 
 
