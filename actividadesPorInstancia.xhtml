@@ -17,10 +17,12 @@
 
 
     <h:body>
+        <c:if test="#{asignarActividadController.verificarLogueo()}">
+            <h:outputText value="#{asignarActividadController.Redireccionar()}" />
+        </c:if>
 
-     
         <p:idleMonitor timeout="180000">  
-            <p:ajax event="idle" listener="#{actividadesPorInstanciaController.Cerrar}" />  
+            <p:ajax event="idle" listener="#{actividadesPorInstanciaController.cerrarPorInactividad}" />  
         </p:idleMonitor> 
         <div class="row-fluid">
             <div class="span12"> 
@@ -61,13 +63,16 @@
             <h:form id="fom" styleClass="jsfcrud_list_form" prependId="false">
                 <div class="span12"> 
                     <p:tabView dynamic="false" >
-                        <p:tab title="Lista de Actividades">
+                        <p:tab title="Lista de Actividades por Instancia">
                             <h:panelGroup id="paneltablaUsuario" >
 
-                                <p:dataTable var="actividad" value="#{actividadesPorInstanciaController.actividades}"  paginator="true" rows="7">
+                                <p:dataTable var="actividad" value="#{actividadesPorInstanciaController.actividades}"  paginator="true" rows="5">
 
                                     <p:column headerText="Id Actividad" >
                                         #{actividad.id}
+                                    </p:column>
+                                    <p:column headerText="Fecha de Asignación" >
+                                        #{actividad.fechaAsignacion}
                                     </p:column>
 
                                     <p:column headerText="Estado" >
@@ -78,10 +83,55 @@
                                         #{actividad.duracion}
                                     </p:column>
 
-                                    
+                                    <p:column headerText="Ver Información">
+
+                                        <p:commandButton id="verinfo" update="@form" icon="ui-icon-search"  oncomplete="infoActividad.show()"  title="Ver">
+                                            <f:setPropertyActionListener value="#{actividad}" target="#{actividadesPorInstanciaController.act}" />
+                                        </p:commandButton>
+
+                                    </p:column>
 
                                 </p:dataTable>
+                                <p:dialog id="dlgactividad"  header="Actividad" widgetVar="infoActividad">  
 
+                                    <h:panelGroup id="infoActividad">
+                                        <dl class="dl-horizontal">
+                                            <dt>Id:</dt> 
+                                            <dd><h:outputText value="#{actividadesPorInstanciaController.act.id}" rendered="#{not empty actividadesPorInstanciaController.actividades}" />
+                                            </dd>
+                                            <dt>Estado:</dt>
+                                            <dd> <h:outputLabel> #{actividadesPorInstanciaController.act.estado} </h:outputLabel>
+                                            </dd>
+                                            <dt>Duracion:</dt>
+                                            <dd><h:outputLabel> #{actividadesPorInstanciaController.act.duracion} </h:outputLabel>
+                                            </dd>
+                                            <dt>Fecha de asignacion: </dt>
+                                            <dd>  <h:outputLabel> #{actividadesPorInstanciaController.act.fechaAsignacion} </h:outputLabel>
+                                            </dd>
+                                            <dt>Fecha de apertura :</dt>
+                                            <dd><h:outputLabel> #{actividadesPorInstanciaController.act.fechaApertura} </h:outputLabel>
+                                            </dd>
+                                            <dt>Fecha de alerta:  </dt>
+                                            <dd> <h:outputLabel> #{actividadesPorInstanciaController.act.fechaAlerta} </h:outputLabel>
+                                            </dd>
+                                            <dt>Fecha de cierre:</dt>
+                                            <dd>  <h:outputLabel> #{actividadesPorInstanciaController.act.fechaCierre} </h:outputLabel>
+                                            </dd>
+                                            <dt>tarea:  </dt>
+                                            <dd> <h:outputLabel>#{actividadesPorInstanciaController.act.idTarea.nombre} </h:outputLabel>
+                                            </dd>
+                                            <dt>Usuario: </dt>
+                                            <dd><h:outputLabel> #{actividadesPorInstanciaController.act.idUsuario.id} </h:outputLabel>
+                                            </dd>
+                                            <dt>Prioridad:</dt> 
+                                            <dd> <h:outputLabel> #{actividadesPorInstanciaController.act.idPrioridad.nombre} </h:outputLabel>
+                                            </dd>
+                                            <dt>Instancia: </dt>
+                                            <dd> <h:outputLabel> #{actividadesPorInstanciaController.act.idInstancia.descripcion} </h:outputLabel>
+                                            </dd>
+                                        </dl>
+                                    </h:panelGroup>
+                                </p:dialog>
                             </h:panelGroup>
 
                         </p:tab>
