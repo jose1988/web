@@ -17,8 +17,8 @@
 
 
     <h:body>
-        <c:if test="#{asignarActividadController.verificarLogueo()}">
-            <h:outputText value="#{asignarActividadController.Redireccionar()}" />
+        <c:if test="#{actividadesPorInstanciaController.verificarLogueo()}">
+            <h:outputText value="#{actividadesPorInstanciaController.Redireccionar()}" />
         </c:if>
 
         <p:idleMonitor timeout="180000">  
