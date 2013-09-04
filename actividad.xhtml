@@ -3,112 +3,170 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:c="http://java.sun.com/jsp/jstl/core">
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Pangea Flow</title>
 
         <h:outputStylesheet name="../recursos/css/bootstrap.css"/>
         <h:outputStylesheet name="../recursos/css/bootstrap-theme.css"/>
+        <h:outputStylesheet name="../recursos/css/estilos.css"/>
         <script type="text/javascript" src="recursos/js/bootstrap.js"></script>
     </h:head>
 
 
-    <h:body>
-        <c:if test="#{actividadController.verificarLogueo()}">
-            <h:outputText value="#{actividadController.Redireccionar()}" />
-        </c:if>
-        <div class="row-fluid">
-            <div class="span12"> 
-                <div class="span4">
-                    <h:graphicImage value="/recursos/images/pangea.jpg"  width="400" height="90"></h:graphicImage> 
-                </div>
-                <div class="span8">
-                    <nav class="navbar navbar-default" role="navigation">
-                        <!-- Brand and toggle get grouped for better mobile display -->
-                        <div class="navbar-header">
+    <h:body>  
+        <div class="row">
+            <div class="col-md-12">
+                <h:graphicImage value="/recursos/images/pangea.jpg"  width="400" height="90"></h:graphicImage> 
+            </div>
+            <div class="col-md-12">
+                <nav class="navbar navbar-default" role="navigation">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
 
-                            <a class="navbar-brand" href="#">PangeaFlow</a>
-                        </div>
+                        <a class="navbar-brand" href="#">PangeaFlow</a>
+                    </div>
 
-                        <!-- Collect the nav links, forms, and other content for toggling -->
-                        <div class="collapse navbar-collapse navbar-ex1-collapse">
-                            <ul class="nav navbar-nav">
-                                <li class="active"><a href="#">Archivo</a></li>
-                                <li><a href="#">Atrás</a></li>
-                                <li><a href="#" >Opciones</a></li>
-                            </ul>
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse navbar-ex1-collapse">
+                        <ul class="nav navbar-nav">
+                            <li class="active"><a href="#">Archivo</a></li>
+                            <li><a href="#">Atrás</a></li>
+                            <li>
+                                <a href="#" >Opciones</a>
 
-                            <ul class="nav navbar-nav navbar-right">
-                                <li><a href="cierreSesion.xhtml"  >Cerrar Sesión</a></li>
-                            </ul>
-                        </div><!-- /.navbar-collapse -->
-                    </nav>      
-                </div>
+                            </li>
+                        </ul>
+
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="#">Cerrar Sesión</a></li>
+
+                        </ul>
+                    </div><!-- /.navbar-collapse -->
+                </nav>      
             </div>
         </div>
 
-
         <div class="row">
-            <h:form id="fom" styleClass="jsfcrud_list_form" prependId="false">
-                <div class="span12"> 
-                    <div class="span4" style="position: fixed">
-                        <p:growl id="messages" showDetail="true" />  
-
-                        <p:tree value="#{actividadController.estact}" selection="#{actividadController.estadoSeleccionado}" var="box" selectionMode="single" style="width:170px">
-
-                            <p:ajax event="select" update="@form" listener="#{actividadController.onNodeSelect}" /> 
-                            <p:treeNode icon="ui-icon-mail-closed" >
-                                <h:outputText value="#{box}"/>
-
-                            </p:treeNode>
-                            <p:treeNode icon="ui-icon-transfer-e-w">
-                                <h:outputText value="#{box}"/>
-                            </p:treeNode>
-                        </p:tree>
-
-                    </div> 
-
-                    <div class="span6" style="padding-left: 180px;"> 
-
-                        <p:tabView dynamic="false" >
-                            <p:tab title="#{actividadController.estadoSeleccionado}">
-                                <h:panelGroup id="paneltablaPendiente" rendered="#{actividadController.estadoSeleccionado eq 'pendiente'}">
+            <h:form id="fom"  prependId="false">
+                <div class="col-md-2 well" >
+                    <div class="row">
+                       
+                        <div class="col-md-12" > 
+                            <p:growl id="messages" showDetail="true" />  
 
 
-                                    <p:dataTable var="actividad" value="#{actividadController.actividades}"  paginator="true" rows="7">
-
-                                        <p:column headerText="Id Actividad" >
-                                            #{actividad.id}
-                                        </p:column>
-
-                                        <p:column headerText="Duracion" >
-                                            #{actividad.duracion}
-                                        </p:column>
-
-                                        <p:column headerText="Id Tarea">
-                                            #{actividad.idTarea.nombre}
-                                        </p:column>
-
-                                        <p:column headerText="Asignar Actividad">
-                                            <p:commandButton id="asignaractividad" update="@form" icon="ui-icon-check" title="Ver" actionListener="#{actividadController.actividadAsignar}" ajax="false" >
-                                                <f:setPropertyActionListener value="#{actividad}" target="#{actividadController.act}" />
-                                            </p:commandButton>
-                                        </p:column>
-                                        
-                                    </p:dataTable>
-                                    
-                                  </h:panelGroup>
-                                
-                            </p:tab>
-
-                        </p:tabView>
+                            <p:tree value="#{actividadController.estact}" selection="#{actividadController.estadoSeleccionado}" var="box" selectionMode="single" style="width: auto;">
+                                <p:ajax event="select" update="@form" listener="#{actividadController.onNodeSelect}" /> 
+                                <p:treeNode icon="ui-icon-mail-closed" >
+                                    <h:outputText value="#{box}"/>
 
 
-                    </div> 
+                                </p:treeNode>
+
+                                <p:treeNode icon="ui-icon-mail-closed">
+                                    <h:outputText value="#{box}"/>
+                                </p:treeNode>
+
+                            </p:tree>
+                        </div>
+                    </div>
+
                 </div> 
+
+
+                <div class="col-md-10"> 
+
+                    <p:tabView dynamic="false" >
+                        <p:tab title="#{actividadController.estadoSeleccionado}"  >
+
+
+                            <h:panelGroup id="paneltablaAbierta" rendered="#{actividadController.estadoSeleccionado eq 'pendiente'}">
+
+
+                                <p:dataTable var="actividad" value="#{actividadController.actividades}"  paginator="true" rows="7">
+
+                                    <p:column headerText="Id Actividad" >
+                                        #{actividad.id}
+                                    </p:column>
+
+                                    <p:column headerText="Duracion" >
+                                        #{actividad.duracion}
+                                    </p:column>
+
+                                    <p:column headerText="Id Tarea">
+                                        #{actividad.idTarea.nombre}
+                                    </p:column>
+
+                                    <p:column headerText="Ver Información">
+
+                                        <p:commandButton id="verinfo" update="@form" icon="ui-icon-search"  oncomplete="infoActividadAbierta.show()"  title="Ver">
+                                            <f:setPropertyActionListener value="#{actividad}" target="#{actividadController.act}" />
+                                        </p:commandButton>
+
+                                    </p:column>
+
+
+
+                                </p:dataTable>
+
+                                <p:dialog id="dlgactividadAbierta"  header="Actividad" widgetVar="infoActividadAbierta">  
+
+                                    <h:panelGroup id="actabierta">
+                                        <dl class="dl-horizontal">
+                                            <dt>Id:</dt> 
+                                            <dd><h:outputText value="#{actividadController.act.id}" rendered="#{not empty actividadController.actividades}" />
+                                            </dd>
+                                            <dt>Estado:</dt>
+                                            <dd> <h:outputLabel> #{actividadController.act.estado} </h:outputLabel>
+                                            </dd>
+                                            <dt>Duracion:</dt>
+                                            <dd><h:outputLabel> #{actividadController.act.duracion} </h:outputLabel>
+                                            </dd>
+                                            <dt>Fecha de asignacion: </dt>
+                                            <dd>  <h:outputLabel> #{actividadController.act.fechaAsignacion} </h:outputLabel>
+                                            </dd>
+                                            <dt>Fecha de apertura :</dt>
+                                            <dd><h:outputLabel> #{actividadController.act.fechaApertura} </h:outputLabel>
+                                            </dd>
+                                            <dt>Fecha de alerta:  </dt>
+                                            <dd> <h:outputLabel> #{actividadController.act.fechaAlerta} </h:outputLabel>
+                                            </dd>
+                                            <dt>Fecha de cierre:</dt>
+                                            <dd>  <h:outputLabel> #{actividadController.act.fechaCierre} </h:outputLabel>
+                                            </dd>
+                                            <dt>Tarea:  </dt>
+                                            <dd> <h:outputLabel>#{actividadController.act.idTarea.nombre} </h:outputLabel>
+                                            </dd>
+                                            <dt>Usuario: </dt>
+                                            <dd><h:outputLabel> #{actividadController.act.idUsuario.id} </h:outputLabel>
+                                            </dd>
+                                            <dt>Prioridad:</dt> 
+                                            <dd> <h:outputLabel> #{actividadController.act.idPrioridad.nombre} </h:outputLabel>
+                                            </dd>
+                                            <dt>Instancia: </dt>
+                                            <dd> <h:outputLabel> #{actividadController.act.idInstancia.descripcion} </h:outputLabel>
+                                            </dd>
+                                            <dt> 
+                                                <p:commandButton value="Cancelar" label="Cancelar" onclick="infoActividadAbierta.hide()" icon="ui-icon-remove"  title="Cancelar">
+
+                                                </p:commandButton></dt>
+
+
+                                        </dl>
+                                    </h:panelGroup>
+                                </p:dialog>
+
+                            </h:panelGroup>
+                        </p:tab>
+
+                    </p:tabView>
+
+
+                </div> 
+
             </h:form> 
-            
+
         </div> 
     </h:body>
 </html>
