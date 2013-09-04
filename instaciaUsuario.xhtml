@@ -50,18 +50,18 @@
         <div class="row">
             <h:form id="fom"  prependId="false">
                 <div class="col-md-2 well" >
-                    <div class="col-md-12" >
-
-                        <div class="col-md-2" >
-                        </div>
-                        <div class="col-md-10" > 
+                    <div class="row">
+                       
+                        <div class="col-md-12" > 
                             <p:growl id="messages" showDetail="true" />  
 
 
-                            <p:tree value="#{instanciaUsuarioController.estact}" selection="#{instanciaUsuarioController.estadoSeleccionado}" var="box" selectionMode="single">
+                            <p:tree value="#{instanciaUsuarioController.estact}" selection="#{instanciaUsuarioController.estadoSeleccionado}" var="box" selectionMode="single" style="width: auto;">
                                 <p:ajax event="select" update="@form" listener="#{instanciaUsuarioController.onNodeSelect}" /> 
                                 <p:treeNode icon="ui-icon-mail-closed" >
                                     <h:outputText value="#{box}"/>
+
+
                                 </p:treeNode>
 
                                 <p:treeNode type="i" icon="ui-icon-mail-closed">
@@ -71,14 +71,11 @@
                                 <p:treeNode type="s" icon="ui-icon-transfer-e-w">
                                     <h:outputText value="#{box}"/>
                                 </p:treeNode>
-
-                                <p:treeNode type="j" icon="ui-icon-trash">
-                                    <h:outputText value="#{box}"/>
-                                </p:treeNode>
                             </p:tree>
                         </div>
                     </div>
-                </div>
+
+                </div> 
 
                 <div class="col-md-10"> 
 
@@ -104,8 +101,10 @@
                                     </p:column>
                                     
                                     <p:column headerText="Ver Actividades">
-                                        <p:commandButton id="veracti" update="@form" icon="ui-icon-search" title="Ver" actionListener="#{instanciaUsuarioController.listarActividades}">
+                                        <p:commandButton update="@form" icon="ui-icon-check" actionListener="#{instanciaUsuarioController.listarActividades}" title="aceptar">
+
                                             <f:setPropertyActionListener value="#{Instancia}" target="#{instanciaUsuarioController.inst}" />
+
                                         </p:commandButton>
                                     </p:column>
                                     
@@ -118,7 +117,7 @@
                                     <h:panelGroup id="instabierta">
                                         <dl class="dl-horizontal">
                                             <dt>Id:</dt> 
-                                            <dd><h:outputText value="#{instanciaUsuarioController.inst.id}" rendered="#{not empty instanciaUsuarioController.instancias}" />
+                                            <dd><h:outputText value="#{instanciaUsuarioController.inst.id}" rendered="#{not empty instanciaUsuarioController.instacs}" />
                                             </dd>
                                             <dt>Estado:</dt>
                                             <dd> <h:outputLabel> #{instanciaUsuarioController.inst.estado} </h:outputLabel>
@@ -126,20 +125,20 @@
                                             <dt>Descripción:</dt>
                                             <dd><h:outputLabel> #{instanciaUsuarioController.inst.descripcion} </h:outputLabel>
                                             </dd>
-                                            <dt>Fecha de Apertura :</dt>
+                                            <dt>Fecha de apertura:</dt>
                                             <dd><h:outputLabel> #{instanciaUsuarioController.inst.fechaApertura} </h:outputLabel>
                                             </dd>
-                                            <dt>Fecha de Cierre:</dt>
-                                            <dd>  <h:outputLabel> #{instanciaUsuarioController.inst.fechaCierre} </h:outputLabel>
+                                            <dt>Fecha de cierre:</dt>
+                                            <dd> <h:outputLabel> #{instanciaUsuarioController.inst.fechaCierre} </h:outputLabel>
                                             </dd>
-                                            <dt>Referencia:</dt>
-                                            <dd> <h:outputLabel>#{instanciaUsuarioController.inst.referencia} </h:outputLabel>
+                                            <dt>Referencia: </dt>
+                                            <dd><h:outputLabel> #{instanciaUsuarioController.inst.referencia} </h:outputLabel>
                                             </dd>
-                                            <dt>Usuario:</dt>
-                                            <dd><h:outputLabel> #{instanciaUsuarioController.inst.idUsuario.id} </h:outputLabel>
+                                            <dt>Usuario:</dt> 
+                                            <dd><h:outputLabel> #{instanciaUsuarioController.inst.idUsuario} </h:outputLabel>
                                             </dd>
-                                            <dt>PerGruPro:</dt> 
-                                            <dd> <h:outputLabel> #{instanciaUsuarioController.inst.idPeriodoGrupoProceso.id} </h:outputLabel>
+                                            <dt>Per_Gru_Pro:</dt>
+                                            <dd><h:outputLabel> #{instanciaUsuarioController.inst.idPeriodoGrupoProceso.id} </h:outputLabel>
                                             </dd>
                                                 <dt> 
                                                     <p:commandButton update="@form" value="Ver Actividades" label="Ver Actividades" icon="ui-icon-check" actionListener="#{instanciaUsuarioController.listarActividades}" oncomplete="infoActividades.show()" title="Ver Actividades">
