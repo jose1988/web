@@ -103,6 +103,12 @@
                                         </p:commandButton>
                                     </p:column>
                                     
+                                    <p:column headerText="Ver Actividades">
+                                        <p:commandButton id="veracti" update="@form" icon="ui-icon-search" title="Ver" actionListener="#{instanciaUsuarioController.listarActividades}">
+                                            <f:setPropertyActionListener value="#{Instancia}" target="#{instanciaUsuarioController.inst}" />
+                                        </p:commandButton>
+                                    </p:column>
+                                    
                                 </p:dataTable>
                                 
                                 
