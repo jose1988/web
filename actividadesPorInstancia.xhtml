@@ -17,9 +17,7 @@
 
 
     <h:body>
-        <c:if test="#{actividadesPorInstanciaController.verificarLogueo()}">
-            <h:outputText value="#{actividadesPorInstanciaController.Redireccionar()}" />
-        </c:if>
+      
 
         <p:idleMonitor timeout="180000">  
             <p:ajax event="idle" listener="#{actividadesPorInstanciaController.cerrarPorInactividad}" />  
@@ -67,8 +65,8 @@
                             <h:panelGroup id="paneltablaUsuario" >
 
                                 <p:dataTable var="actividad" value="#{actividadesPorInstanciaController.actividades}"  paginator="true" rows="5">
-
-                                    <p:column headerText="Id Actividad" >
+actividades
+                                    <p:column headerText="Id Actividad" style="width:  20px; text-align: center; #{actividadesPorInstanciaController.estilo(actividad)}" >
                                         #{actividad.id}
                                     </p:column>
                                     <p:column headerText="Fecha de Asignación" >
