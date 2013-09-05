@@ -116,6 +116,14 @@
                                         </p:commandButton>
                                     </p:column>
                                     
+                                    <p:column headerText="Cerrar Instancia">
+                                        <p:commandButton update="@form" icon="ui-icon-close" action="#{instanciaUsuarioController.cerrarInstanciaSeleccionada()}" >
+
+                                            <f:setPropertyActionListener value="#{Instancia}" target="#{instanciaUsuarioController.inst}" />
+
+                                        </p:commandButton>
+                                    </p:column>
+                                    
                                 </p:dataTable>
                                 
                                 
