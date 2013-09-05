@@ -100,13 +100,19 @@
 
                                     <p:column headerText="Ver Información">
 
-                                        <p:commandButton id="verinfo" update="@form" icon="ui-icon-search"  oncomplete="infoActividadAbierta.show()"  title="Ver">
+                                        <p:commandButton update="@form" icon="ui-icon-search"  oncomplete="infoActividadAbierta.show()"  title="Ver">
                                             <f:setPropertyActionListener value="#{actividad}" target="#{actividadController.act}" />
                                         </p:commandButton>
 
                                     </p:column>
 
+                                    <p:column headerText="Asignar Actividades">
+                                        <p:commandButton update="@form" icon="ui-icon-plus" action="#{actividadController.actividadAsignar}" >
 
+                                            <f:setPropertyActionListener value="#{actividad}" target="#{actividadController.act}" />
+
+                                        </p:commandButton>
+                                    </p:column>
 
                                 </p:dataTable>
 
