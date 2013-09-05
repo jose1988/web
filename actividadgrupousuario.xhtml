@@ -101,8 +101,10 @@
                             <p:tab  title="#{grupo.nombre}">  
                                 <p:dataTable var="actividad" value="#{loginController.actividades}"  paginator="true" rows="7">
 
-                                    <p:column headerText="Id Actividad" >
+                                 
+                                    <p:column  headerText="Id Actividad"  style="width:  20px; text-align: center; #{loginController.sombreado(actividad.FechaCierre)}">
                                         #{actividad.id}
+                                       
                                     </p:column>
 
                                     <p:column headerText="Duracion" >
