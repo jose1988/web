@@ -115,12 +115,20 @@
 
                                     <p:column headerText="Ver Información">
 
-                                        <p:commandButton id="verinfo" update="@form" icon="ui-icon-search"  oncomplete="infoActividadAbierta.show()"  title="Ver">
+                                        <p:commandButton id="verinfo" update=":fom" icon="ui-icon-search"  oncomplete="infoActividadAbierta.show()"  title="Ver">
                                             <f:setPropertyActionListener value="#{actividad}" target="#{loginController.act}" />
                                         </p:commandButton>
 
                                     </p:column>
+                                     <p:column headerText="Pendiente">
 
+                                         <p:commandButton update=":fom" icon="ui-icon-check" action="#{loginController.cambiarEstadoPendiente}" title="aceptar">
+                                                   
+                                            <f:setPropertyActionListener value="#{actividad}" target="#{loginController.act}" />
+
+                                        </p:commandButton>
+                                         
+                                     </p:column>
 
 
                                 </p:dataTable>
@@ -165,12 +173,9 @@
                                             <dd> <h:outputLabel> #{loginController.act.idInstancia.descripcion} </h:outputLabel>
                                             </dd>
                                             <dt> 
-                                                <p:commandButton update="@form" value="Finalizar Actividad" label="Finalizar Actividad" icon="ui-icon-check" process="actabierta" actionListener="#{loginController.finalizaract}" oncomplete="infoActividadAbierta.hide();" title="Finalizar Actividad">
-                                                </p:commandButton></dt>
-                                            <dd>
-                                                <p:commandButton value="Cancelar" label="Cancelar" onclick="infoActividadAbierta.hide();" icon="ui-icon-remove"  title="Cancelar">
+                                                <p:commandButton value="Cerrar" label="Cerrar" onclick="infoActividadAbierta.hide();" icon="ui-icon-remove"  title="Cerrar">
 
-                                                </p:commandButton> </dd>
+                                                </p:commandButton> </dt>
 
 
                                         </dl>
@@ -181,6 +186,70 @@
 
                         </p:tabView>
                     </h:panelGroup>
+                    
+                    <h:panelGroup id="paneltablaCerrada" rendered="#{loginController.estadoSeleccionado eq 'cerrada'}" >
+
+                        <p:tabView id="tabView3" var="grupo" dynamic="true" cache="false" value="#{loginController.grupos}" >  
+                            <p:ajax event="tabChange" listener="#{loginController.onTabChange}"  update="@this"/>  
+                            <p:tab  title="#{grupo.nombre}">  
+                                <p:dataTable var="actividad" value="#{loginController.actividades}"  paginator="true" rows="7">
+
+                                    <p:column headerText="Id Actividad" >
+                                        #{actividad.id}
+                                    </p:column>
+
+                                    <p:column headerText="Duracion" >
+                                        #{actividad.duracion}
+                                    </p:column>
+
+                                    <p:column headerText="Id Tarea">
+                                        #{actividad.idTarea.nombre}
+                                    </p:column>
+
+                                    <p:column headerText="Ver Información">
+
+                                        <p:commandButton icon="ui-icon-search" id="verinfo" onclick="infoActividadCerrada.show()" type="button" title="Ver"/>
+
+                                    </p:column>
+
+
+                                </p:dataTable>
+                            </p:tab>
+                        </p:tabView>
+                                <p:dialog id="dlgactividadCerrada"  header="Actividad" widgetVar="infoActividadCerrada" >  
+                                    <h:panelGroup id="actabierta">
+                                        <dl class="dl-horizontal">
+                                            <dt>Id:</dt> 
+                                            <dd><h:outputText value="#{loginController.act.id}" rendered="#{not empty loginController.actividades}" />
+                                            </dd>
+                                            <dt>Estado:</dt>
+                                            <dd> <h:outputLabel> #{loginController.act.estado} </h:outputLabel>
+                                            </dd>
+                                            <dt>Duracion:</dt>
+                                            <dd><h:outputLabel> #{loginController.act.duracion} </h:outputLabel>
+                                            </dd>
+                                            <dt>tarea:  </dt>
+                                            <dd> <h:outputLabel>#{loginController.act.idTarea.nombre} </h:outputLabel>
+                                            </dd>
+                                            <dt>Prioridad:</dt> 
+                                            <dd> <h:outputLabel> #{loginController.act.idPrioridad.nombre} </h:outputLabel>
+                                            </dd>
+                                            <dt>Instancia: </dt>
+                                            <dd> <h:outputLabel> #{loginController.act.idInstancia.descripcion} </h:outputLabel>
+                                            </dd>
+                                           
+                                            <dt>
+                                                <p:commandButton value="Cerrar" label="Cerrar" onclick="infoActividadCerrada.hide();" icon="ui-icon-remove"  title="Cerrar">
+
+                                                </p:commandButton> </dt>
+
+
+                                        </dl>
+                                    </h:panelGroup>
+                                </p:dialog>
+                            </h:panelGroup>
+                    
+                    
                      <h:panelGroup id="paneltablaPendiente" rendered="#{loginController.estadoSeleccionado eq 'pendiente'}">
                          <p:tabView id="tabView2" var="grupo" dynamic="true" cache="false" value="#{loginController.grupos}" >  
                            <p:ajax event="tabChange" listener="#{loginController.onTabChange}"  update="@this"/>  
@@ -200,15 +269,17 @@
                                         #{actividad.idTarea.nombre}
                                     </p:column>
 
-                                    <p:column headerText="Ver Información">
+                                  <p:column headerText="Ver Información">
 
-                                        <p:commandButton icon="ui-icon-search" id="verinfo" onclick="infoActividadAbierta.show()" type="button" title="Ver"/>
+                                        <p:commandButton id="verinfo" update="@form" icon="ui-icon-search"  oncomplete="infoActividadPendiente.show()"  title="Ver">
+                                            <f:setPropertyActionListener value="#{actividad}" target="#{loginController.act}" />
+                                        </p:commandButton>
 
                                     </p:column>
 
                                     <p:column headerText="Iniciar Actividad">
 
-                                        <p:commandButton update="@form" icon="ui-icon-check" actionListener="#{loginController.cambiarEstado}" title="aceptar">
+                                        <p:commandButton update="@form" icon="ui-icon-check" action="#{loginController.cambiarEstado}" title="aceptar">
 
                                             <f:setPropertyActionListener value="#{actividad}" target="#{loginController.act}" />
 
@@ -219,6 +290,39 @@
                              </p:tab>
 
                         </p:tabView>
+                           <p:dialog id="dlgactividadPendiente"  header="Actividad" widgetVar="infoActividadPendiente">  
+
+                                    <h:panelGroup id="actpendiente">
+                                        <dl class="dl-horizontal">
+                                            <dt>Id:</dt> 
+                                            <dd><h:outputText value="#{loginController.act.id}" rendered="#{not empty loginController.actividades}" />
+                                            </dd>
+                                            <dt>Estado:</dt>
+                                            <dd> <h:outputLabel> #{loginController.act.estado} </h:outputLabel>
+                                            </dd>
+                                            <dt>Duracion:</dt>
+                                            <dd><h:outputLabel> #{loginController.act.duracion} </h:outputLabel>
+                                            </dd>
+                                            <dt>tarea:  </dt>
+                                            <dd> <h:outputLabel>#{loginController.act.idTarea.nombre} </h:outputLabel>
+                                            </dd>
+                                            <dt>Prioridad:</dt> 
+                                            <dd> <h:outputLabel> #{loginController.act.idPrioridad.nombre} </h:outputLabel>
+                                            </dd>
+                                            <dt>Instancia: </dt>
+                                            <dd> <h:outputLabel> #{loginController.act.idInstancia.descripcion} </h:outputLabel>
+                                            </dd>
+                                            
+                                              
+                                            <dt>
+                                                <p:commandButton value="Cerrar" label="Cerrar" onclick="infoActividadPendiente.hide();" icon="ui-icon-remove"  title="Cerrar">
+
+                                                </p:commandButton> </dt>
+
+
+                                        </dl>
+                                    </h:panelGroup>
+                                </p:dialog>
                      </h:panelGroup>
 
                     <h:panelGroup id="paneltablacola" rendered="#{loginController.estadoSeleccionado eq 'Cola de Actividades'}">
@@ -241,7 +345,7 @@
 
                                     <p:column headerText="Ver Información">
 
-                                        <p:commandButton id="verinfo" update="@form" icon="ui-icon-search"  oncomplete="infoActividadAbierta.show()"  title="Ver">
+                                        <p:commandButton id="verinfo" update="@form" icon="ui-icon-search" action="#{loginController.asignar}"  oncomplete="infoActividadCola.show()"  title="Ver">
                                             <f:setPropertyActionListener value="#{actividad}" target="#{loginController.act}" />
                                         </p:commandButton>
 
@@ -253,7 +357,7 @@
 
 
 
-                                <p:dialog id="dlgactividadAbierta"  header="Actividad" widgetVar="infoActividadAbierta">  
+                                <p:dialog id="dlgactividadCola"  header="Actividad" widgetVar="infoActividadCola">  
 
                                     <h:panelGroup id="actabierta">
                                         <dl class="dl-horizontal">
@@ -266,23 +370,8 @@
                                             <dt>Duracion:</dt>
                                             <dd><h:outputLabel> #{loginController.act.duracion} </h:outputLabel>
                                             </dd>
-                                            <dt>Fecha de asignacion: </dt>
-                                            <dd>  <h:outputLabel> #{loginController.act.fechaAsignacion} </h:outputLabel>
-                                            </dd>
-                                            <dt>Fecha de apertura :</dt>
-                                            <dd><h:outputLabel> #{loginController.act.fechaApertura} </h:outputLabel>
-                                            </dd>
-                                            <dt>Fecha de alerta:  </dt>
-                                            <dd> <h:outputLabel> #{loginController.act.fechaAlerta} </h:outputLabel>
-                                            </dd>
-                                            <dt>Fecha de cierre:</dt>
-                                            <dd>  <h:outputLabel> #{loginController.act.fechaCierre} </h:outputLabel>
-                                            </dd>
                                             <dt>tarea:  </dt>
                                             <dd> <h:outputLabel>#{loginController.act.idTarea.nombre} </h:outputLabel>
-                                            </dd>
-                                            <dt>Usuario: </dt>
-                                            <dd><h:outputLabel> #{loginController.act.idUsuario.id} </h:outputLabel>
                                             </dd>
                                             <dt>Prioridad:</dt> 
                                             <dd> <h:outputLabel> #{loginController.act.idPrioridad.nombre} </h:outputLabel>
@@ -290,13 +379,11 @@
                                             <dt>Instancia: </dt>
                                             <dd> <h:outputLabel> #{loginController.act.idInstancia.descripcion} </h:outputLabel>
                                             </dd>
-                                            <dt> 
-                                                <p:commandButton update="@form" value="Finalizar Actividad" label="Finalizar Actividad" icon="ui-icon-check" process="actabierta" actionListener="#{loginController.finalizaract}" oncomplete="infoActividadAbierta.hide();" title="Finalizar Actividad">
-                                                </p:commandButton></dt>
-                                            <dd>
-                                                <p:commandButton value="Cancelar" label="Cancelar" onclick="infoActividadAbierta.hide();" icon="ui-icon-remove"  title="Cancelar">
+                                           
+                                            <dt>
+                                                <p:commandButton value="Cerrar" label="Cerrar" onclick="infoActividadCola.hide();" icon="ui-icon-remove"  title="Cerrar">
 
-                                                </p:commandButton> </dd>
+                                                </p:commandButton> </dt>
 
 
                                         </dl>
