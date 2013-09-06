@@ -107,22 +107,22 @@
                                        
                                     </p:column>
 
-                                    <p:column headerText="Duracion" >
+                                    <p:column headerText="Duracion" style="width:  20px; text-align: center; #{loginController.sombreado(actividad)}">
                                         #{actividad.duracion}
                                     </p:column>
 
-                                    <p:column headerText="Id Tarea">
+                                    <p:column headerText="Id Tarea" style="width:  20px; text-align: center; #{loginController.sombreado(actividad)}">
                                         #{actividad.idTarea.nombre}
                                     </p:column>
 
-                                    <p:column headerText="Ver Información">
+                                    <p:column headerText="Ver Información" style="width:  20px; text-align: center; #{loginController.sombreado(actividad)}">
 
                                         <p:commandButton id="verinfo" update=":fom" icon="ui-icon-search"  oncomplete="infoActividadAbierta.show()"  title="Ver">
                                             <f:setPropertyActionListener value="#{actividad}" target="#{loginController.act}" />
                                         </p:commandButton>
 
                                     </p:column>
-                                     <p:column headerText="Pendiente">
+                                     <p:column headerText="Pendiente" style="width:  20px; text-align: center; #{loginController.sombreado(actividad)}">
 
                                          <p:commandButton update=":fom" icon="ui-icon-check" action="#{loginController.cambiarEstadoPendiente}" title="aceptar">
                                                    
@@ -196,19 +196,19 @@
                             <p:tab  title="#{grupo.nombre}">  
                                 <p:dataTable var="actividad" value="#{loginController.actividades}"  paginator="true" rows="7">
 
-                                    <p:column headerText="Id Actividad" >
+                                    <p:column headerText="Id Actividad" style="width:  20px; text-align: center; #{loginController.sombreadoc(actividad)}">
                                         #{actividad.id}
                                     </p:column>
 
-                                    <p:column headerText="Duracion" >
+                                    <p:column headerText="Duracion" style="width:  20px; text-align: center; #{loginController.sombreadoc(actividad)}">
                                         #{actividad.duracion}
                                     </p:column>
 
-                                    <p:column headerText="Id Tarea">
+                                    <p:column headerText="Id Tarea" style="width:  20px; text-align: center; #{loginController.sombreadoc(actividad)}">
                                         #{actividad.idTarea.nombre}
                                     </p:column>
 
-                                    <p:column headerText="Ver Información">
+                                    <p:column headerText="Ver Información" style="width:  20px; text-align: center; #{loginController.sombreadoc(actividad)}">
 
                                         <p:commandButton icon="ui-icon-search" id="verinfo" onclick="infoActividadCerrada.show()" type="button" title="Ver"/>
 
@@ -259,19 +259,19 @@
 
                                 <p:dataTable var="actividad" value="#{loginController.actividades}"  paginator="true" rows="7">
 
-                                    <p:column headerText="Id Actividad" >
+                                    <p:column headerText="Id Actividad" style="width:  20px; text-align: center; #{loginController.sombreado(actividad)}">
                                         #{actividad.id}
                                     </p:column>
 
-                                    <p:column headerText="Duracion" >
+                                    <p:column headerText="Duracion" style="width:  20px; text-align: center; #{loginController.sombreado(actividad)}">
                                         #{actividad.duracion}
                                     </p:column>
 
-                                    <p:column headerText="Id Tarea">
+                                    <p:column headerText="Id Tarea" style="width:  20px; text-align: center; #{loginController.sombreado(actividad)}">
                                         #{actividad.idTarea.nombre}
                                     </p:column>
 
-                                  <p:column headerText="Ver Información">
+                                  <p:column headerText="Ver Información" style="width:  20px; text-align: center; #{loginController.sombreado(actividad)}">
 
                                         <p:commandButton id="verinfo" update="@form" icon="ui-icon-search"  oncomplete="infoActividadPendiente.show()"  title="Ver">
                                             <f:setPropertyActionListener value="#{actividad}" target="#{loginController.act}" />
@@ -279,7 +279,7 @@
 
                                     </p:column>
 
-                                    <p:column headerText="Iniciar Actividad">
+                                    <p:column headerText="Iniciar Actividad" style="width:  20px; text-align: center; #{loginController.sombreado(actividad)}">
 
                                         <p:commandButton update="@form" icon="ui-icon-check" action="#{loginController.cambiarEstado}" title="aceptar">
 
