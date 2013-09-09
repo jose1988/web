@@ -69,19 +69,19 @@
                                     <p:column headerText="Id Actividad" style="width:  20px; text-align: center; #{actividadesPorInstanciaController.estilo(actividad)}" >
                                         #{actividad.id}
                                     </p:column>
-                                    <p:column headerText="Fecha de Asignación" >
-                                        #{actividad.fechaAsignacion}
+                                    <p:column headerText="Fecha de Asignación" style="width:  20px; text-align: center; #{actividadesPorInstanciaController.estilo(actividad)}" >
+                                        #{actividadesPorInstanciaController.formatoFecha(actividad.fechaAsignacion)}
                                     </p:column>
 
-                                    <p:column headerText="Estado" >
+                                    <p:column headerText="Estado" style="width:  20px; text-align: center; #{actividadesPorInstanciaController.estilo(actividad)}" >
                                         #{actividad.estado}
                                     </p:column>
 
-                                    <p:column headerText="Duración">
+                                    <p:column headerText="Duración" style="width:  20px; text-align: center; #{actividadesPorInstanciaController.estilo(actividad)}" >
                                         #{actividad.duracion}
                                     </p:column>
 
-                                    <p:column headerText="Ver Información">
+                                    <p:column headerText="Ver Información" style="width:  20px; text-align: center; #{actividadesPorInstanciaController.estilo(actividad)}" >
 
                                         <p:commandButton id="verinfo" update="@form" icon="ui-icon-search"  oncomplete="infoActividad.show()"  title="Ver">
                                             <f:setPropertyActionListener value="#{actividad}" target="#{actividadesPorInstanciaController.act}" />
@@ -104,16 +104,16 @@
                                             <dd><h:outputLabel> #{actividadesPorInstanciaController.act.duracion} </h:outputLabel>
                                             </dd>
                                             <dt>Fecha de asignacion: </dt>
-                                            <dd>  <h:outputLabel> #{actividadesPorInstanciaController.act.fechaAsignacion} </h:outputLabel>
+                                            <dd>  <h:outputLabel> #{actividadesPorInstanciaController.formatoFecha(actividadesPorInstanciaController.act.fechaAsignacion)} </h:outputLabel>
                                             </dd>
                                             <dt>Fecha de apertura :</dt>
-                                            <dd><h:outputLabel> #{actividadesPorInstanciaController.act.fechaApertura} </h:outputLabel>
+                                            <dd><h:outputLabel> #{actividadesPorInstanciaController.formatoFecha(actividadesPorInstanciaController.act.fechaApertura)} </h:outputLabel>
                                             </dd>
                                             <dt>Fecha de alerta:  </dt>
-                                            <dd> <h:outputLabel> #{actividadesPorInstanciaController.act.fechaAlerta} </h:outputLabel>
+                                            <dd> <h:outputLabel> #{actividadesPorInstanciaController.formatoFecha(actividadesPorInstanciaController.act.fechaAlerta)} </h:outputLabel>
                                             </dd>
                                             <dt>Fecha de cierre:</dt>
-                                            <dd>  <h:outputLabel> #{actividadesPorInstanciaController.act.fechaCierre} </h:outputLabel>
+                                            <dd>  <h:outputLabel> #{actividadesPorInstanciaController.formatoFecha(actividadesPorInstanciaController.act.fechaCierre)} </h:outputLabel>
                                             </dd>
                                             <dt>tarea:  </dt>
                                             <dd> <h:outputLabel>#{actividadesPorInstanciaController.act.idTarea.nombre} </h:outputLabel>
