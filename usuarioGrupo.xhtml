@@ -46,10 +46,11 @@
                 </nav>      
             </div>
         </div>
-        <div class="col-md-12"> 
+        <div class="col-md-12">
+            <h:form id="fom"  prependId="false">
                     <h:panelGroup id="paneltablaUsuarios">
-                        <p:tabView id="tabView" var="grupo" dynamic="true" cache="false" value="#{usuarioGrupoController.grupos}" >  
-                            <p:ajax event="tabChange" listener="#{usuarioGrupoController.onTabChange}"  update="@this"/>  
+                        <p:tabView id="tabView" activeIndex="#{usuarioGrupoController.indice}" var="grupo" dynamic="true" cache="false" value="#{usuarioGrupoController.grupos}" >  
+                           <p:ajax event="tabChange" listener="#{usuarioGrupoController.onTabChange}"  update="@this"/>  
                             <p:tab  title="#{grupo.nombre}">
                                 
                               <h:panelGroup id="panelUsuarios">
@@ -66,7 +67,10 @@
                                     </p:column>
                                     
                                     <p:column headerText="Ver Actividades">
-                                        <p:commandButton update="@form" icon="ui-icon-plus" action="#{usuarioGrupoController}" >   
+                                        <p:commandButton update="@form" icon="ui-icon-plus" action="#{usuarioGrupoController.verActividadesUsuario}" >
+                                            
+                                            <f:setPropertyActionListener value="#{usuarios}" target="#{usuarioGrupoController.grup}" />
+
                                         </p:commandButton>
                                     </p:column>
                                     
@@ -76,7 +80,7 @@
                             
                         </p:tabView>
                     </h:panelGroup>
-
+            </h:form>
         </div> 
     </h:body>
 </html>
