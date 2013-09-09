@@ -17,7 +17,7 @@
 
 
     <h:body>
-      
+
 
         <p:idleMonitor timeout="180000">  
             <p:ajax event="idle" listener="#{actividadesUsuarioController.cerrarPorInactividad}" />  
@@ -92,7 +92,7 @@
                                     </p:column>
 
                                 </p:dataTable>
-                
+                                <p:commandButton update="@form" icon="ui-icon-plus" value="Liberar Actividades" action="#{actividadesUsuarioController.liberarActividadesUsuario}" title="aceptar" />
                             </h:panelGroup>
 
                         </p:tab>
