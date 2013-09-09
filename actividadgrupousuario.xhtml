@@ -96,7 +96,7 @@
 
 
                     <h:panelGroup id="paneltablaAbierta" rendered="#{loginController.estadoSeleccionado eq 'abierta'}">
-                        <p:tabView id="tabView" var="grupo" dynamic="true" cache="false" value="#{loginController.grupos}" >  
+                        <p:tabView id="tabView" activeIndex="#{loginController.indice}" var="grupo" dynamic="true" cache="false" value="#{loginController.grupos}" >  
                             <p:ajax event="tabChange" listener="#{loginController.onTabChange}"  update="@this"/>  
                             <p:tab  title="#{grupo.nombre}">  
                                 <p:dataTable var="actividad" value="#{loginController.actividades}"  paginator="true" rows="7">
@@ -191,7 +191,7 @@
                     
                     <h:panelGroup id="paneltablaCerrada" rendered="#{loginController.estadoSeleccionado eq 'cerrada'}" >
 
-                        <p:tabView id="tabView3" var="grupo" dynamic="true" cache="false" value="#{loginController.grupos}" >  
+                        <p:tabView id="tabView3" var="grupo" activeIndex="#{loginController.indice}" dynamic="true" cache="false" value="#{loginController.grupos}" >  
                             <p:ajax event="tabChange" listener="#{loginController.onTabChange}"  update="@this"/>  
                             <p:tab  title="#{grupo.nombre}">  
                                 <p:dataTable var="actividad" value="#{loginController.actividades}"  paginator="true" rows="7">
@@ -253,7 +253,7 @@
                     
                     
                      <h:panelGroup id="paneltablaPendiente" rendered="#{loginController.estadoSeleccionado eq 'pendiente'}">
-                         <p:tabView id="tabView2" var="grupo" dynamic="true" cache="false" value="#{loginController.grupos}" >  
+                         <p:tabView id="tabView2" var="grupo" activeIndex="#{loginController.indice}" dynamic="true" cache="false" value="#{loginController.grupos}" >  
                            <p:ajax event="tabChange" listener="#{loginController.onTabChange}"  update="@this"/>  
                             <p:tab  title="#{grupo.nombre}">  
 
