@@ -12,13 +12,9 @@
         <h:outputStylesheet name="../recursos/css/bootstrap.css"/>
         <h:outputStylesheet name="../recursos/css/bootstrap-theme.css"/>
         <script type="text/javascript" src="recursos/js/bootstrap.js"></script>
-
     </h:head>
-
-
     <h:body>
-
-
+       
         <p:idleMonitor timeout="180000">  
             <p:ajax event="idle" listener="#{actividadesUsuarioController.cerrarPorInactividad}" />  
         </p:idleMonitor> 
@@ -39,7 +35,7 @@
                         <div class="collapse navbar-collapse navbar-ex1-collapse">
                             <ul class="nav navbar-nav">
                                 <li class="active"><a href="#">Archivo</a></li>
-                                <li><a href="#">Atrás</a></li>
+                                <li><a href="atras.xhtml">Atrás</a></li>
                                 <li>
                                     <a href="#" >Opciones</a>
 
