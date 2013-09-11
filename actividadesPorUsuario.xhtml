@@ -13,8 +13,7 @@
         <h:outputStylesheet name="../recursos/css/bootstrap-theme.css"/>
         <script type="text/javascript" src="recursos/js/bootstrap.js"></script>
     </h:head>
-    <h:body>
-       
+    <h:body>    
         <p:idleMonitor timeout="180000">  
             <p:ajax event="idle" listener="#{actividadesUsuarioController.cerrarPorInactividad}" />  
         </p:idleMonitor> 
