@@ -13,7 +13,14 @@
         <h:outputStylesheet name="../recursos/css/bootstrap-theme.css"/>
         <script type="text/javascript" src="recursos/js/bootstrap.js"></script>
     </h:head>
-    <h:body>    
+    <h:body>
+
+        <c:if test="#{actividadesUsuarioController.verificarLogueo()}">
+            <h:outputText value="#{actividadesUsuarioController.Redirecionar()}" />
+        </c:if>
+        <c:if test="#{actividadesUsuarioController.verificarUsuarioId()}">
+            <h:outputText value="#{actividadesUsuarioController.redireccionarUsuarioGrupo()}" />
+        </c:if>
         <p:idleMonitor timeout="180000">  
             <p:ajax event="idle" listener="#{actividadesUsuarioController.cerrarPorInactividad}" />  
         </p:idleMonitor> 
