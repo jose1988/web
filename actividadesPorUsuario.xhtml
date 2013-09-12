@@ -15,9 +15,7 @@
     </h:head>
     <h:body>
 
-        <c:if test="#{actividadesUsuarioController.verificarLogueo()}">
-            <h:outputText value="#{actividadesUsuarioController.Redireccionar()}" />
-        </c:if>
+       
         <c:if test="#{actividadesUsuarioController.verificarUsuarioId()}">
             <h:outputText value="#{actividadesUsuarioController.redireccionarUsuarioGrupo()}" />
         </c:if>
