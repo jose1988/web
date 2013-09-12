@@ -17,8 +17,12 @@
 
 
     <h:body>
-      
-
+        <c:if test="#{actividadesPorInstanciaController.verificarLogueo()}">
+            <h:outputText value="#{actividadesPorInstanciaController.Redireccionar()}" />
+        </c:if>
+        <c:if test="#{actividadesPorInstanciaController.verificarInstancia()}">
+            <h:outputText value="#{actividadesPorInstanciaController.Redireccionar()}" />
+        </c:if>
         <p:idleMonitor timeout="180000">  
             <p:ajax event="idle" listener="#{actividadesPorInstanciaController.cerrarPorInactividad}" />  
         </p:idleMonitor> 
