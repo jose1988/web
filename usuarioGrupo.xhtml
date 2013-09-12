@@ -6,13 +6,11 @@
       xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Pangea Flow</title>
-
         <h:outputStylesheet name="../recursos/css/bootstrap.css"/>
         <h:outputStylesheet name="../recursos/css/bootstrap-theme.css"/>
         <h:outputStylesheet name="../recursos/css/estilos.css"/>
         <script type="text/javascript" src="recursos/js/bootstrap.js"></script>
     </h:head>
-
 
     <h:body>  
         <div class="row">
@@ -23,7 +21,6 @@
                 <nav class="navbar navbar-default" role="navigation">
                     <!-- Brand and toggle get grouped for better mobile display -->
                     <div class="navbar-header">
-
                         <a class="navbar-brand" href="#">PangeaFlow</a>
                     </div>
 
@@ -32,31 +29,26 @@
                         <ul class="nav navbar-nav">
                             <li class="active"><a href="#">Archivo</a></li>
                             <li><a href="#">Atrás</a></li>
-                            <li>
-                                <a href="#" >Opciones</a>
-
-                            </li>
+                            <li><a href="#" >Opciones</a></li>
                         </ul>
 
                         <ul class="nav navbar-nav navbar-right">
                             <li><a href="#">Cerrar Sesión</a></li>
-
                         </ul>
                     </div><!-- /.navbar-collapse -->
                 </nav>      
             </div>
         </div>
+        
         <div class="col-md-12">
             <h:form id="fom"  prependId="false">
                     <h:panelGroup id="paneltablaUsuarios">
                         <p:tabView id="tabView" activeIndex="#{usuarioGrupoController.indice}" var="grupo" dynamic="true" cache="false" value="#{usuarioGrupoController.grupos}" >  
                            <p:ajax event="tabChange" listener="#{usuarioGrupoController.onTabChange}"  update="@this"/>  
                             <p:tab  title="#{grupo.nombre}">
-                                
                               <h:panelGroup id="panelUsuarios">
-                                
-                                  <p:dataTable var="usuarios" value="#{usuarioGrupoController.grupoUsuarios}"  paginator="true" rows="7">
-                                    
+                                <p:dataTable var="usuarios" value="#{usuarioGrupoController.grupoUsuarios}"  paginator="true" rows="7">
+
                                     <p:column headerText="Id">
                                         #{usuarios.id}
                                     </p:column>
@@ -72,17 +64,13 @@
                                     </p:column>
                                     
                                     <p:column headerText="Ver Actividades">
-                                        <p:commandButton update="@form" icon="ui-icon-plus" action="#{usuarioGrupoController.verActividadesUsuario}" >
-                                            
+                                        <p:commandButton update="@form" icon="ui-icon-plus" action="#{usuarioGrupoController.verActividadesUsuario}" title="Ir a Actividades" >
                                             <f:setPropertyActionListener value="#{usuarios}" target="#{usuarioGrupoController.grup}" />
-
                                         </p:commandButton>
-                                    </p:column>
-                                    
+                                    </p:column>                            
                                 </p:dataTable>
                                   
                                   <p:dialog id="dlgUsuario"  header="Usuario" widgetVar="infoUsuario">  
-
                                     <h:panelGroup id="infUsuario">
                                         <dl class="dl-horizontal">
                                             <dt>Id:</dt> 
@@ -107,10 +95,9 @@
                                     </h:panelGroup>
                                 </p:dialog>
                               </h:panelGroup>
-                            </p:tab>
-                            
+                            </p:tab>                            
                         </p:tabView>
-                    </h:panelGroup>
+                  </h:panelGroup>
             </h:form>
         </div> 
     </h:body>
