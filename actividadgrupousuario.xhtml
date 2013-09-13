@@ -124,7 +124,7 @@
                                     </p:column>
                                      <p:column headerText="Pendiente" style="width:  20px; text-align: center; #{gestionActividades.sombreado(actividad)}">
 
-                                         <p:commandButton update=":fom" icon="ui-icon-check" action="#{gestionActividades.cambiarEstadoPendiente}" title="aceptar">
+                                         <p:commandButton update=":fom" icon="ui-icon-arrow-2-e-w" action="#{gestionActividades.cambiarEstadoPendiente}" title="aceptar">
                                                    
                                             <f:setPropertyActionListener value="#{actividad}" target="#{gestionActividades.act}" />
 
@@ -332,19 +332,19 @@
                             <p:tab title="Cola de Actividades"> 
                                 <p:dataTable var="actividad" value="#{gestionActividades.actividades}"  paginator="true" rows="7">
 
-                                    <p:column headerText="Id Actividad" >
+                                    <p:column headerText="Id Actividad" style="width:  20px; text-align: center;">
                                         #{actividad.id}
                                     </p:column>
 
-                                    <p:column headerText="Duracion" >
+                                    <p:column headerText="Duracion" style="width:  20px; text-align: center;">
                                         #{actividad.duracion}
                                     </p:column>
 
-                                    <p:column headerText="Id Tarea">
+                                    <p:column headerText="Id Tarea" style="width:  20px; text-align: center;">
                                         #{actividad.idTarea.nombre}
                                     </p:column>
 
-                                    <p:column headerText="Ver Información">
+                                    <p:column headerText="Ver Información" style="width:  20px; text-align: center;">
 
                                    
                                          <p:commandButton id="verinfo" update="@form" icon="ui-icon-search"  oncomplete="infoActividadCola.show()"  title="Ver">
@@ -383,7 +383,7 @@
                                            
                                             
                                             <dt>
-                                                <p:commandButton value="Cerrar" label="Cerrar"  onclick="infoActividadCola.hide();" icon="ui-icon-remove"  title="Cerrar">
+                                                <p:commandButton value="Cerrar" label="Cerrar"  onclick="infoActividadCola.hide();" icon="ui-icon-arrow-2-e-w"  title="Cerrar">
 
                                                 </p:commandButton> </dt>
                                             <dd>
