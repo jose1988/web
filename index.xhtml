@@ -16,14 +16,14 @@
 
     <h:body>  
 
-        <p:growl id="mensajes" showDetail="true" sticky="true" life="6000" />
+        <p:growl id="mensajes" showDetail="true"  life="6000" />
 
         <div class="container" align="center">
             <h:form class="form-signin" prependId="false">
                 <h3 class="form-signin-heading">Por favor, inicie sesión</h3>
-                <p:inputText id="usuario" value="#{logIntOutController.user}"  required="true"  maxlength="19" title="Ingrese el nombre de usuario"   />
+                <p:inputText id="usuario" value="#{logIntOutController.user}"    maxlength="19" title="Ingrese el nombre de usuario"   />
                 <p:watermark for="usuario" value="Usuario" /> 
-                <p:password id="pass" value="#{logIntOutController.contrasena}" required="true"  maxlength="19" title="Ingrese la contraseña"/>
+                <p:password id="pass" value="#{logIntOutController.contrasena}"   maxlength="19" title="Ingrese la contraseña"/>
                 <p:watermark for="pass" value="Contraseña" /><br></br>
                 <p:commandButton   actionListener="#{logIntOutController.logeoInt}" update=":mensajes"  value="Iniciar Sesión"/> 
             </h:form>
