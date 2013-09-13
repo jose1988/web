@@ -82,6 +82,10 @@
                                     <p:column headerText="Referencia" style="width:  170px; #{instanciaUsuarioController.estiloAbierta(Instancia)}">
                                         #{Instancia.referencia}
                                     </p:column>
+                                    
+                                    <p:column headerText="Fecha" style="width:  170px; #{instanciaUsuarioController.estiloAbierta(Instancia)}">
+                                        #{Instancia.idPeriodoGrupoProceso.idPeriodo.fechaHasta}
+                                    </p:column>
 
                                     <p:column headerText="Ver Información" style="width:  40px; text-align: center; #{instanciaUsuarioController.estiloAbierta(Instancia)}">
                                         <p:commandButton update="@form" icon="ui-icon-search"  oncomplete="infoInstanciaAbierta.show()"  title="Ver">
@@ -90,13 +94,13 @@
                                     </p:column>
                                     
                                     <p:column headerText="Ver Actividades" style="width:  40px; text-align: center; #{instanciaUsuarioController.estiloAbierta(Instancia)}">
-                                        <p:commandButton update="@form" icon="ui-icon-plus" action="#{instanciaUsuarioController.listarActividades}" title="Ir a Actvidades" >
+                                        <p:commandButton update="@form" icon="ui-icon-link" action="#{instanciaUsuarioController.listarActividades}" title="Ir a Actividades" >
                                             <f:setPropertyActionListener value="#{Instancia}" target="#{instanciaUsuarioController.inst}" />
                                         </p:commandButton>
                                     </p:column>
                                     
                                     <p:column headerText="Cerrar Instancia" style="width:  40px; text-align: center; #{instanciaUsuarioController.estiloAbierta(Instancia)}">
-                                        <p:commandButton update="@form" icon="ui-icon-close" action="#{instanciaUsuarioController.cerrarInstanciaSeleccionada()}" >
+                                        <p:commandButton update="@form" icon="ui-icon-closethick" action="#{instanciaUsuarioController.cerrarInstanciaSeleccionada()}" >
                                             <f:setPropertyActionListener value="#{Instancia}" target="#{instanciaUsuarioController.inst}" />
                                         </p:commandButton>
                                     </p:column>
@@ -120,6 +124,9 @@
                                             </dd>
                                             <dt>Fecha de Cierre: </dt>
                                             <dd><h:outputLabel> #{instanciaUsuarioController.formatoFecha(instanciaUsuarioController.inst.fechaCierre)} </h:outputLabel>
+                                            </dd>
+                                            <dt>Fecha Hasta:</dt>
+                                            <dd> <h:outputLabel> #{instanciaUsuarioController.formatoFecha(instanciaUsuarioController.inst.idPeriodoGrupoProceso.idPeriodo.fechaHasta)} </h:outputLabel>
                                             </dd>
                                             <dt>Referencia: </dt>
                                             <dd><h:outputLabel> #{instanciaUsuarioController.inst.referencia} </h:outputLabel>
@@ -154,6 +161,10 @@
                                     <p:column headerText="Referencia" style="width:  170px; #{instanciaUsuarioController.estiloCerrada(Instancia)}">
                                         #{Instancia.referencia}
                                     </p:column>
+                                    
+                                    <p:column headerText="Fecha" style="width:  170px; #{instanciaUsuarioController.estiloCerrada(Instancia)}">
+                                        #{Instancia.idPeriodoGrupoProceso.idPeriodo.fechaHasta}
+                                    </p:column>
 
                                     <p:column headerText="Ver Información" style="width:  40px; text-align: center; #{instanciaUsuarioController.estiloCerrada(Instancia)}">
                                         <p:commandButton update="@form" icon="ui-icon-search"  oncomplete="infoInstanciaCerrada.show()"  title="Ver">
@@ -162,7 +173,7 @@
                                     </p:column>
                                     
                                     <p:column headerText="Ver Actividades" style="width:  40px; text-align: center; #{instanciaUsuarioController.estiloCerrada(Instancia)}">
-                                        <p:commandButton update="@form" icon="ui-icon-plus" action="#{instanciaUsuarioController.listarActividades}" >
+                                        <p:commandButton update="@form" icon="ui-icon-link" action="#{instanciaUsuarioController.listarActividades}" >
                                             <f:setPropertyActionListener value="#{Instancia}" target="#{instanciaUsuarioController.inst}" />
                                         </p:commandButton>
                                     </p:column>

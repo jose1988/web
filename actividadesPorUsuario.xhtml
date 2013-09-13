@@ -24,7 +24,7 @@
         <p:idleMonitor timeout="180000">  
             <p:ajax event="idle" listener="#{actividadesUsuarioController.cerrarPorInactividad}" />  
         </p:idleMonitor> 
-      <p:growl id="mensajes" showDetail="true" sticky="true" life="6000" />
+        <p:growl id="mensajes" showDetail="true" sticky="true" life="6000" />
         <div class="row-fluid">
             <div class="span12"> 
                 <div class="span4">
@@ -86,7 +86,7 @@
 
                                     <p:column headerText="Ver Información"  >
 
-                                        <p:commandButton update="@form" icon="ui-icon-plus" value="Liberar" action="#{actividadesUsuarioController.liberarActividadUsuario}" title="aceptar">
+                                        <p:commandButton update="@form" icon="ui-icon-check" value="Liberar" action="#{actividadesUsuarioController.liberarActividadUsuario}" title="aceptar">
 
                                             <f:setPropertyActionListener value="#{actividad}" target="#{actividadesUsuarioController.act}" />
 
@@ -95,7 +95,10 @@
                                     </p:column>
 
                                 </p:dataTable>
-                                <p:commandButton update="@form" icon="ui-icon-plus" value="Liberar Actividades" action="#{actividadesUsuarioController.liberarActividadesUsuario}" title="aceptar" />
+                                <div class="col-md-12 text-center">
+                                    <p:commandButton  update="@form" icon="ui-icon-circle-check" value="Liberar Actividades" action="#{actividadesUsuarioController.liberarActividadesUsuario}" title="aceptar" />
+
+                                </div>
                             </h:panelGroup>
 
                         </p:tab>
