@@ -127,8 +127,14 @@
                                             <dt>Usuario: </dt> 
                                             <dd><h:outputLabel> #{instanciaUsuarioController.inst.idUsuario.id} </h:outputLabel>
                                             </dd>
-                                            <dt>Per_Gru_Pro: </dt>
-                                            <dd><h:outputLabel> #{instanciaUsuarioController.inst.idPeriodoGrupoProceso.idPeriodo.fechaDesde} </h:outputLabel>
+                                            <dt>Periodo: </dt>
+                                            <dd><h:outputLabel> #{instanciaUsuarioController.inst.idPeriodoGrupoProceso.idPeriodo.id} </h:outputLabel>
+                                            </dd>
+                                            <dt>Grupo: </dt>
+                                            <dd><h:outputLabel> #{instanciaUsuarioController.inst.idPeriodoGrupoProceso.idGrupo.id} </h:outputLabel>
+                                            </dd>
+                                            <dt>Proceso: </dt>
+                                            <dd><h:outputLabel> #{instanciaUsuarioController.inst.idPeriodoGrupoProceso.idProceso.id} </h:outputLabel>
                                             </dd>
                                             <dd>
                                                 <p:commandButton value="Cancelar" label="Cancelar" onclick="infoInstanciaAbierta.hide()" icon="ui-icon-close"  title="Cancelar">
@@ -174,11 +180,14 @@
                                             <dt>Descripción:</dt>
                                             <dd><h:outputLabel> #{instanciaUsuarioController.inst.descripcion} </h:outputLabel>
                                             </dd>
-                                            <dt>Fecha de apertura:</dt>
-                                            <dd><h:outputLabel> #{instanciaUsuarioController.inst.fechaApertura} </h:outputLabel>
+                                            <dt>Fecha de Apertura:</dt>
+                                            <dd><h:outputLabel> #{instanciaUsuarioController.formatoFecha(instanciaUsuarioController.inst.fechaApertura)} </h:outputLabel>
                                             </dd>
-                                            <dt>Fecha de cierre:</dt>
-                                            <dd> <h:outputLabel> #{instanciaUsuarioController.inst.fechaCierre} </h:outputLabel>
+                                            <dt>Fecha de Cierre:</dt>
+                                            <dd> <h:outputLabel> #{instanciaUsuarioController.formatoFecha(instanciaUsuarioController.inst.fechaCierre)} </h:outputLabel>
+                                            </dd>
+                                            <dt>Fecha Hasta:</dt>
+                                            <dd> <h:outputLabel> #{instanciaUsuarioController.formatoFecha(instanciaUsuarioController.inst.idPeriodoGrupoProceso.idPeriodo.fechaHasta)} </h:outputLabel>
                                             </dd>
                                             <dt>Referencia: </dt>
                                             <dd><h:outputLabel> #{instanciaUsuarioController.inst.referencia} </h:outputLabel>
@@ -186,8 +195,14 @@
                                             <dt>Usuario:</dt> 
                                             <dd><h:outputLabel> #{instanciaUsuarioController.inst.idUsuario.id} </h:outputLabel>
                                             </dd>
-                                            <dt>Per_Gru_Pro:</dt>
-                                            <dd><h:outputLabel> #{instanciaUsuarioController.inst.idPeriodoGrupoProceso.id} </h:outputLabel>
+                                            <dt>Periodo: </dt>
+                                            <dd><h:outputLabel> #{instanciaUsuarioController.inst.idPeriodoGrupoProceso.idPeriodo.id} </h:outputLabel>
+                                            </dd>
+                                            <dt>Grupo: </dt>
+                                            <dd><h:outputLabel> #{instanciaUsuarioController.inst.idPeriodoGrupoProceso.idGrupo.id} </h:outputLabel>
+                                            </dd>
+                                            <dt>Proceso: </dt>
+                                            <dd><h:outputLabel> #{instanciaUsuarioController.inst.idPeriodoGrupoProceso.idProceso.id} </h:outputLabel>
                                             </dd>
                                             <dd>
                                                 <p:commandButton value="Cancelar" label="Cancelar" onclick="infoInstanciaCerrada.hide()" icon="ui-icon-close"  title="Cancelar">
