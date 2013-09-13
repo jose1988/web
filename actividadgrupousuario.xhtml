@@ -286,7 +286,7 @@
 
                         </p:tabView>
                            <p:dialog id="dlgactividadPendiente"  header="Actividad" widgetVar="infoActividadPendiente">  
-
+                               <p:ajax event="close" update="@form" listener="#{gestionActividades.cambiarEstado}"/>
                                     <h:panelGroup id="actpendiente">
                                         <dl class="dl-horizontal">
                                             <dt>Id:</dt> 
@@ -310,7 +310,7 @@
                                             
                                               
                                             <dt>
-                                                <p:commandButton id="bo" update="@form" value="Cerrar" label="Cerrar" action="#{gestionActividades.cambiarEstado}"   icon="ui-icon-folder-open"  title="Cerrar">
+                                                <p:commandButton id="bo" update="@form" value="Cerrar" label="Cerrar" onclick="infoActividadPendiente.hide();" icon="ui-icon-folder-open"  title="Cerrar">
                                                     <f:setPropertyActionListener value="#{actividad}" target="#{gestionActividades.boton}"  />
                                                     
                                                 </p:commandButton>
@@ -359,7 +359,7 @@
 
 
                                 <p:dialog id="dlgactividadCola"  header="Actividad" widgetVar="infoActividadCola">  
-
+                                            <p:ajax event="close" update="@form" listener="#{gestionActividades.asignar}"/>
                                     <h:panelGroup id="actabierta">
                                         <dl class="dl-horizontal">
                                             <dt>Id:</dt> 
@@ -387,10 +387,8 @@
 
                                                 </p:commandButton> </dt>
                                             <dd>
+                                                 
                                                 
-                                                 <p:commandButton id="asignar" value="Aceptar" update=":fom:col" icon="ui-icon-search" action="#{gestionActividades.asignar}"   title="Ver">
-                                                         <f:setPropertyActionListener value="#{actividad}" target="#{gestionActividades.act}" />
-                                                 </p:commandButton>
                                                 
                                             </dd>
 
