@@ -21,7 +21,8 @@
         <c:if test="#{actividadesUsuarioController.verificarUsuarioId()}">
             <h:outputText value="#{actividadesUsuarioController.redireccionarUsuarioGrupo()}" />
         </c:if>
-        <p:idleMonitor timeout="180000">  
+        <h:outputText value="#{actividadesUsuarioController.listarActividades()}" />
+        <p:idleMonitor timeout="240000">  
             <p:ajax event="idle" listener="#{actividadesUsuarioController.cerrarPorInactividad}" />  
         </p:idleMonitor> 
         <p:growl id="mensajes" showDetail="true" sticky="true" life="6000" />

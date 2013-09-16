@@ -23,7 +23,8 @@
         <c:if test="#{actividadesPorInstanciaController.verificarInstancia()}">
             <h:outputText value="#{actividadesPorInstanciaController.Redireccionar()}" />
         </c:if>
-        <p:idleMonitor timeout="180000">  
+        <h:outputText value="#{actividadesPorInstanciaController.listarActividades()}" />
+        <p:idleMonitor timeout="240000">  
             <p:ajax event="idle" listener="#{actividadesPorInstanciaController.cerrarPorInactividad}" />  
         </p:idleMonitor> 
         <div class="row-fluid">
