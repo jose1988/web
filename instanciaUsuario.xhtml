@@ -17,7 +17,7 @@
         <c:if test="#{instanciaUsuarioController.verificarLogueo()}">
             <h:outputText value="#{instanciaUsuarioController.Redireccionar()}" />
         </c:if>
-        <p:idleMonitor timeout="180000">  
+        <p:idleMonitor timeout="240000">  
             <p:ajax event="idle" listener="#{instanciaUsuarioController.cerrarPorInactividad}" />  
         </p:idleMonitor>
         
@@ -83,10 +83,6 @@
                                         #{Instancia.referencia}
                                     </p:column>
                                     
-                                    <p:column headerText="Fecha Hasta del Periodo" style="width:  170px; #{instanciaUsuarioController.estiloAbierta(Instancia)}">
-                                        #{Instancia.idPeriodoGrupoProceso.idPeriodo.fechaHasta}
-                                    </p:column>
-
                                     <p:column headerText="Ver Información" style="width:  40px; text-align: center; #{instanciaUsuarioController.estiloAbierta(Instancia)}">
                                         <p:commandButton update="@form" icon="ui-icon-search"  oncomplete="infoInstanciaAbierta.show()"  title="Ver">
                                             <f:setPropertyActionListener value="#{Instancia}" target="#{instanciaUsuarioController.inst}" />
@@ -125,9 +121,6 @@
                                             <dt>Fecha de Cierre: </dt>
                                             <dd><h:outputLabel> #{instanciaUsuarioController.formatoFecha(instanciaUsuarioController.inst.fechaCierre)} </h:outputLabel>
                                             </dd>
-                                            <dt>Fecha Hasta:</dt>
-                                            <dd> <h:outputLabel> #{instanciaUsuarioController.formatoFecha(instanciaUsuarioController.inst.idPeriodoGrupoProceso.idPeriodo.fechaHasta)} </h:outputLabel>
-                                            </dd>
                                             <dt>Referencia: </dt>
                                             <dd><h:outputLabel> #{instanciaUsuarioController.inst.referencia} </h:outputLabel>
                                             </dd>
@@ -162,10 +155,6 @@
                                         #{Instancia.referencia}
                                     </p:column>
                                     
-                                    <p:column headerText="Fecha hasta del Periodo" style="width:  170px; #{instanciaUsuarioController.estiloCerrada(Instancia)}">
-                                        #{Instancia.idPeriodoGrupoProceso.idPeriodo.fechaHasta}
-                                    </p:column>
-
                                     <p:column headerText="Ver Información" style="width:  40px; text-align: center; #{instanciaUsuarioController.estiloCerrada(Instancia)}">
                                         <p:commandButton update="@form" icon="ui-icon-search"  oncomplete="infoInstanciaCerrada.show()"  title="Ver">
                                             <f:setPropertyActionListener value="#{Instancia}" target="#{instanciaUsuarioController.inst}" />
@@ -196,9 +185,6 @@
                                             </dd>
                                             <dt>Fecha de Cierre:</dt>
                                             <dd> <h:outputLabel> #{instanciaUsuarioController.formatoFecha(instanciaUsuarioController.inst.fechaCierre)} </h:outputLabel>
-                                            </dd>
-                                            <dt>Fecha Hasta:</dt>
-                                            <dd> <h:outputLabel> #{instanciaUsuarioController.formatoFecha(instanciaUsuarioController.inst.idPeriodoGrupoProceso.idPeriodo.fechaHasta)} </h:outputLabel>
                                             </dd>
                                             <dt>Referencia: </dt>
                                             <dd><h:outputLabel> #{instanciaUsuarioController.inst.referencia} </h:outputLabel>

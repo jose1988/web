@@ -17,7 +17,7 @@
         <c:if test="#{usuarioGrupoController.verificarLogueo()}">
             <h:outputText value="#{usuarioGrupoController.Redireccionar()}" />
         </c:if>
-        <p:idleMonitor timeout="180000">  
+        <p:idleMonitor timeout="240000">  
             <p:ajax event="idle" listener="#{usuarioGrupoController.cerrarPorInactividad}" />  
         </p:idleMonitor>
         
@@ -93,8 +93,14 @@
                                             <dt>Cédula: </dt>
                                             <dd><h:outputLabel> #{usuarioGrupoController.datosusuarios.cedula} </h:outputLabel>
                                             </dd>
+                                            <dt>Dirección: </dt>
+                                            <dd><h:outputLabel> #{usuarioGrupoController.datosusuarios.direccionPersonal} </h:outputLabel>
+                                            </dd>
                                             <dt>Estado: </dt>
                                             <dd><h:outputLabel> #{usuarioGrupoController.datosusuarios.estado} </h:outputLabel>
+                                            </dd>
+                                            <dt>Clasificación: </dt>
+                                            <dd><h:outputLabel> #{usuarioGrupoController.datosusuarios.idClasificacionUsuario.nombre} </h:outputLabel>
                                             </dd>
                                             <dd>
                                                 <p:commandButton value="Cancelar" label="Cancelar" onclick="infoUsuario.hide()" icon="ui-icon-close"  title="Cancelar">
