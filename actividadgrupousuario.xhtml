@@ -16,11 +16,11 @@
 
 
     <h:body>  
-         <c:if test="#{actividadesUsuarioController.verificarLogueo()}">
-            <h:outputText value="#{actividadesUsuarioController.Redireccionar()}" />
+         <c:if test="#{gestionActividades.verificarLogueo()}">
+            <h:outputText value="#{gestionActividades.Redireccionar()}" />
         </c:if>
          <p:idleMonitor timeout="240000">  
-            <p:ajax event="idle" listener="#{actividadesUsuarioController.cerrarPorInactividad}" />  
+            <p:ajax event="idle" listener="#{gestionActividades.cerrarPorInactividad}" />  
         </p:idleMonitor> 
         <div class="row">
             <div class="col-md-12">
