@@ -14,12 +14,13 @@
     </h:head>
 
     <h:body>
-        <c:if test="#{actividadController.verificarLogueo()}">
-            <h:outputText value="#{actividadController.Redireccionar()}" />
+        <c:if test="#{usuarioGrupoController.verificarLogueo()}">
+            <h:outputText value="#{usuarioGrupoController.Redireccionar()}" />
         </c:if>
         <p:idleMonitor timeout="240000">  
-            <p:ajax event="idle" listener="#{actividadController.cerrarPorInactividad}" />  
+            <p:ajax event="idle" listener="#{usuarioGrupoController.cerrarPorInactividad}" />  
         </p:idleMonitor>
+        
         <div class="row">
             <div class="col-md-12">
                 <h:graphicImage value="/recursos/images/pangea.jpg"  width="400" height="90"></h:graphicImage> 
