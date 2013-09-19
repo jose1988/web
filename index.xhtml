@@ -10,14 +10,10 @@
         <meta name="description" content=""/>
         <meta name="author" content=""/>
         <h:outputStylesheet name="../recursos/css/InicioSesion.css"/>
-
     </h:head>
-
-
     <h:body>  
-
+        <!--  Growl en el cual se mostraran los mensajes en el caso de que no pueda acceder al sistema  -->
         <p:growl id="mensajes" showDetail="true"  life="6000" />
-
         <div class="container" align="center">
             <h:form class="form-signin" prependId="false">
                 <h3 class="form-signin-heading">Por favor, inicie sesión</h3>
@@ -25,6 +21,7 @@
                 <p:watermark for="usuario" value="Usuario" /> 
                 <p:password id="pass" value="#{logIntOutController.contrasena}"   maxlength="19" title="Ingrese la contraseña"/>
                 <p:watermark for="pass" value="Contraseña" /><br></br>
+                <!-- Botón en el cual se hara el llamado al controller para verificar el logueo del usuario , como tambien se actualizara el growl para mostrar mensajes en el caso de que no pueda acceder -->
                 <p:commandButton   actionListener="#{logIntOutController.logeoInt}" update=":mensajes"  value="Iniciar Sesión"/> 
             </h:form>
 
