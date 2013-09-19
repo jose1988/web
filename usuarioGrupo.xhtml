@@ -14,9 +14,12 @@
     </h:head>
 
     <h:body>
+        <!-- Se realiza la llamada a los métodos en donde se verifica el logueo del usuario -->
         <c:if test="#{usuarioGrupoController.verificarLogueo()}">
             <h:outputText value="#{usuarioGrupoController.Redireccionar()}" />
         </c:if>
+        
+        <!-- Se realiza la llamada al método en donde se cierra la sesión si han pasado 4 minutos y esta inactiva -->
         <p:idleMonitor timeout="240000">  
             <p:ajax event="idle" listener="#{usuarioGrupoController.cerrarPorInactividad}" />  
         </p:idleMonitor>
@@ -50,9 +53,11 @@
         
         <div class="col-md-12">
             <h:form id="fom"  prependId="false">
+                <!-- Tabla en la que se muestra la lista de usuarios para el grupo que se seleccione -->                            
                     <h:panelGroup id="paneltablaUsuarios">
                         <p:tabView id="tabView" activeIndex="#{usuarioGrupoController.indice}" var="grupo" dynamic="true" cache="false" value="#{usuarioGrupoController.grupos}" >  
-                           <p:ajax event="tabChange" listener="#{usuarioGrupoController.onTabChange}"  update="@this"/>  
+                           <!-- Evento que carga en un menú los grupos cargados en la base de datos permitiendo listar los usuarios de cada grupo  -->
+                            <p:ajax event="tabChange" listener="#{usuarioGrupoController.onTabChange}"  update="@this"/>  
                             <p:tab  title="#{grupo.nombre}">
                               <h:panelGroup id="panelUsuarios">
                                 <p:dataTable var="usuarios" value="#{usuarioGrupoController.grupoUsuarios}"  paginator="true" rows="7">
@@ -65,12 +70,14 @@
                                         #{usuarios.idUsuario.id}
                                     </p:column>
                                    
+                                    <!-- Botón que llama al diálogo en el cual se carga la información de la instancia seleccionada -->                                    
                                     <p:column headerText="Ver Información">
                                         <p:commandButton update="@form" icon="ui-icon-search"  oncomplete="infoUsuario.show()"  title="Ver" action="#{usuarioGrupoController.verDatosUsuario}">
                                             <f:setPropertyActionListener value="#{usuarios}" target="#{usuarioGrupoController.grup}" />
                                         </p:commandButton>
                                     </p:column>
                                     
+                                    <!-- Botón que llama al método que envia a la página actividadesPorUsuario.xhtml en la cual se listan las actividades dependiendo del usuario seleccionado y al grupo al que pertenezcan -->
                                     <p:column headerText="Ver Actividades">
                                         <p:commandButton update="@form" icon="ui-icon-link" action="#{usuarioGrupoController.verActividadesUsuario}" title="Ir a Actividades" >
                                             <f:setPropertyActionListener value="#{usuarios}" target="#{usuarioGrupoController.grup}" />
@@ -78,6 +85,7 @@
                                     </p:column>                            
                                 </p:dataTable>
                                   
+                                  <!-- Diálogo que muestra la información del usuario seleccionado -->
                                   <p:dialog id="dlgUsuario"  header="Usuario" widgetVar="infoUsuario">  
                                     <h:panelGroup id="infUsuario">
                                         <dl class="dl-horizontal">

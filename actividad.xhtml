@@ -14,9 +14,12 @@
     </h:head>
 
     <h:body>
+        <!-- Se realiza la llamada a los métodos en donde se verifica el logueo del usuario -->
         <c:if test="#{usuarioGrupoController.verificarLogueo()}">
             <h:outputText value="#{usuarioGrupoController.Redireccionar()}" />
         </c:if>
+        
+        <!-- Se realiza la llamada al método en donde se cierra la sesión si han pasado 4 minutos y esta inactiva -->
         <p:idleMonitor timeout="240000">  
             <p:ajax event="idle" listener="#{usuarioGrupoController.cerrarPorInactividad}" />  
         </p:idleMonitor>
@@ -53,6 +56,7 @@
                 <div class="col-md-12"> 
                     <p:tabView dynamic="false" >
                         <p:tab title="Actividades Pendientes">
+                            <!-- Tabla en la que se muestra la lista de actividades con el estado pendiente -->
                             <h:panelGroup id="paneltablaAbierta">
                                 <p:dataTable var="actividad" value="#{actividadController.actividades}"  paginator="true" rows="7">
 
@@ -68,12 +72,14 @@
                                         #{actividad.idTarea.nombre}
                                     </p:column>
 
+                                    <!-- Botón que llama al diálogo en el cual se carga la información de la actividad seleccionada -->
                                     <p:column headerText="Ver Información">
                                         <p:commandButton update="@form" icon="ui-icon-search"  oncomplete="infoActividad.show()"  title="Ver">
                                             <f:setPropertyActionListener value="#{actividad}" target="#{actividadController.act}" />
                                         </p:commandButton>
                                     </p:column>
-
+                                    
+                                    <!-- Botón que llama al método que envia a la página asignarActividad.xhtml en la cual se listan los usuarios a los que se le puede asignar la actividad seleccionada -->                                    
                                     <p:column headerText="Asignar Actividades">
                                         <p:commandButton update="@form" icon="ui-icon-link" action="#{actividadController.actividadAsignar}" >
                                             <f:setPropertyActionListener value="#{actividad}" target="#{actividadController.act}" />
@@ -82,6 +88,7 @@
 
                                 </p:dataTable>
 
+                                <!-- Diálogo que muestra la información de la actividad seleccionada -->
                                 <p:dialog id="dlgactividadAbierta"  header="Actividad" widgetVar="infoActividad">  
                                     <h:panelGroup id="actabierta">
                                         <dl class="dl-horizontal">
