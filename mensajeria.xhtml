@@ -124,11 +124,16 @@
 
                                     <p:column headerText="Ver Información" style="width:  20px; text-align: center; #{mensajeriaController.sombreado(mail)}">
 
-                                        <p:commandButton id="verinfo" update=":fom:mailVista" icon="ui-icon-search"  title="Ver">
+                                        <p:commandButton id="verinfo" update=":fom" icon="ui-icon-search"   title="Ver">
                                             <f:setPropertyActionListener value="#{mail}" target="#{mensajeriaController.mail}" />
                                         </p:commandButton>
                                     </p:column>
-                                 
+                                   <p:column headerText="Eliminar" style="width:  20px; text-align: center;">
+
+                                        <p:commandButton id="eliminar" update=":fom" icon="ui-icon-search" action="#{mensajeriaController.mensajeelimimar}" title="Eliminar">
+                                            <f:setPropertyActionListener value="#{mail}" target="#{mensajeriaController.mail}" />
+                                        </p:commandButton>
+                                    </p:column>
 
 
                                 </p:dataTable>
@@ -161,11 +166,16 @@
 
                                     <p:column headerText="Ver Información" style="width:  20px; text-align: center;">
 
-                                        <p:commandButton id="verinfo" update=":fom:mailVista" icon="ui-icon-search"  title="Ver">
+                                        <p:commandButton id="verinfo" update=":fom" icon="ui-icon-search"  title="Ver">
                                             <f:setPropertyActionListener value="#{mail}" target="#{mensajeriaController.mail}" />
                                         </p:commandButton>
                                     </p:column>
-                                 
+                                    <p:column headerText="Eliminar" style="width:  20px; text-align: center;">
+
+                                        <p:commandButton id="eliminar" update=":fom" icon="ui-icon-search" action="#{mensajeriaController.mensajeelimimar}" title="Eliminar">
+                                            <f:setPropertyActionListener value="#{mail}" target="#{mensajeriaController.mail}" />
+                                        </p:commandButton>
+                                    </p:column>
 
 
                                 </p:dataTable>
@@ -197,11 +207,16 @@
 
                                     <p:column headerText="Ver Información" style="width:  20px; text-align: center;">
 
-                                        <p:commandButton id="verinfo" update=":fom:mailVista" icon="ui-icon-search"  title="Ver">
+                                        <p:commandButton id="verinfo" update=":fom" icon="ui-icon-search"  title="Ver">
                                             <f:setPropertyActionListener value="#{mail}" target="#{mensajeriaController.mail}" />
                                         </p:commandButton>
                                     </p:column>
-                                 
+                                  <p:column headerText="Eliminar" style="width:  20px; text-align: center;">
+
+                                        <p:commandButton id="eliminar" update=":fom" icon="ui-icon-search" action="#{mensajeriaController.mensajeelimimar}" title="Eliminar">
+                                            <f:setPropertyActionListener value="#{mail}" target="#{mensajeriaController.mail}" />
+                                        </p:commandButton>
+                                    </p:column>
 
 
                                 </p:dataTable>
@@ -234,11 +249,16 @@
 
                                     <p:column headerText="Ver Información" style="width:  20px; text-align: center;">
 
-                                        <p:commandButton id="verinfo" update=":fom:mailVista" icon="ui-icon-search"  title="Ver">
+                                        <p:commandButton id="verinfo" update=":fom" icon="ui-icon-search"  title="Ver">
                                             <f:setPropertyActionListener value="#{mail}" target="#{mensajeriaController.mail}" />
                                         </p:commandButton>
                                     </p:column>
-                                 
+                                  <p:column headerText="Eliminar" style="width:  20px; text-align: center;">
+
+                                      <p:commandButton id="eliminar" update=":fom" icon="ui-icon-search" action="#{mensajeriaController.mensajeelimimar}"  title="Eliminar">
+                                            <f:setPropertyActionListener value="#{mail}" target="#{mensajeriaController.mail}" />
+                                        </p:commandButton>
+                                    </p:column>
 
 
                                 </p:dataTable>
