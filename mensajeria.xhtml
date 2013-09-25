@@ -102,14 +102,14 @@
 
 
 
-                    <h:panelGroup id="paneltablaAbierta" rendered="#{mensajeriaController.estadoSeleccionado eq 'Recibidos'}">
+                    <h:panelGroup id="paneltablaRecibidos" rendered="#{mensajeriaController.estadoSeleccionado eq 'Recibidos'}">
                         <p:tabView id="tabView">  
                            
                             <p:tab  title="#{mensajeriaController.estadoSeleccionado}">  
-                                <p:dataTable var="mail" value="#{mensajeriaController.mails}"  paginator="true" rows="7">
+                                <p:dataTable var="mail" value="#{mensajeriaController.mails}"  paginator="true" rows="5">
 
                                  
-                                    <p:column  headerText="Para:"  style="width:  20px; text-align: center; #{gestionActividades.sombreado(mail)}">
+                                    <p:column  headerText="Para:"  style="width:  20px; text-align: center; #{mensajeriaController.sombreado(mail)}">
                                          #{mail.para}
                                        
                                     </p:column>
@@ -124,11 +124,16 @@
 
                                     <p:column headerText="Ver Información" style="width:  20px; text-align: center; #{mensajeriaController.sombreado(mail)}">
 
-                                        <p:commandButton id="verinfo" update=":fom:mailVista" icon="ui-icon-search"  title="Ver">
+                                        <p:commandButton id="verinfo" update=":fom" icon="ui-icon-search"   title="Ver">
                                             <f:setPropertyActionListener value="#{mail}" target="#{mensajeriaController.mail}" />
                                         </p:commandButton>
                                     </p:column>
-                                 
+                                   <p:column headerText="Eliminar" style="width:  20px; text-align: center;">
+
+                                        <p:commandButton id="eliminar" update=":fom" icon="ui-icon-search" action="#{mensajeriaController.mensajeelimimar}" title="Eliminar">
+                                            <f:setPropertyActionListener value="#{mail}" target="#{mensajeriaController.mail}" />
+                                        </p:commandButton>
+                                    </p:column>
 
 
                                 </p:dataTable>
@@ -139,8 +144,130 @@
                         </p:tabView>
                     </h:panelGroup>
                     
-                 
+                   <h:panelGroup id="paneltablaEnviados" rendered="#{mensajeriaController.estadoSeleccionado eq 'Enviados'}">
+                        <p:tabView id="tabView2">  
+                           
+                            <p:tab  title="#{mensajeriaController.estadoSeleccionado}">  
+                                <p:dataTable var="mail" value="#{mensajeriaController.mails}"  paginator="true" rows="5">
 
+                                 
+                                    <p:column  headerText="Para:"  style="width:  20px; text-align: center; ">
+                                         #{mail.para}
+                                       
+                                    </p:column>
+
+                                    <p:column headerText="Asunto:" style="width:  20px; text-align: center;">
+                                        #{mail.asunto}
+                                    </p:column>
+
+                                    <p:column headerText="Fecha" style="width:  20px; text-align: center; ">
+                                       #{mensajeriaController.formatoFecha(mail.fecha)}
+                                    </p:column>
+
+                                    <p:column headerText="Ver Información" style="width:  20px; text-align: center;">
+
+                                        <p:commandButton id="verinfo" update=":fom" icon="ui-icon-search"  title="Ver">
+                                            <f:setPropertyActionListener value="#{mail}" target="#{mensajeriaController.mail}" />
+                                        </p:commandButton>
+                                    </p:column>
+                                    <p:column headerText="Eliminar" style="width:  20px; text-align: center;">
+
+                                        <p:commandButton id="eliminar" update=":fom" icon="ui-icon-search" action="#{mensajeriaController.mensajeelimimar}" title="Eliminar">
+                                            <f:setPropertyActionListener value="#{mail}" target="#{mensajeriaController.mail}" />
+                                        </p:commandButton>
+                                    </p:column>
+
+
+                                </p:dataTable>
+
+
+                            </p:tab>
+
+                        </p:tabView>
+                    </h:panelGroup>
+                        <h:panelGroup id="paneltablaPapelera" rendered="#{mensajeriaController.estadoSeleccionado eq 'Papelera'}">
+                        <p:tabView id="tabView3">  
+                           
+                            <p:tab  title="#{mensajeriaController.estadoSeleccionado}">  
+                                <p:dataTable var="mail" value="#{mensajeriaController.mails}"  paginator="true" rows="5">
+
+                                 
+                                    <p:column  headerText="Para:"  style="width:  20px; text-align: center; ">
+                                         #{mail.para}
+                                       
+                                    </p:column>
+
+                                    <p:column headerText="Asunto:" style="width:  20px; text-align: center;">
+                                        #{mail.asunto}
+                                    </p:column>
+
+                                    <p:column headerText="Fecha" style="width:  20px; text-align: center; ">
+                                       #{mensajeriaController.formatoFecha(mail.fecha)}
+                                    </p:column>
+
+                                    <p:column headerText="Ver Información" style="width:  20px; text-align: center;">
+
+                                        <p:commandButton id="verinfo" update=":fom" icon="ui-icon-search"  title="Ver">
+                                            <f:setPropertyActionListener value="#{mail}" target="#{mensajeriaController.mail}" />
+                                        </p:commandButton>
+                                    </p:column>
+                                  <p:column headerText="Eliminar" style="width:  20px; text-align: center;">
+
+                                        <p:commandButton id="eliminar" update=":fom" icon="ui-icon-search" action="#{mensajeriaController.mensajeelimimar}" title="Eliminar">
+                                            <f:setPropertyActionListener value="#{mail}" target="#{mensajeriaController.mail}" />
+                                        </p:commandButton>
+                                    </p:column>
+
+
+                                </p:dataTable>
+
+
+                            </p:tab>
+
+                        </p:tabView>
+                    </h:panelGroup>
+                        
+                     <h:panelGroup id="paneltablaPersonal" rendered="#{mensajeriaController.estadoSeleccionado ne 'Papelera' and mensajeriaController.estadoSeleccionado ne 'Enviados' and mensajeriaController.estadoSeleccionado ne 'Recibidos'}">
+                        <p:tabView id="tabView4">  
+                           
+                            <p:tab  title="#{mensajeriaController.estadoSeleccionado}">  
+                                <p:dataTable var="mail" value="#{mensajeriaController.mails}"  paginator="true" rows="5">
+
+                                 
+                                    <p:column  headerText="Para:"  style="width:  20px; text-align: center; ">
+                                         #{mail.para}
+                                       
+                                    </p:column>
+
+                                    <p:column headerText="Asunto:" style="width:  20px; text-align: center;">
+                                        #{mail.asunto}
+                                    </p:column>
+
+                                    <p:column headerText="Fecha" style="width:  20px; text-align: center; ">
+                                       #{mensajeriaController.formatoFecha(mail.fecha)}
+                                    </p:column>
+
+                                    <p:column headerText="Ver Información" style="width:  20px; text-align: center;">
+
+                                        <p:commandButton id="verinfo" update=":fom" icon="ui-icon-search"  title="Ver">
+                                            <f:setPropertyActionListener value="#{mail}" target="#{mensajeriaController.mail}" />
+                                        </p:commandButton>
+                                    </p:column>
+                                  <p:column headerText="Eliminar" style="width:  20px; text-align: center;">
+
+                                      <p:commandButton id="eliminar" update=":fom" icon="ui-icon-search" action="#{mensajeriaController.mensajeelimimar}"  title="Eliminar">
+                                            <f:setPropertyActionListener value="#{mail}" target="#{mensajeriaController.mail}" />
+                                        </p:commandButton>
+                                    </p:column>
+
+
+                                </p:dataTable>
+
+
+                            </p:tab>
+
+                        </p:tabView>
+                    </h:panelGroup>
 
                 </div> 
                 <div class="col-md-12">
@@ -156,7 +283,7 @@
                                  <h:panelGroup id="actabierta">
                                         <dl class="dl-horizontal">
                                             <dt>Id:</dt> 
-                                            <dd> <h:outputText value="#{mensajeriaController.mail.de}" rendered="#{not empty loginController.mail}" />
+                                            <dd> <h:outputText value="#{mensajeriaController.mail.de}" rendered="#{not empty mensajeriaController.mail}" />
                                             </dd>
                                             <dt>Estado:</dt>
                                             <dd> <h:outputLabel> #{mensajeriaController.mail.de} </h:outputLabel>
