@@ -4,7 +4,8 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:c="http://java.sun.com/jsp/jstl/core">
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
     <h:head>
         <title>Pangea Flow</title>
 
@@ -16,10 +17,10 @@
 
 
     <h:body>  
-         <c:if test="#{gestionActividades.verificarLogueo()}">
+        <c:if test="#{gestionActividades.verificarLogueo()}">
             <h:outputText value="#{gestionActividades.Redireccionar()}" />
         </c:if>
-         <p:idleMonitor timeout="240000">  
+        <p:idleMonitor timeout="240000">  
             <p:ajax event="idle" listener="#{gestionActividades.cerrarPorInactividad}" />  
         </p:idleMonitor> 
         <div class="row">
@@ -46,9 +47,9 @@
                         </ul>
 
                         <ul class="nav navbar-nav navbar-right">
-                                <li><a href="cierreSesion.xhtml"  >Cerrar Sesión</a></li>
+                            <li><a href="cierreSesion.xhtml"  >Cerrar Sesión</a></li>
 
-                            </ul>
+                        </ul>
                     </div><!-- /.navbar-collapse -->
                 </nav>      
             </div>
@@ -61,7 +62,7 @@
             <h:form id="fom"  prependId="false">
                 <div class="col-md-2 well" >
                     <div class="row">
-                       
+
                         <div class="col-md-12" > 
                             <p:growl id="messages" showDetail="true" />  
 
@@ -103,321 +104,104 @@
 
 
                     <h:panelGroup id="paneltablaAbierta" rendered="#{gestionActividades.estadoSeleccionado eq 'abierta'}">
-                        <p:tabView id="tabView" activeIndex="#{gestionActividades.indice}" var="grupo" dynamic="true" cache="false" value="#{gestionActividades.grupos}" >  
-                            <p:ajax event="tabChange" listener="#{gestionActividades.onTabChange}"  update="@this"/>  
-                            <p:tab  title="#{grupo.nombre}">  
-                                <p:dataTable var="actividad" value="#{gestionActividades.actividades}"  paginator="true" rows="7">
+                        <p:toolbar>  
+                            <p:toolbarGroup align="left">  
+                                <ui:repeat var="grupo" value="#{gestionActividades.grupos}" >
+                                    <p:commandButton value="#{grupo.nombre}" update=":fom:central"  icon="ui-icon-document" actionListener="#{gestionActividades.botonActivado(grupo.nombre)}" />  
+                                </ui:repeat>
+                            </p:toolbarGroup>
 
-                                 
-                                    <p:column  headerText="Id Actividad"  style="width:  20px; text-align: center; #{gestionActividades.sombreado(actividad)}">
-                                        #{actividad.id}
-                                       
-                                    </p:column>
+                        </p:toolbar>
 
-                                    <p:column headerText="Duracion" style="width:  20px; text-align: center; #{gestionActividades.sombreado(actividad)}">
-                                        #{actividad.duracion}
-                                    </p:column>
+                        <h:panelGroup id="central" >
 
-                                    <p:column headerText="Id Tarea" style="width:  20px; text-align: center; #{gestionActividades.sombreado(actividad)}">
-                                        #{actividad.idTarea.nombre}
-                                    </p:column>
-
-                                    <p:column headerText="Ver Información" style="width:  20px; text-align: center; #{gestionActividades.sombreado(actividad)}">
-
-                                        <p:commandButton id="verinfo" update=":fom" icon="ui-icon-search"  oncomplete="infoActividadAbierta.show()"  title="Ver">
-                                            <f:setPropertyActionListener value="#{actividad}" target="#{gestionActividades.act}" />
-                                        </p:commandButton>
-
-                                    </p:column>
-                                     <p:column headerText="Pendiente" style="width:  20px; text-align: center; #{gestionActividades.sombreado(actividad)}">
-
-                                         <p:commandButton update=":fom" icon="ui-icon-arrow-2-e-w" action="#{gestionActividades.cambiarEstadoPendiente}" title="aceptar">
-                                                   
-                                            <f:setPropertyActionListener value="#{actividad}" target="#{gestionActividades.act}" />
-
-                                        </p:commandButton>
-                                         
-                                     </p:column>
+                            <p:dataTable var="actividad" value="#{gestionActividades.actividades}"  paginator="true" rows="7" >
 
 
-                                </p:dataTable>
+                                <p:column  headerText="Id Actividad"  style="width:  20px; text-align: center;  ">
+                                    #{actividad.id}
+
+                                </p:column>
+
+                                <p:column headerText="Duracion" style="width:  20px; text-align: center;  ">
+                                    #{actividad.duracion}
+                                </p:column>
+
+                                <p:column headerText="Id Tarea" style="width:  20px; text-align: center;  ">
+                                    #{actividad.idTarea.nombre}
+                                </p:column>
+
+                                <p:column headerText="Ver Información" style="width:  20px; text-align: center;  ">
+
+                                    <p:commandButton id="verinfo" update=":fom" icon="ui-icon-search"  oncomplete="infoActividadAbierta.show()"  title="Ver">
+                                        <f:setPropertyActionListener value="#{actividad}" target="#{gestionActividades.act}" />
+                                    </p:commandButton>
+
+                                </p:column>
+                                <p:column headerText="Pendiente" style="width:  20px; text-align: center;  ">
+
+                                    <p:commandButton update=":fom" icon="ui-icon-arrow-2-e-w" action="#{gestionActividades.cambiarEstadoPendiente}" title="aceptar">
+
+                                        <f:setPropertyActionListener value="#{actividad}" target="#{gestionActividades.act}" />
+
+                                    </p:commandButton>
+
+                                </p:column>
+
+
+                            </p:dataTable>
 
 
 
-                                <p:dialog id="dlgactividadAbierta"  header="Actividad" widgetVar="infoActividadAbierta">  
+                            <p:dialog id="dlgactividadAbierta"  header="Actividad" widgetVar="infoActividadAbierta">  
 
-                                    <h:panelGroup id="actabierta">
-                                        <dl class="dl-horizontal">
-                                            <dt>Id:</dt> 
-                                            <dd><h:outputText value="#{gestionActividades.act.id}" rendered="#{not empty gestionActividades.actividades}" />
-                                            </dd>
-                                            <dt>Estado:</dt>
-                                            <dd> <h:outputLabel> #{gestionActividades.act.estado} </h:outputLabel>
-                                            </dd>
-                                            <dt>Duracion:</dt>
-                                            <dd><h:outputLabel> #{gestionActividades.act.duracion} </h:outputLabel>
-                                            </dd>
-                                            <dt>Fecha de asignacion: </dt>
-                                            <dd>  <h:outputLabel> #{gestionActividades.formatoFecha(gestionActividades.act.fechaAsignacion)} </h:outputLabel>
-                                            </dd>
-                                            <dt>Fecha de apertura :</dt>
-                                            <dd><h:outputLabel> #{gestionActividades.formatoFecha(gestionActividades.act.fechaApertura)} </h:outputLabel>
-                                            </dd>
-                                            <dt>Fecha de alerta:  </dt>
-                                            <dd> <h:outputLabel> #{gestionActividades.formatoFecha(gestionActividades.act.fechaAlerta)} </h:outputLabel>
-                                            </dd>
-                                            
-                                            <dt>tarea:  </dt>
-                                            <dd> <h:outputLabel>#{gestionActividades.act.idTarea.nombre} </h:outputLabel>
-                                            </dd>
-                                            <dt>Usuario: </dt>
-                                            <dd><h:outputLabel> #{gestionActividades.act.idUsuario.id} </h:outputLabel>
-                                            </dd>
-                                            <dt>Prioridad:</dt> 
-                                            <dd> <h:outputLabel> #{gestionActividades.act.idPrioridad.nombre} </h:outputLabel>
-                                            </dd>
-                                            <dt>Instancia: </dt>
-                                            <dd> <h:outputLabel> #{gestionActividades.act.idInstancia.descripcion} </h:outputLabel>
-                                            </dd>
-                                            <dt> 
-                                                <p:commandButton value="Cerrar" label="Cerrar" onclick="infoActividadAbierta.hide();" icon="ui-icon-remove"  title="Cerrar">
+                                <h:panelGroup id="actabierta">
+                                    <dl class="dl-horizontal">
+                                        <dt>Id:</dt> 
+                                        <dd><h:outputText value="#{gestionActividades.act.id}"  />
+                                        </dd>
+                                        <dt>Estado:</dt>
+                                        <dd> <h:outputLabel> #{gestionActividades.act.estado} </h:outputLabel>
+                                        </dd>
+                                        <dt>Duracion:</dt>
+                                        <dd><h:outputLabel> #{gestionActividades.act.duracion} </h:outputLabel>
+                                        </dd>
+                                        <dt>Fecha de asignacion: </dt>
+                                        <dd>  <h:outputLabel> #{gestionActividades.formatoFecha(gestionActividades.act.fechaAsignacion)} </h:outputLabel>
+                                        </dd>
+                                        <dt>Fecha de apertura :</dt>
+                                        <dd><h:outputLabel> #{gestionActividades.formatoFecha(gestionActividades.act.fechaApertura)} </h:outputLabel>
+                                        </dd>
+                                        <dt>Fecha de alerta:  </dt>
+                                        <dd> <h:outputLabel> #{gestionActividades.formatoFecha(gestionActividades.act.fechaAlerta)} </h:outputLabel>
+                                        </dd>
 
-                                                </p:commandButton> </dt>
+                                        <dt>tarea:  </dt>
+                                        <dd> <h:outputLabel>#{gestionActividades.act.idTarea.nombre} </h:outputLabel>
+                                        </dd>
+                                        <dt>Usuario: </dt>
+                                        <dd><h:outputLabel> #{gestionActividades.act.idUsuario.id} </h:outputLabel>
+                                        </dd>
+                                        <dt>Prioridad:</dt> 
+                                        <dd> <h:outputLabel> #{gestionActividades.act.idPrioridad.nombre} </h:outputLabel>
+                                        </dd>
+                                        <dt>Instancia: </dt>
+                                        <dd> <h:outputLabel> #{gestionActividades.act.idInstancia.descripcion} </h:outputLabel>
+                                        </dd>
+                                        <dt> 
+                                            <p:commandButton value="Cerrar" label="Cerrar" onclick="infoActividadAbierta.hide();" icon="ui-icon-remove"  title="Cerrar">
+
+                                            </p:commandButton> </dt>
 
 
-                                        </dl>
-                                    </h:panelGroup>
-                                </p:dialog>
+                                    </dl>
+                                </h:panelGroup>
+                            </p:dialog>
 
-                            </p:tab>
-
-                        </p:tabView>
+                        </h:panelGroup>
                     </h:panelGroup>
-                    
-                    <h:panelGroup id="paneltablaCerrada" rendered="#{gestionActividades.estadoSeleccionado eq 'cerrada'}" >
-
-                        <p:tabView id="tabView3" var="grupo" activeIndex="#{gestionActividades.indice}" dynamic="true" cache="false" value="#{gestionActividades.grupos}" >  
-                            <p:ajax event="tabChange" listener="#{gestionActividades.onTabChange}"  update="@this"/>  
-                            <p:tab  title="#{grupo.nombre}">  
-                                <p:dataTable var="actividad" value="#{gestionActividades.actividades}"  paginator="true" rows="7">
-
-                                    <p:column headerText="Id Actividad" style="width:  20px; text-align: center; #{gestionActividades.sombreadoc(actividad)}">
-                                        #{actividad.id}
-                                    </p:column>
-
-                                    <p:column headerText="Duracion" style="width:  20px; text-align: center; #{gestionActividades.sombreadoc(actividad)}">
-                                        #{actividad.duracion}
-                                    </p:column>
-
-                                    <p:column headerText="Id Tarea" style="width:  20px; text-align: center; #{gestionActividades.sombreadoc(actividad)}">
-                                        #{actividad.idTarea.nombre}
-                                    </p:column>
-
-                                    <p:column headerText="Ver Información" style="width:  20px; text-align: center; #{gestionActividades.sombreadoc(actividad)}">
-
-                                        <p:commandButton icon="ui-icon-search" id="verinfo" onclick="infoActividadCerrada.show()" type="button" title="Ver"/>
-
-                                    </p:column>
 
 
-                                </p:dataTable>
-                            </p:tab>
-                        </p:tabView>
-                                <p:dialog id="dlgactividadCerrada"  header="Actividad" widgetVar="infoActividadCerrada" >  
-                                    <h:panelGroup id="actabierta">
-                                        <dl class="dl-horizontal">
-                                            <dt>Id:</dt> 
-                                            <dd><h:outputText value="#{gestionActividades.act.id}" rendered="#{not empty gestionActividades.actividades}" />
-                                            </dd>
-                                            <dt>Estado:</dt>
-                                            <dd> <h:outputLabel> #{gestionActividades.act.estado} </h:outputLabel>
-                                            </dd>
-                                            <dt>Duracion:</dt>
-                                            <dd><h:outputLabel> #{gestionActividades.act.duracion} </h:outputLabel>
-                                            <dt>Fecha de asignacion: </dt>
-                                            <dd>  <h:outputLabel> #{gestionActividades.formatoFecha(gestionActividades.act.fechaAsignacion)} </h:outputLabel>
-                                            </dd>
-                                            <dt>Fecha de apertura :</dt>
-                                            <dd><h:outputLabel> #{gestionActividades.formatoFecha(gestionActividades.act.fechaApertura)} </h:outputLabel>
-                                            </dd>
-                                            <dt>Fecha de alerta:  </dt>
-                                            <dd> <h:outputLabel> #{gestionActividades.formatoFecha(gestionActividades.act.fechaAlerta)} </h:outputLabel>
-                                            </dd>
-                                            <dt>Fecha de cierre:</dt>
-                                            <dd>  <h:outputLabel> #{gestionActividades.formatoFecha(gestionActividades.act.fechaCierre)} </h:outputLabel>
-                                            </dd>
-                                            </dd>
-                                            <dt>tarea:  </dt>
-                                            <dd> <h:outputLabel>#{gestionActividades.act.idTarea.nombre} </h:outputLabel>
-                                            </dd>
-                                            <dt>Prioridad:</dt> 
-                                            <dd> <h:outputLabel> #{gestionActividades.act.idPrioridad.nombre} </h:outputLabel>
-                                            </dd>
-                                            <dt>Instancia: </dt>
-                                            <dd> <h:outputLabel> #{gestionActividades.act.idInstancia.descripcion} </h:outputLabel>
-                                            </dd>
-                                           
-                                            <dt>
-                                                <p:commandButton value="Cerrar" label="Cerrar" onclick="infoActividadCerrada.hide();" icon="ui-icon-remove"  title="Cerrar">
-
-                                                </p:commandButton> </dt>
-
-
-                                        </dl>
-                                    </h:panelGroup>
-                                </p:dialog>
-                            </h:panelGroup>
-                    
-                    
-                     <h:panelGroup id="paneltablaPendiente" rendered="#{gestionActividades.estadoSeleccionado eq 'pendiente'}">
-                         <p:tabView id="tabView2" var="grupo" activeIndex="#{gestionActividades.indice}" dynamic="true" cache="false" value="#{gestionActividades.grupos}" >  
-                           <p:ajax event="tabChange" listener="#{gestionActividades.onTabChange}"  update="@this"/>  
-                            <p:tab  title="#{grupo.nombre}">  
-
-                                <p:dataTable var="actividad" value="#{gestionActividades.actividades}"  paginator="true" rows="7">
-
-                                    <p:column headerText="Id Actividad" style="width:  20px; text-align: center; #{gestionActividades.sombreado(actividad)}">
-                                        #{actividad.id}
-                                    </p:column>
-
-                                    <p:column headerText="Duracion" style="width:  20px; text-align: center; #{gestionActividades.sombreado(actividad)}">
-                                        #{actividad.duracion}
-                                    </p:column>
-
-                                    <p:column headerText="Id Tarea" style="width:  20px; text-align: center; #{gestionActividades.sombreado(actividad)}">
-                                        #{actividad.idTarea.nombre}
-                                    </p:column>
-
-                                  <p:column headerText="Ver Información" style="width:  20px; text-align: center; #{gestionActividades.sombreado(actividad)}">
-
-                                        <p:commandButton id="verinfo" update="@form" icon="ui-icon-search"  oncomplete="infoActividadPendiente.show()"  title="Ver">
-                                            <f:setPropertyActionListener value="#{actividad}" target="#{gestionActividades.act}" />
-                                        </p:commandButton>
-
-                                    </p:column>
-
-                                   
-
-                                </p:dataTable>
-                             </p:tab>
-
-                        </p:tabView>
-                           <p:dialog id="dlgactividadPendiente"  header="Actividad" widgetVar="infoActividadPendiente">  
-                               <p:ajax event="close" update="@form" listener="#{gestionActividades.cambiarEstado}"/>
-                                    <h:panelGroup id="actpendiente">
-                                        <dl class="dl-horizontal">
-                                            <dt>Id:</dt> 
-                                            <dd><h:outputText value="#{gestionActividades.act.id}" rendered="#{not empty gestionActividades.actividades}" />
-                                            </dd>
-                                            <dt>Estado:</dt>
-                                            <dd> <h:outputLabel> #{gestionActividades.act.estado} </h:outputLabel>
-                                            </dd>
-                                            <dt>Duracion:</dt>
-                                            <dd><h:outputLabel> #{gestionActividades.act.duracion} </h:outputLabel>
-                                            </dd>
-                                            <dt>tarea:  </dt>
-                                            <dd> <h:outputLabel>#{gestionActividades.act.idTarea.nombre} </h:outputLabel>
-                                            </dd>
-                                            <dt>Prioridad:</dt> 
-                                            <dd> <h:outputLabel> #{gestionActividades.act.idPrioridad.nombre} </h:outputLabel>
-                                            </dd>
-                                            <dt>Instancia: </dt>
-                                            <dd> <h:outputLabel> #{gestionActividades.act.idInstancia.descripcion} </h:outputLabel>
-                                            </dd>
-                                            
-                                              
-                                            <dt>
-                                                <p:commandButton id="bo" update="@form" value="Cerrar" label="Cerrar" onclick="infoActividadPendiente.hide();" icon="ui-icon-folder-open"  title="Cerrar">
-                                                    <f:setPropertyActionListener value="#{actividad}" target="#{gestionActividades.boton}"  />
-                                                    
-                                                </p:commandButton>
-                                            
-                                                
-                                            
-                                            </dt>
-                                      
-
-
-                                        </dl>
-                                    </h:panelGroup>
-                                </p:dialog>
-                     </h:panelGroup>
-
-                    <h:panelGroup id="paneltablacola" rendered="#{gestionActividades.estadoSeleccionado eq 'Cola de Actividades'}">
-                        <p:tabView id="col"  dynamic="false">  
-
-                            <p:tab title="Cola de Actividades"> 
-                                <p:dataTable var="actividad" value="#{gestionActividades.actividades}"  paginator="true" rows="7">
-
-                                    <p:column headerText="Id Actividad" style="width:  20px; text-align: center;">
-                                        #{actividad.id}
-                                    </p:column>
-
-                                    <p:column headerText="Duracion" style="width:  20px; text-align: center;">
-                                        #{actividad.duracion}
-                                    </p:column>
-
-                                    <p:column headerText="Id Tarea" style="width:  20px; text-align: center;">
-                                        #{actividad.idTarea.nombre}
-                                    </p:column>
-
-                                    <p:column headerText="Ver Información" style="width:  20px; text-align: center;">
-
-                                   
-                                         <p:commandButton id="verinfo" update="@form" icon="ui-icon-search"  oncomplete="infoActividadCola.show()"  title="Ver">
-                                            <f:setPropertyActionListener value="#{actividad}" target="#{gestionActividades.act}" />
-                                        </p:commandButton>
-                                    </p:column>
-
-                                     
-
-                                </p:dataTable>
-
-
-
-                                <p:dialog id="dlgactividadCola"  header="Actividad" widgetVar="infoActividadCola">  
-                                            <p:ajax event="close" update="@form" listener="#{gestionActividades.asignar}"/>
-                                    <h:panelGroup id="actabierta">
-                                        <dl class="dl-horizontal">
-                                            <dt>Id:</dt> 
-                                            <dd><h:outputText value="#{gestionActividades.act.id}" rendered="#{not empty gestionActividades.actividades}" />
-                                            </dd>
-                                            <dt>Estado:</dt>
-                                            <dd> <h:outputLabel> #{gestionActividades.act.estado} </h:outputLabel>
-                                            </dd>
-                                            <dt>Duracion:</dt>
-                                            <dd><h:outputLabel> #{gestionActividades.act.duracion} </h:outputLabel>
-                                            </dd>
-                                            <dt>tarea:  </dt>
-                                            <dd> <h:outputLabel>#{gestionActividades.act.idTarea.nombre} </h:outputLabel>
-                                            </dd>
-                                            <dt>Prioridad:</dt> 
-                                            <dd> <h:outputLabel> #{gestionActividades.act.idPrioridad.nombre} </h:outputLabel>
-                                            </dd>
-                                            <dt>Instancia: </dt>
-                                            <dd> <h:outputLabel> #{gestionActividades.act.idInstancia.descripcion} </h:outputLabel>
-                                            </dd>
-                                           
-                                            
-                                            <dt>
-                                                <p:commandButton value="Cerrar" label="Cerrar"  onclick="infoActividadCola.hide();" icon="ui-icon-arrow-2-e-w"  title="Cerrar">
-
-                                                </p:commandButton> </dt>
-                                            <dd>
-                                                 
-                                                
-                                                
-                                            </dd>
-
-
-                                        </dl>
-                                    </h:panelGroup>
-                                </p:dialog>
-
-                            </p:tab>
-
-                        </p:tabView>
-                    </h:panelGroup>
 
 
                 </div> 
