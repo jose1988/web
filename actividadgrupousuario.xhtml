@@ -103,8 +103,9 @@
 
 
 
-                    <h:panelGroup id="paneltablaAbierta" rendered="#{gestionActividades.estadoSeleccionado eq 'abierta'}">
+                    <h:panelGroup id="paneltablaAbierta" >
                         <p:toolbar>  
+                    
                             <p:toolbarGroup align="left">  
                                 <ui:repeat var="grupo" value="#{gestionActividades.grupos}" >
                                     <p:commandButton value="#{grupo.nombre}" update=":fom:central"  icon="ui-icon-document" actionListener="#{gestionActividades.botonActivado(grupo.nombre)}" />  
@@ -127,17 +128,22 @@
                                     #{actividad.duracion}
                                 </p:column>
 
-                                <p:column headerText="Id Tarea" style="width:  20px; text-align: center;  ">
+                                <p:column headerText="Id Tarea" style="width:  20px; text-align: center;  " >
                                     #{actividad.idTarea.nombre}
                                 </p:column>
 
-                                <p:column headerText="Ver Información" style="width:  20px; text-align: center;  ">
+                                <p:column headerText="Ver Información a" style="width:  20px; text-align: center;  " rendered="#{gestionActividades.estadoSeleccionado eq 'abierta'}">
 
-                                    <p:commandButton id="verinfo" update=":fom" icon="ui-icon-search"  oncomplete="infoActividadAbierta.show()"  title="Ver">
+                                    <p:commandButton id="verinfoabrierta" update=":fom" icon="ui-icon-search"  oncomplete="infoActividadAbierta.show()"  title="Ver">
                                         <f:setPropertyActionListener value="#{actividad}" target="#{gestionActividades.act}" />
                                     </p:commandButton>
 
                                 </p:column>
+                                 <p:column headerText="Ver Información c" style="width:  20px; text-align: center;" rendered="#{gestionActividades.estadoSeleccionado eq 'cerrada'}">
+
+                                        <p:commandButton icon="ui-icon-search" id="verinfocerrar" onclick="infoActividadCerrada.show()" type="button" title="Ver"/>
+
+                                 </p:column>
                                 <p:column headerText="Pendiente" style="width:  20px; text-align: center;  ">
 
                                     <p:commandButton update=":fom" icon="ui-icon-arrow-2-e-w" action="#{gestionActividades.cambiarEstadoPendiente}" title="aceptar">
