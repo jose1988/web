@@ -123,7 +123,7 @@
 
                             <p:column headerText="Ver Información" style="width:  20px; text-align: center; #{mensajeriaController.sombreado(mail)}">
 
-                                <p:commandButton id="verinfo" update=":fom:mailVista" icon="ui-icon-search"   title="Ver contactos">
+                                <p:commandButton id="verinfo" update=":fom:mailVista" icon="ui-icon-search"   title="Ver">
                                     <f:setPropertyActionListener value="#{mail}" target="#{mensajeriaController.mail}" />
                                 </p:commandButton>
                             </p:column>
@@ -140,7 +140,7 @@
                         <div class="row">
                             <div class="col-md-11 well"> 
                                 <div class="col-md-1"> 
-                                    <p:commandLink  value="Para" id="verinfo" update=":fom:redac"  oncomplete="para.show()"  title="Ver" />
+                                    <p:commandLink  value="Para" id="verinfo" update=":fom:redac"  oncomplete="para.show()"  title="Ver contactos" />
                                 </div> 
                                 <div class="col-md-11">
                                     <p:inputText size="124"  id="paratext" value="#{mensajeriaController.para}"></p:inputText>
@@ -154,12 +154,12 @@
                                 <div class="col-md-11"> 
                                     <p:editor id="editor" value="#{mensajeriaController.cuerpo}" width="999"/>  
                                 </div>
-                                <div class="col-md-11"> 
+                                <div class="col-md-11" align="center"> 
                                     <p:commandButton value="Enviar" update="@form :messages" action="#{mensajeriaController.Envio}"/>  <p:commandButton value="Cancelar" />  
                                 </div>
 
                             </div> 
-                            <!-- Dialogo de Primefaces en el cual se muestra con mas detalle una actividad seleccionada -->
+                            <!-- Dialogo de Primefaces en el cual se muestra los contactos -->
                             <p:dialog id="Contactos"  header="Contactos" widgetVar="para" modal="true">  
                                 <h:panelGroup id="parat">
                                     <p:tree value="#{mensajeriaController.root}" var="node" dynamic="true" cache="false"  
