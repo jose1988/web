@@ -15,15 +15,15 @@
 
     <h:body>
         <!-- Se realiza la llamada a los métodos en donde se verifica el logueo del usuario -->
-         <c:if test="#{instanciaUsuarioController.verificarLogueo()}">
+        <c:if test="#{instanciaUsuarioController.verificarLogueo()}">
             <h:outputText value="#{instanciaUsuarioController.Redireccionar()}" />
         </c:if>
-        
+
         <!-- Se realiza la llamada al método en donde se cierra la sesión si han pasado 4 minutos y esta inactiva -->
         <p:idleMonitor timeout="240000">  
             <p:ajax event="idle" listener="#{instanciaUsuarioController.cerrarPorInactividad}" />  
         </p:idleMonitor>
-        
+
         <div class="row">
             <div class="col-md-12">
                 <h:graphicImage value="/recursos/images/pangea.jpg"  width="400" height="90"></h:graphicImage> 
@@ -76,42 +76,64 @@
                 <div class="col-md-10">
                     <p:tabView dynamic="false" >
                         <p:tab title="#{instanciaUsuarioController.estadoSeleccionado}" >
-                            
+
                             <!-- Tabla en la que se muestra la lista de instancias para la opción de estado abierta -->
-                            <h:panelGroup id="paneltablaAbierta" rendered="#{instanciaUsuarioController.estadoSeleccionado eq 'abierta'}">
+                            <h:panelGroup id="paneltablaAbierta" >
                                 <p:dataTable var="Instancia" value="#{instanciaUsuarioController.instancias}"  paginator="true" rows="7">
 
-                                    <p:column headerText="Id Instancia" style="width:  20px; #{instanciaUsuarioController.estiloAbierta(Instancia)}">
+                                    <p:column headerText="Id Instancia" style="width:  20px; #{instanciaUsuarioController.estiloAbierta(Instancia)}" rendered="#{instanciaUsuarioController.estadoSeleccionado eq 'abierta'}">
                                         #{Instancia.id}
                                     </p:column>
-                                    
-                                    <p:column headerText="Referencia" style="width:  170px; #{instanciaUsuarioController.estiloAbierta(Instancia)}">
+
+                                    <p:column headerText="Referencia" style="width:  170px; #{instanciaUsuarioController.estiloAbierta(Instancia)}" rendered="#{instanciaUsuarioController.estadoSeleccionado eq 'abierta'}">>
                                         #{Instancia.referencia}
                                     </p:column>
-                                    
+
                                     <!-- Botón que llama al diálogo en el cual se carga la información de la instancia seleccionada -->
-                                    <p:column headerText="Ver Información" style="width:  40px; text-align: center; #{instanciaUsuarioController.estiloAbierta(Instancia)}">
+                                    <p:column headerText="Ver Información" style="width:  40px; text-align: center; #{instanciaUsuarioController.estiloAbierta(Instancia)}" rendered="#{instanciaUsuarioController.estadoSeleccionado eq 'abierta'}">
                                         <p:commandButton update="@form" icon="ui-icon-search"  oncomplete="infoInstanciaAbierta.show()"  title="Ver">
                                             <f:setPropertyActionListener value="#{Instancia}" target="#{instanciaUsuarioController.inst}" />
                                         </p:commandButton>
                                     </p:column>
                                     
+                                     <p:column headerText="Id Instancia" style="width:  20px; #{instanciaUsuarioController.estiloCerrada(Instancia)}" rendered="#{instanciaUsuarioController.estadoSeleccionado eq 'cerrada'}">
+                                        #{Instancia.id}
+                                    </p:column>
+
+                                    <p:column headerText="Referencia" style="width:  170px; #{instanciaUsuarioController.estiloCerrada(Instancia)}" rendered="#{instanciaUsuarioController.estadoSeleccionado eq 'cerrada'}">
+                                        #{Instancia.referencia}
+                                    </p:column>
+
+
                                     <!-- Botón que llama al método que envia a la página actividadesPorInstancia.xhtml en la cual se listan las actividades dependiendo de la instancia seleccionada -->
-                                    <p:column headerText="Ver Actividades" style="width:  40px; text-align: center; #{instanciaUsuarioController.estiloAbierta(Instancia)}">
+                                    <p:column headerText="Ver Actividades" style="width:  40px; text-align: center; #{instanciaUsuarioController.estiloAbierta(Instancia)}" rendered="#{instanciaUsuarioController.estadoSeleccionado eq 'abierta'}">
                                         <p:commandButton update="@form" icon="ui-icon-link" action="#{instanciaUsuarioController.listarActividades}" title="Ir a Actividades" >
                                             <f:setPropertyActionListener value="#{Instancia}" target="#{instanciaUsuarioController.inst}" />
                                         </p:commandButton>
                                     </p:column>
-                                    
+
                                     <!-- Botón que llama al método que cierra la instancia seleccionada -->
-                                    <p:column headerText="Cerrar Instancia" style="width:  40px; text-align: center; #{instanciaUsuarioController.estiloAbierta(Instancia)}">
+                                    <p:column headerText="Cerrar Instancia" style="width:  40px; text-align: center; #{instanciaUsuarioController.estiloAbierta(Instancia)}" rendered="#{instanciaUsuarioController.estadoSeleccionado eq 'abierta'}">
                                         <p:commandButton update="@form" icon="ui-icon-closethick" action="#{instanciaUsuarioController.cerrarInstanciaSeleccionada()}" >
                                             <f:setPropertyActionListener value="#{Instancia}" target="#{instanciaUsuarioController.inst}" />
                                         </p:commandButton>
                                     </p:column>
-                                    
+                                    <!-- Botón que llama al diálogo en el cual se carga la información de la instancia seleccionada -->
+                                    <p:column headerText="Ver Información" style="width:  40px; text-align: center; #{instanciaUsuarioController.estiloCerrada(Instancia)}" rendered="#{instanciaUsuarioController.estadoSeleccionado eq 'cerrada'}">
+                                        <p:commandButton update="@form" icon="ui-icon-search"  oncomplete="infoInstanciaCerrada.show()"  title="Ver">
+                                            <f:setPropertyActionListener value="#{Instancia}" target="#{instanciaUsuarioController.inst}" />
+                                        </p:commandButton>
+                                    </p:column>
+
+                                    <!-- Botón que llama al método que envia a la página actividadesPorInstancia.xhtml en la cual se listan las actividades dependiendo de la instancia seleccionada -->                                    
+                                    <p:column headerText="Ver Actividades" style="width:  40px; text-align: center; #{instanciaUsuarioController.estiloCerrada(Instancia)}" rendered="#{instanciaUsuarioController.estadoSeleccionado eq 'cerrada'}">
+                                        <p:commandButton update="@form" icon="ui-icon-link" action="#{instanciaUsuarioController.listarActividades}" >
+                                            <f:setPropertyActionListener value="#{Instancia}" target="#{instanciaUsuarioController.inst}" />
+                                        </p:commandButton>
+                                    </p:column>
+
                                 </p:dataTable>
-                                
+
                                 <!-- Diálogo que muestra la información de la instancia seleccionada -->
                                 <p:dialog id="dlgInstanciaAbierta"  header="Instancia" widgetVar="infoInstanciaAbierta">  
                                     <h:panelGroup id="instabierta">
@@ -152,37 +174,10 @@
                                         </dl>
                                     </h:panelGroup>
                                 </p:dialog>
-                            </h:panelGroup>
-                            
-                            <!-- Tabla en la que se muestra la lista de instancias para la opción de estado cerrada -->                            
-                            <h:panelGroup id="paneltablaCerrada" rendered="#{instanciaUsuarioController.estadoSeleccionado eq 'cerrada'}" >
-                                <p:dataTable var="Instancia" value="#{instanciaUsuarioController.instancias}"  paginator="true" rows="7">
-
-                                    <p:column headerText="Id Instancia" style="width:  20px; #{instanciaUsuarioController.estiloCerrada(Instancia)}">
-                                        #{Instancia.id}
-                                    </p:column>
-                                    
-                                    <p:column headerText="Referencia" style="width:  170px; #{instanciaUsuarioController.estiloCerrada(Instancia)}">
-                                        #{Instancia.referencia}
-                                    </p:column>
-                                    
-                                    <!-- Botón que llama al diálogo en el cual se carga la información de la instancia seleccionada -->
-                                    <p:column headerText="Ver Información" style="width:  40px; text-align: center; #{instanciaUsuarioController.estiloCerrada(Instancia)}">
-                                        <p:commandButton update="@form" icon="ui-icon-search"  oncomplete="infoInstanciaCerrada.show()"  title="Ver">
-                                            <f:setPropertyActionListener value="#{Instancia}" target="#{instanciaUsuarioController.inst}" />
-                                        </p:commandButton>
-                                    </p:column>
-                                    
-                                    <!-- Botón que llama al método que envia a la página actividadesPorInstancia.xhtml en la cual se listan las actividades dependiendo de la instancia seleccionada -->                                    
-                                    <p:column headerText="Ver Actividades" style="width:  40px; text-align: center; #{instanciaUsuarioController.estiloCerrada(Instancia)}">
-                                        <p:commandButton update="@form" icon="ui-icon-link" action="#{instanciaUsuarioController.listarActividades}" >
-                                            <f:setPropertyActionListener value="#{Instancia}" target="#{instanciaUsuarioController.inst}" />
-                                        </p:commandButton>
-                                    </p:column>
-                                </p:dataTable>
-                                
+                          
+   
                                 <!-- Diálogo que muestra la información de la instancia seleccionada -->
-                                <p:dialog id="dlgInstanciaCerrada"  header="Instancia" widgetVar="infoInstanciaCerrada">  
+                             <p:dialog id="dlgInstanciaCerrada"  header="Instancia" widgetVar="infoInstanciaCerrada">  
                                     <h:panelGroup id="instcerrada">
                                         <dl class="dl-horizontal">
                                             <dt>Id:</dt> 

@@ -18,12 +18,12 @@
         <c:if test="#{usuarioGrupoController.verificarLogueo()}">
             <h:outputText value="#{usuarioGrupoController.Redireccionar()}" />
         </c:if>
-        
+
         <!-- Se realiza la llamada al método en donde se cierra la sesión si han pasado 4 minutos y esta inactiva -->
         <p:idleMonitor timeout="240000">  
             <p:ajax event="idle" listener="#{usuarioGrupoController.cerrarPorInactividad}" />  
         </p:idleMonitor>
-        
+
         <div class="row">
             <div class="col-md-12">
                 <h:graphicImage value="/recursos/images/pangea.jpg"  width="400" height="90"></h:graphicImage> 
@@ -50,76 +50,83 @@
                 </nav>      
             </div>
         </div>
-        
+
         <div class="col-md-12">
             <h:form id="fom"  prependId="false">
                 <!-- Tabla en la que se muestra la lista de usuarios para el grupo que se seleccione -->                            
-                    <h:panelGroup id="paneltablaUsuarios">
-                        <p:tabView id="tabView" activeIndex="#{usuarioGrupoController.indice}" var="grupo" dynamic="true" cache="false" value="#{usuarioGrupoController.grupos}" >  
-                           <!-- Evento que carga en un menú los grupos cargados en la base de datos permitiendo listar los usuarios de cada grupo  -->
-                            <p:ajax event="tabChange" listener="#{usuarioGrupoController.onTabChange}"  update="@this"/>  
-                            <p:tab  title="#{grupo.nombre}">
-                              <h:panelGroup id="panelUsuarios">
-                                <p:dataTable var="usuarios" value="#{usuarioGrupoController.grupoUsuarios}"  paginator="true" rows="7">
+                <h:panelGroup id="paneltablaUsuarios"> 
 
-                                    <p:column headerText="Id">
-                                        #{usuarios.id}
-                                    </p:column>
-                                    
-                                    <p:column headerText="Id Usuario">
-                                        #{usuarios.idUsuario.id}
-                                    </p:column>
-                                   
-                                    <!-- Botón que llama al diálogo en el cual se carga la información de la instancia seleccionada -->                                    
-                                    <p:column headerText="Ver Información">
-                                        <p:commandButton update="@form" icon="ui-icon-search"  oncomplete="infoUsuario.show()"  title="Ver" action="#{usuarioGrupoController.verDatosUsuario}">
-                                            <f:setPropertyActionListener value="#{usuarios}" target="#{usuarioGrupoController.grup}" />
-                                        </p:commandButton>
-                                    </p:column>
-                                    
-                                    <!-- Botón que llama al método que envia a la página actividadesPorUsuario.xhtml en la cual se listan las actividades dependiendo del usuario seleccionado y al grupo al que pertenezcan -->
-                                    <p:column headerText="Ver Actividades">
-                                        <p:commandButton update="@form" icon="ui-icon-link" action="#{usuarioGrupoController.verActividadesUsuario}" title="Ir a Actividades" >
-                                            <f:setPropertyActionListener value="#{usuarios}" target="#{usuarioGrupoController.grup}" />
-                                        </p:commandButton>
-                                    </p:column>                            
-                                </p:dataTable>
-                                  
-                                  <!-- Diálogo que muestra la información del usuario seleccionado -->
-                                  <p:dialog id="dlgUsuario"  header="Usuario" widgetVar="infoUsuario">  
-                                    <h:panelGroup id="infUsuario">
-                                        <dl class="dl-horizontal">
-                                            <dt>Id: </dt> 
-                                            <dd><h:outputText value="#{usuarioGrupoController.datosusuarios.id}" rendered="#{not empty usuarioGrupoController.grupoUsuarios}" />
-                                            </dd>
-                                            <dt>Nombre: </dt>
-                                            <dd><h:outputLabel> #{usuarioGrupoController.datosusuarios.primerNombre} </h:outputLabel>
-                                            </dd>
-                                            <dt>Apellido: </dt>
-                                            <dd><h:outputLabel> #{usuarioGrupoController.datosusuarios.primerApellido} </h:outputLabel>
-                                            </dd>
-                                            <dt>Cédula: </dt>
-                                            <dd><h:outputLabel> #{usuarioGrupoController.datosusuarios.cedula} </h:outputLabel>
-                                            </dd>
-                                            <dt>Dirección: </dt>
-                                            <dd><h:outputLabel> #{usuarioGrupoController.datosusuarios.direccionPersonal} </h:outputLabel>
-                                            </dd>
-                                            <dt>Estado: </dt>
-                                            <dd><h:outputLabel> #{usuarioGrupoController.datosusuarios.estado} </h:outputLabel>
-                                            </dd>
-                                            <dt>Clasificación: </dt>
-                                            <dd><h:outputLabel> #{usuarioGrupoController.datosusuarios.idClasificacionUsuario.nombre} </h:outputLabel>
-                                            </dd>
-                                            <dd>
-                                                <p:commandButton value="Cancelar" label="Cancelar" onclick="infoUsuario.hide()" icon="ui-icon-close"  title="Cancelar">
-                                                </p:commandButton> </dd>
-                                        </dl>
-                                    </h:panelGroup>
-                                </p:dialog>
-                              </h:panelGroup>
-                            </p:tab>                            
-                        </p:tabView>
-                  </h:panelGroup>
+                    <p:toolbar>  
+
+                        <p:toolbarGroup align="left">  
+                            <p:selectOneButton value="#{usuarioGrupoController.grupoPanel}" id="gruposdegrupos">           
+                                <f:selectItems value="#{usuarioGrupoController.grupos}" var="grupo" itemLabel="#{grupo.nombre}" itemValue="#{grupo.nombre}" />
+                                <p:ajax listener="#{usuarioGrupoController.botonActivado}" update=":fom:panelUsuarios"/>
+                            </p:selectOneButton>
+                        </p:toolbarGroup>
+                    </p:toolbar>
+
+                    <h:panelGroup id="panelUsuarios">
+
+                        <p:dataTable var="usuarios" value="#{usuarioGrupoController.grupoUsuarios}"  paginator="true" rows="7">
+
+                            <p:column headerText="Id">
+                                #{usuarios.id}
+                            </p:column>
+
+                            <p:column headerText="Id Usuario">
+                                #{usuarios.idUsuario.id}
+                            </p:column>
+
+                            <!-- Botón que llama al diálogo en el cual se carga la información de la instancia seleccionada -->                                    
+                            <p:column headerText="Ver Información">
+                                <p:commandButton update="@form" icon="ui-icon-search"  oncomplete="infoUsuario.show()"  title="Ver" action="#{usuarioGrupoController.verDatosUsuario}">
+                                    <f:setPropertyActionListener value="#{usuarios}" target="#{usuarioGrupoController.grup}" />
+                                </p:commandButton>
+                            </p:column>
+
+                            <!-- Botón que llama al método que envia a la página actividadesPorUsuario.xhtml en la cual se listan las actividades dependiendo del usuario seleccionado y al grupo al que pertenezcan -->
+                            <p:column headerText="Ver Actividades">
+                                <p:commandButton update="@form" icon="ui-icon-link" action="#{usuarioGrupoController.verActividadesUsuario}" title="Ir a Actividades" >
+                                    <f:setPropertyActionListener value="#{usuarios}" target="#{usuarioGrupoController.grup}" />
+                                </p:commandButton>
+                            </p:column>                            
+                        </p:dataTable>
+
+                        <!-- Diálogo que muestra la información del usuario seleccionado -->
+                        <p:dialog id="dlgUsuario"  header="Usuario" widgetVar="infoUsuario">  
+                            <h:panelGroup id="infUsuario">
+                                <dl class="dl-horizontal">
+                                    <dt>Id: </dt> 
+                                    <dd><h:outputText value="#{usuarioGrupoController.datosusuarios.id}" rendered="#{not empty usuarioGrupoController.grupoUsuarios}" />
+                                    </dd>
+                                    <dt>Nombre: </dt>
+                                    <dd><h:outputLabel> #{usuarioGrupoController.datosusuarios.primerNombre} </h:outputLabel>
+                                    </dd>
+                                    <dt>Apellido: </dt>
+                                    <dd><h:outputLabel> #{usuarioGrupoController.datosusuarios.primerApellido} </h:outputLabel>
+                                    </dd>
+                                    <dt>Cédula: </dt>
+                                    <dd><h:outputLabel> #{usuarioGrupoController.datosusuarios.cedula} </h:outputLabel>
+                                    </dd>
+                                    <dt>Dirección: </dt>
+                                    <dd><h:outputLabel> #{usuarioGrupoController.datosusuarios.direccionPersonal} </h:outputLabel>
+                                    </dd>
+                                    <dt>Estado: </dt>
+                                    <dd><h:outputLabel> #{usuarioGrupoController.datosusuarios.estado} </h:outputLabel>
+                                    </dd>
+                                    <dt>Clasificación: </dt>
+                                    <dd><h:outputLabel> #{usuarioGrupoController.datosusuarios.idClasificacionUsuario.nombre} </h:outputLabel>
+                                    </dd>
+                                    <dd>
+                                        <p:commandButton value="Cancelar" label="Cancelar" onclick="infoUsuario.hide()" icon="ui-icon-close"  title="Cancelar">
+                                        </p:commandButton> </dd>
+                                </dl>
+                            </h:panelGroup>
+                        </p:dialog>
+                    </h:panelGroup>
+                </h:panelGroup>
+
             </h:form>
         </div> 
     </h:body>
