@@ -68,7 +68,7 @@
 
 
                             <p:tree value="#{gestionActividades.estact}" selection="#{gestionActividades.estadoSeleccionado}" var="box" selectionMode="single" style="width: auto;">
-                                <p:ajax event="select" update="@form" listener="#{gestionActividades.onNodeSelect}" /> 
+                                <p:ajax event="select" update=":fom:central" listener="#{gestionActividades.onNodeSelect}" /> 
                                 <p:treeNode icon="ui-icon-mail-closed" >
                                     <h:outputText value="#{box}"/>
 

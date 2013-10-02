@@ -161,7 +161,7 @@
                             </div> 
                             <!-- Dialogo de Primefaces en el cual se muestra con mas detalle una actividad seleccionada -->
                             <p:dialog id="Contactos"  header="Contactos" widgetVar="para" modal="true">  
-                                <h:panelGroup id="para">
+                                <h:panelGroup id="parat">
                                     <p:tree value="#{mensajeriaController.root}" var="node" dynamic="true" cache="false"  
                                             selectionMode="single"  selection="#{mensajeriaController.selectedNode}" id="tree">  
                                         <p:ajax event="select" update="@form" listener="#{mensajeriaController.NodoSeleccionado}" />  
